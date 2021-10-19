@@ -1,7 +1,7 @@
 <?php return array(
     'root' => array(
-        'pretty_version' => 'v8.6.3',
-        'version' => '8.6.3.0',
+        'pretty_version' => '1.0.0+no-version-set',
+        'version' => '1.0.0.0',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -395,8 +395,8 @@
             'dev_requirement' => false,
         ),
         'laravel/laravel' => array(
-            'pretty_version' => 'v8.6.3',
-            'version' => '8.6.3.0',
+            'pretty_version' => '1.0.0+no-version-set',
+            'version' => '1.0.0.0',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -769,8 +769,8 @@
         'psr/log-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '1.0|2.0',
-                1 => '1.0.0 || 2.0.0 || 3.0.0',
+                0 => '1.0.0 || 2.0.0 || 3.0.0',
+                1 => '1.0|2.0',
             ),
         ),
         'psr/simple-cache' => array(
@@ -1290,6 +1290,24 @@
             'install_path' => __DIR__ . '/../webmozart/assert',
             'aliases' => array(),
             'reference' => '6964c76c7804814a842473e0c8fd15bab0f18e25',
+            'dev_requirement' => false,
+        ),
+        'yajra/laravel-oci8' => array(
+            'pretty_version' => 'v8.5.0',
+            'version' => '8.5.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../yajra/laravel-oci8',
+            'aliases' => array(),
+            'reference' => '938be18fd7a7bdf4388a02eb23ace461e3d2b044',
+            'dev_requirement' => false,
+        ),
+        'yajra/laravel-pdo-via-oci8' => array(
+            'pretty_version' => 'v3.0.0',
+            'version' => '3.0.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../yajra/laravel-pdo-via-oci8',
+            'aliases' => array(),
+            'reference' => 'd9ece35f62fe059c7637b778c1bdc8894dedeecb',
             'dev_requirement' => false,
         ),
     ),
