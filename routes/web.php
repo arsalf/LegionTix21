@@ -1,6 +1,7 @@
 <?php
 
-use App\Models\Employees;
+use App\Http\Controllers\RoleController;
+use App\Models\Role;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,9 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $data = Employees::all();
-    
-    return view('welcome', ['data'=>$data]);
+    return view('index');
 });
 
-
+Route::resource('admin/manage/role', RoleController::class);
