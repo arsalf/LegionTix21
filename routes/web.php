@@ -20,3 +20,4 @@ Route::get('/', function () {
 });
 
 Route::resource('admin/manage/role', RoleController::class);
+Route::resource('landing/', RoleController::class);
