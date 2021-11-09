@@ -27,7 +27,7 @@
                         <button class="btn btn-dark">
                             <a class="text-light" style="text-decoration: none" href="{{url('admin/manage/role/'.strval($item->id).'/edit')}}">edit</a>
                         </button>
-                        <button class="btn btn-danger text-white">
+                        <button class="text-white btn btn-danger">
                             <a class="text-light" style="text-decoration: none" href="{{url('admin/manage/role/'.strval($item->id))}}">delete</a>
                         </button>
                     </th>
