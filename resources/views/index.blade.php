@@ -1,4 +1,4 @@
-@extends('app.layout')
+@extends('app.customer.layout')
 
 @section('title')
     Welcome to Home

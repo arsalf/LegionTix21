@@ -1,12 +1,12 @@
 @extends('app.admin.layout')
 
 @section('title')
-    Create A Role
+    Edit A Role
 @endsection
 
 @section('content')
 <div class="container">
-    <h1 class="text-center">Create A Role</h1>
+    <h1 class="text-center">Update A Role</h1>
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -19,10 +19,11 @@
     @if (session('status'))
         <div class="alert alert-success">{{session('status')}}</div>
     @endif
-    <form action="{{route('role.store')}}" method="POST">
+    <form action="{{route('role.update', $role->id)}}" method="POST">
         @csrf
-        <input type="text" name="name" placeholder="Role Name">
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <input type="text" name="name" value="{{$role->name}}">
+        @method('PUT')
+        <button type="submit" class="btn btn-primary">Update</button>
     </form>
 </div>
 @endsection

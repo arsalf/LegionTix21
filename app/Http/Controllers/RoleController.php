@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Exception;
 
 class RoleController extends Controller
 {
@@ -40,6 +41,10 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'name'=>'required|max:10'
+        ]);
+
         //Save a new data role to db
         $data = new Role;
         $data->name = $request->name;
@@ -71,7 +76,9 @@ class RoleController extends Controller
     public function edit($id)
     {
         //
-        return "This edit $id";
+        $role = Role::find($id);
+
+        return view('role.edit', ['role'=>$role]);
     }
 
     /**
@@ -84,6 +91,15 @@ class RoleController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $this->validate($request, [
+            'name'=>'required|max:10'
+        ]);
+
+        Role::where('id', $id)->update([
+            'name'=>$request->name,
+        ]);
+
+        return redirect()->back()->with('status', 'Success update a role!');
     }
 
     /**
@@ -95,5 +111,10 @@ class RoleController extends Controller
     public function destroy($id)
     {
         //
+        $role = Role::find($id);
+        Role::where('id', $id)->delete();
+        
+
+        return redirect()->back()->with('status', 'Success delete a role '.$role->name.'!');
     }
 }
