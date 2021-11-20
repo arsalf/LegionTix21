@@ -8,7 +8,19 @@ $baseDir = dirname($vendorDir);
 return array(
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
+    'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',
+    'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
+    'App\\Http\\Controllers\\Auth\\LoginController' => $baseDir . '/app/Http/Controllers/Auth/LoginController.php',
+    'App\\Http\\Controllers\\Auth\\RegisterController' => $baseDir . '/app/Http/Controllers/Auth/RegisterController.php',
+    'App\\Http\\Controllers\\Auth\\ResetPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ResetPasswordController.php',
+    'App\\Http\\Controllers\\Auth\\VerificationController' => $baseDir . '/app/Http/Controllers/Auth/VerificationController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
+<<<<<<< Updated upstream
+=======
+    'App\\Http\\Controllers\\HomeController' => $baseDir . '/app/Http/Controllers/HomeController.php',
+    'App\\Http\\Controllers\\ProfileController' => $baseDir . '/app/Http/Controllers/ProfileController.php',
+    'App\\Http\\Controllers\\RoleController' => $baseDir . '/app/Http/Controllers/RoleController.php',
+>>>>>>> Stashed changes
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',
     'App\\Http\\Middleware\\EncryptCookies' => $baseDir . '/app/Http/Middleware/EncryptCookies.php',
@@ -18,7 +30,14 @@ return array(
     'App\\Http\\Middleware\\TrustHosts' => $baseDir . '/app/Http/Middleware/TrustHosts.php',
     'App\\Http\\Middleware\\TrustProxies' => $baseDir . '/app/Http/Middleware/TrustProxies.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
+<<<<<<< Updated upstream
     'App\\Models\\Employees' => $baseDir . '/app/Models/Employees.php',
+=======
+    'App\\Http\\Middleware\\isAdmin' => $baseDir . '/app/Http/Middleware/isAdmin.php',
+    'App\\Http\\Middleware\\isEmploy' => $baseDir . '/app/Http/Middleware/isEmploy.php',
+    'App\\Models\\Account' => $baseDir . '/app/Models/Account.php',
+    'App\\Models\\Role' => $baseDir . '/app/Models/Role.php',
+>>>>>>> Stashed changes
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',
@@ -129,6 +148,15 @@ return array(
     'Cron\\MonthField' => $vendorDir . '/dragonmantank/cron-expression/src/Cron/MonthField.php',
     'Database\\Factories\\UserFactory' => $baseDir . '/database/factories/UserFactory.php',
     'Database\\Seeders\\DatabaseSeeder' => $baseDir . '/database/seeders/DatabaseSeeder.php',
+    'DaveJamesMiller\\Breadcrumbs\\BreadcrumbsException' => $vendorDir . '/davejamesmiller/laravel-breadcrumbs/src/BreadcrumbsException.php',
+    'DaveJamesMiller\\Breadcrumbs\\BreadcrumbsGenerator' => $vendorDir . '/davejamesmiller/laravel-breadcrumbs/src/BreadcrumbsGenerator.php',
+    'DaveJamesMiller\\Breadcrumbs\\BreadcrumbsManager' => $vendorDir . '/davejamesmiller/laravel-breadcrumbs/src/BreadcrumbsManager.php',
+    'DaveJamesMiller\\Breadcrumbs\\BreadcrumbsServiceProvider' => $vendorDir . '/davejamesmiller/laravel-breadcrumbs/src/BreadcrumbsServiceProvider.php',
+    'DaveJamesMiller\\Breadcrumbs\\Exceptions\\DuplicateBreadcrumbException' => $vendorDir . '/davejamesmiller/laravel-breadcrumbs/src/Exceptions/DuplicateBreadcrumbException.php',
+    'DaveJamesMiller\\Breadcrumbs\\Exceptions\\InvalidBreadcrumbException' => $vendorDir . '/davejamesmiller/laravel-breadcrumbs/src/Exceptions/InvalidBreadcrumbException.php',
+    'DaveJamesMiller\\Breadcrumbs\\Exceptions\\UnnamedRouteException' => $vendorDir . '/davejamesmiller/laravel-breadcrumbs/src/Exceptions/UnnamedRouteException.php',
+    'DaveJamesMiller\\Breadcrumbs\\Exceptions\\ViewNotSetException' => $vendorDir . '/davejamesmiller/laravel-breadcrumbs/src/Exceptions/ViewNotSetException.php',
+    'DaveJamesMiller\\Breadcrumbs\\Facades\\Breadcrumbs' => $vendorDir . '/davejamesmiller/laravel-breadcrumbs/src/Facades/Breadcrumbs.php',
     'DeepCopy\\DeepCopy' => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/DeepCopy.php',
     'DeepCopy\\Exception\\CloneException' => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/Exception/CloneException.php',
     'DeepCopy\\Exception\\PropertyException' => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/Exception/PropertyException.php',
