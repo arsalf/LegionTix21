@@ -13,7 +13,7 @@ class Role extends Model
     public $timestamps = false;
     protected $primaryKey = 'ID';
     public $incrementing = true;
-
+  
     protected $fillable = [
         'ID',
         'NAME',

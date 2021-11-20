@@ -1,8 +1,6 @@
 <?php
 
-<<<<<<< Updated upstream
 use App\Models\Employees;
-=======
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CityController;
@@ -11,7 +9,6 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProvinceController;
 use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Auth;
->>>>>>> Stashed changes
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,14 +24,9 @@ use Illuminate\Support\Facades\Route;
 
 //Landing Page
 Route::get('/', function () {
-    $data = Employees::all();
-    
-    return view('welcome', ['data'=>$data]);
+    return view('index');
 });
 
-<<<<<<< Updated upstream
-
-=======
 //Authentication needed
 Auth::routes();
 
@@ -87,4 +79,4 @@ Route::middleware(['auth', 'isEmploy'])->group(function(){
 });
 
 Route::get('/forbidden', function(){return view('forbidden');});
->>>>>>> Stashed changes
+

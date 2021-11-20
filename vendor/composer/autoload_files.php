@@ -40,4 +40,5 @@ return array(
     'f18cc91337d49233e5754e93f3ed9ec3' => $vendorDir . '/laravelcollective/html/src/helpers.php',
 >>>>>>> Stashed changes
     '8d3b2199cd129cab173c6d6470bfbcb5' => $vendorDir . '/yajra/laravel-oci8/src/helper.php',
+    'f18cc91337d49233e5754e93f3ed9ec3' => $vendorDir . '/laravelcollective/html/src/helpers.php',
 );

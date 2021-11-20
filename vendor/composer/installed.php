@@ -5,11 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-<<<<<<< Updated upstream
         'reference' => 'b16cf092587ae4ebc12395ad2456c20dc233b1c7',
-=======
-        'reference' => '55517259edbb68cbe09a096053560d5e6a5b249b',
->>>>>>> Stashed changes
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -413,11 +409,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-<<<<<<< Updated upstream
             'reference' => 'b16cf092587ae4ebc12395ad2456c20dc233b1c7',
-=======
-            'reference' => '55517259edbb68cbe09a096053560d5e6a5b249b',
->>>>>>> Stashed changes
             'dev_requirement' => false,
         ),
         'laravel/sail' => array(
@@ -463,6 +455,15 @@
             'install_path' => __DIR__ . '/../laravel/ui',
             'aliases' => array(),
             'reference' => '07d725813350c695c779382cbd6dac0ab8665537',
+            'dev_requirement' => false,
+        ),
+        'laravelcollective/html' => array(
+            'pretty_version' => 'v6.2.1',
+            'version' => '6.2.1.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../laravelcollective/html',
+            'aliases' => array(),
+            'reference' => 'ae15b9c4bf918ec3a78f092b8555551dd693fde3',
             'dev_requirement' => false,
         ),
         'league/commonmark' => array(

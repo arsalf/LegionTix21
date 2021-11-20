@@ -61,6 +61,7 @@ class RoleController extends Controller
         $data = new Role;
         $data->name = $request->name;
         $data->save();
+      
         // DB::executeProcedure('insert_role', ['name' => $request->name]);
 
         return redirect()->back()->with('status', 'Success add a role!');
