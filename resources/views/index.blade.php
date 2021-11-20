@@ -13,7 +13,8 @@
       <h2 data-aos="fade-up">We are team of talented designers making websites with Bootstrap</h2>
       <a data-aos="fade-up" data-aos-delay="200" href="#about" class="btn-get-started scrollto">Get Started</a>
     </div>
-  </section><!-- End Hero -->
+  </section>
+  <!-- End Hero -->
 
   <section id="about" class="about">
     <div class="container">

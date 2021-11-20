@@ -18,8 +18,13 @@ class RoleController extends Controller
     {
         //Index Role Manage Table
         $data = Role::orderBy('id', 'asc')->get();
-
-        return view('role.index', ['data'=>$data]);
+        $dataTable = new Role();
+        
+        return view('app.admin.table.index', [
+            'data'=>$data, 
+            'header'=>$dataTable->getFillable(),
+            'table_name' => $dataTable->getTable(),
+        ]);
     }
 
     /**
@@ -30,7 +35,14 @@ class RoleController extends Controller
     public function create()
     {
         // form to create role name
-        return view('role.create');
+        $data = "";
+        $dataTable = new Role();
+        
+        return view('app.admin.table.create', [
+            'data'=>$data,
+            'header'=>$dataTable->getFillable(),
+            'table_name' => $dataTable->getTable(),
+        ]);
     }
 
     /**
@@ -42,13 +54,15 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name'=>'required|max:10'
+            'name'=>'required|max:10',
         ]);
 
         //Save a new data role to db
         $data = new Role;
         $data->name = $request->name;
         $data->save();
+      
+        // DB::executeProcedure('insert_role', ['name' => $request->name]);
 
         return redirect()->back()->with('status', 'Success add a role!');
     }
@@ -62,9 +76,14 @@ class RoleController extends Controller
     public function show($id)
     {
         //
-        $data = Role::where('id', $id)->get();
+        $data = Role::find($id);
+        $dataTable = new Role();
 
-        return view('role.index', ['data'=>$data]);
+        return view('app.admin.table.index', [
+            'data'=>$data, 
+            'header'=>$dataTable->getFillable(),
+            'table_name' => $dataTable->getTable(),
+        ]);
     }
 
     /**
@@ -76,9 +95,14 @@ class RoleController extends Controller
     public function edit($id)
     {
         //
-        $role = Role::find($id);
-
-        return view('role.edit', ['role'=>$role]);
+        $data = Role::find($id);
+        $dataTable = new Role();
+        
+        return view('app.admin.table.edit', [
+            'data'=>$data,
+            'header'=>$dataTable->getFillable(),
+            'table_name' => $dataTable->getTable(),
+        ]);
     }
 
     /**
@@ -92,14 +116,18 @@ class RoleController extends Controller
     {
         //
         $this->validate($request, [
+            'id'=>'required',
             'name'=>'required|max:10'
         ]);
-
+        
         Role::where('id', $id)->update([
+            'id'=>$request->id,
             'name'=>$request->name,
         ]);
+        
+        $id = $request->id;
 
-        return redirect()->back()->with('status', 'Success update a role!');
+        return redirect()->route('role.edit', $id)->with('status', 'Success update role!');
     }
 
     /**
