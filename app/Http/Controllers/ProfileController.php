@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\City;
 use App\Models\Profile;
+use App\Models\Province;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
@@ -27,6 +29,7 @@ class ProfileController extends Controller
     public function create()
     {
         //
+        
         return view('app.admin.profile.create');
     }
 
@@ -50,6 +53,9 @@ class ProfileController extends Controller
     public function show($id)
     {
         //
+        $prov = Province::all();
+        $city = City::all();
+        
     }
 
     /**

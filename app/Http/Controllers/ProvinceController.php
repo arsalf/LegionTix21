@@ -142,4 +142,16 @@ class ProvinceController extends Controller
 
         return redirect()->back()->with('status', 'Success delete a province '.$data->name.'!');
     }
+
+    public function getProvinsi($id){
+        $data = Province::find($id);
+        return $data;
+    }
+
+    public function getAllProvinsi()
+    {
+        $data = Province::all();
+        return $data;
+    }
+    
 }

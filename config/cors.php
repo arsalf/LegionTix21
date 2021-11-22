@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'paths' => ['api/*', 'sanctum/csrf-cookie'],
+    'paths' => ['api/*', 'sanctum/csrf-cookie', '*', 'https://emsifa.github.io/api-wilayah-indonesia/api/provinces.json'],
 
     'allowed_methods' => ['*'],
 

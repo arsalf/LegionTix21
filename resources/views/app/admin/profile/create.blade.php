@@ -5,11 +5,6 @@
 @endsection
 
 @section('custom_css')
-<script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
-<script src="http://api.iksgroup.co.id/apijs/lokasiapi.js"></script>
-<script>
-var render=createwidgetlokasi("provinsi","kabupaten","kecamatan","kelurahan");
-</script>
 <style>
 .form-control:focus {
     box-shadow: none;
@@ -79,15 +74,41 @@ var render=createwidgetlokasi("provinsi","kabupaten","kecamatan","kelurahan");
                         </div>
                     </div>
                     <div class="row mt-3">
-                        <div class="col-md-12">
-                            <label class="labels">Phone Number</label>
+                        <div class="col-md-6">
+                            <label class="labels">Nomor Telepon</label>
                             <input type="text" class="form-control" placeholder="Phone Number" value="">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="labels">Tanggal Lahir</label>    
+                            <input class="form-control" type="date" id="birthday" name="birthday">
                         </div>
                     </div>
                     <div class="row mt-3">
                         <div class="col-md-6">
-                            <label class="labels">Date Birth</label>    
-                            <input class="form-control" type="date" id="birthday" name="birthday">
+                            <label class="labels">Provinsi</label>
+                            <select id="provinsi" class="form-select form-select-sm">
+                                <option selected>--- Pilih Provinsi ---</option>
+                            </select> 
+                        </div>
+                        <div class="col-md-6">
+                            <label class="labels">Kabupaten/Kota</label>
+                            <select id="city" class="form-select form-select-sm">
+                                <option selected>--- Pilih Kabupaten/Kota ---</option>
+                            </select>
+                        </div>                        
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <label class="labels">Kecamatan</label>
+                            <select id="kecamatan" class="form-select form-select-sm">
+                                <option selected>--- Pilih Kecamatan ---</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="labels">Kelurahan</label>
+                            <select id="kelurahan" class="form-select form-select-sm">
+                                <option selected>--- Pilih Kelurahan ---</option>
+                            </select>
                         </div>
                     </div>
                     <div class="row mt-3">
@@ -100,41 +121,11 @@ var render=createwidgetlokasi("provinsi","kabupaten","kecamatan","kelurahan");
                             <input type="text" class="form-control" value="" placeholder="Rw">
                         </div>
                         <div class="col-md-4">
-                            <label class="labels">Kelurahan</label>
-                            <input type="text" class="form-control" value="" placeholder="Kelurahan">
-                        </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-md-6">
-                            <label class="labels">Kecamatan</label>
-                            <input type="text" class="form-control" placeholder="Kecamatan" value="">
-                        </div>
-                        <div class="col-md-6">
                             <label class="labels">Kode Pos</label>
                             <input type="text" class="form-control" value="" placeholder="Kode Pos">
                         </div>
                     </div>
-                    <div class="row mt-3">
-                        <div class="col-md-6">
-                            <label class="labels">City</label>
-                            <input type="text" class="form-control" placeholder="City" value="">
-                        </div>
-                        <div class="col-md-6">
-                            <label class="labels">Province</label>
-                            <select id="provinsi" class="form-control">
-                                <option></option>
-                            </select>
-                            <select id="kabupaten" class="form-control">
-                                <option></option>
-                            </select>
-                            <select id="kecamatan" class="form-control">
-                                <option></option>
-                            </select>
-                            <select id="kelurahan" class="form-control">
-                                <option></option>
-                            </select>
-                        </div>
-                    </div>
+                    
                     <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div>
                 </div>
             </div>
@@ -147,13 +138,10 @@ var render=createwidgetlokasi("provinsi","kabupaten","kecamatan","kelurahan");
 
 
 @section('custom_js')
-
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+{{-- <script src="http://api.iksgroup.co.id/apijs/lokasiapi.js"></script>
 <script>
-    $(document).ready(function(){
-                $("#show").click(function(){
-                    $("#output").html(trackdatalokasi);
-                });            
-            });   
-</script>
+var render=createwidgetlokasi("provinsi","kabupaten","kecamatan","kelurahan");
+</script> --}}
+<script src="{{url('js/location.js')}}"></script>
 @endsection

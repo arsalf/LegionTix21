@@ -150,4 +150,15 @@ class CityController extends Controller
 
         return redirect()->back()->with('status', 'Success delete a city '.$data->name.'!');
     }
+
+    public function getCity($id){
+        $data = City::where('province_id', $id)->get();
+        return $data;
+    }
+    
+    public function getAllCity(){
+        $data = City::all();
+        return $data;
+    }
+    
 }
