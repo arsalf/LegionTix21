@@ -71,11 +71,13 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 |
 */
 Route::middleware(['auth', 'isEmploy'])->group(function(){
-    Route::prefix('emp')->group(function(){
-        Route::get('/dashboard', function () {
-            return view('app.admin.dashboard');
-        });
-    }); 
+ 
+});
+
+Route::prefix('emp')->group(function(){
+    Route::get('/dashboard', function () {
+        return view('app.admin.dashboard');
+    });
 });
 
 Route::get('/forbidden', function(){return view('forbidden');});
