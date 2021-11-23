@@ -11,7 +11,7 @@
       <a href="#" class="hero-logo" data-aos="zoom-in"><img src="{{ asset('img/hero-logo2.png') }}" style="transform: scale(1.5)" alt=""></a>
       <h1 data-aos="zoom-in">Welcome To Legion Tix</h1>
       <h2 data-aos="fade-up">Legion for honnor</h2>
-      <a data-aos="fade-up" data-aos-delay="200" href="#about" class="btn-get-started scrollto">To APP</a>
+      <a data-aos="fade-up" data-aos-delay="200" href="{{url('app')}}" class="btn-get-started scrollto">Get Started</a>
     </div>
   </section>
   <!-- End Hero -->
