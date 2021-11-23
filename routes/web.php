@@ -28,6 +28,37 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::prefix('app')->group(function(){
+    Route::get('/', function () {
+        return view('app.home.index');
+    })->name('app');
+
+    Route::get('/detail', function () {
+        return view('app.home.film.detail');
+    })->name('app.detail');
+
+    Route::get('/watch', function () {
+        return view('app.home.film.watch');
+    })->name('app.watch');
+
+    Route::get('/login', function () {
+        return view('app.home.login.login');
+    })->name('app.login');
+
+    Route::get('/register', function () {
+        return view('app.home.login.register');
+    })->name('app.register');
+
+    Route::prefix('articel')->group(function(){
+        Route::get('/', function () {
+            return view('app.home.articel.index');
+        })->name('app.articel');
+
+        Route::get('/detail', function () {
+            return view('app.home.articel.detail');
+        })->name('app.articelDetail');
+    });
+});
 //Authentication needed
 Auth::routes();
 
@@ -73,7 +104,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 |
 */
 Route::middleware(['auth', 'isEmploy'])->group(function(){
- 
+
 });
 
 Route::prefix('emp')->group(function(){
