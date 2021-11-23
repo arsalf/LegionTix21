@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\City;
-use App\Models\Profile;
-use App\Models\Province;
 use Illuminate\Http\Request;
+use App\Models\Film;
 
-class ProfileController extends Controller
+class FilmController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +15,14 @@ class ProfileController extends Controller
     public function index()
     {
         //
-        $profile = Profile::where('account_id', auth()->user()->id)->get();
-        return view('app.admin.profile.index', ['profiles'=>$profile]);
+        $data = Film::orderBy('id', 'asc')->get();
+        $dataTable = new Film();
+        
+        return view('app.admin.table.index', [
+            'data'=>$data, 
+            'header'=>$dataTable->getFillable(),
+            'table_name' => $dataTable->getTable(),
+        ]);
     }
 
     /**
@@ -29,8 +33,7 @@ class ProfileController extends Controller
     public function create()
     {
         //
-        
-        return view('app.admin.profile.create');
+        return view('app.admin.film.create');
     }
 
     /**
@@ -42,7 +45,6 @@ class ProfileController extends Controller
     public function store(Request $request)
     {
         //
-        return $request;
     }
 
     /**
@@ -54,9 +56,6 @@ class ProfileController extends Controller
     public function show($id)
     {
         //
-        $prov = Province::all();
-        $city = City::all();
-        
     }
 
     /**

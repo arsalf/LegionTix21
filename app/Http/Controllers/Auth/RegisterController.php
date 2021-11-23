@@ -73,4 +73,17 @@ class RegisterController extends Controller
         $account->save();
         return $account;
     }
+
+    public function redirectTo(){
+        // admin, owner, manager
+        if(auth()->user()->role_id == 1){
+            return "/admin/dashboard";
+        }
+        //employee
+        if(auth()->user()->role_id == 4){
+            return "/emp/dashboard";
+        }
+        //customer
+        return "/home";
+    }
 }
