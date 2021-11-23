@@ -56,77 +56,72 @@
     <div class="container rounded bg-white">
         <div class="row">
             <div class="col-md-3 border-right">
-                <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQF2psCzfbB611rnUhxgMi-lc2oB78ykqDGYb4v83xQ1pAbhPiB&usqp=CAU"><span class="font-weight-bold">Amelly</span><span class="text-black-50">amelly12@bbb.com</span><span> </span></div>
+                <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="img-fluid rounded-circle mt-5" src="{{url('/admin/images/faces/face8.jpg')}}"><span class="font-weight-bold">{{Auth::user()->username}}</span><span class="text-black-50">{{Auth::user()->email}}</span><span> </span></div>
             </div>
             <div class="col-md-8 border-right">
                 <div class="p-3 py-5">
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h4 class="text-right">Profile Settings</h4>
-                    </div>
-                    <div class="row mt-2">
-                        <div class="col-md-6">
-                            <label class="labels">First Name</label>
-                            <input type="text" class="form-control" placeholder="First Name" value="">
+                    <form action="{{route('profile.store')}}">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h4 class="text-right">Profile Settings</h4>
                         </div>
-                        <div class="col-md-6">
-                            <label class="labels">Last Name</label>
-                            <input type="text" class="form-control" value="" placeholder="Last Name">
+                        <div class="row mt-2">
+                            <div class="col-md-6">
+                                <label class="labels">First Name</label>
+                                <input type="text" class="form-control" placeholder="First Name" value="">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="labels">Last Name</label>
+                                <input type="text" class="form-control" value="" placeholder="Last Name">
+                            </div>
                         </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-md-6">
-                            <label class="labels">Nomor Telepon</label>
-                            <input type="text" class="form-control" placeholder="Phone Number" value="">
+                        <div class="row mt-3">
+                            <div class="col-md-6">
+                                <label class="labels">Nomor Telepon</label>
+                                <input type="text" class="form-control" placeholder="Phone Number" value="">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="labels">Tanggal Lahir</label>    
+                                <input class="form-control" type="date" id="birthday" name="birthday">
+                            </div>
                         </div>
-                        <div class="col-md-6">
-                            <label class="labels">Tanggal Lahir</label>    
-                            <input class="form-control" type="date" id="birthday" name="birthday">
+                        <div class="row mt-3">
+                            <div class="col-md-6">
+                                <label class="labels">Provinsi</label>
+                                <select id="provinsi" class="form-select form-select-sm" name="provinsi">
+                                    <option selected>--- Pilih Provinsi ---</option>
+                                </select> 
+                            </div>
+                            <div class="col-md-6">
+                                <label class="labels">Kabupaten/Kota</label>
+                                <select id="city" class="form-select form-select-sm" name="city">
+                                    <option selected>--- Pilih Kabupaten/Kota ---</option>
+                                </select>
+                            </div>                        
                         </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-md-6">
-                            <label class="labels">Provinsi</label>
-                            <select id="provinsi" class="form-select form-select-sm">
-                                <option selected>--- Pilih Provinsi ---</option>
-                            </select> 
+                        <div class="row mt-3">
+                            <div class="col-md-6">
+                                <label class="labels">Kecamatan</label>
+                                <select id="kecamatan" class="form-select form-select-sm" name="kecamatan">
+                                    <option selected>--- Pilih Kecamatan ---</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="labels">Kelurahan</label>
+                                <select id="kelurahan" class="form-select form-select-sm" name="kelurahan">
+                                    <option selected>--- Pilih Kelurahan ---</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="col-md-6">
-                            <label class="labels">Kabupaten/Kota</label>
-                            <select id="city" class="form-select form-select-sm">
-                                <option selected>--- Pilih Kabupaten/Kota ---</option>
-                            </select>
+                        <div class="row mt-3">
+                            <div class="col-md-12">
+                                <label class="labels">Nama jalan/daerah</label>
+                                <input type="text" class="form-control" placeholder="Rt" name="address_name" value="">
+                            </div>
                         </div>                        
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-md-6">
-                            <label class="labels">Kecamatan</label>
-                            <select id="kecamatan" class="form-select form-select-sm">
-                                <option selected>--- Pilih Kecamatan ---</option>
-                            </select>
+                        <div class="mt-5 text-center">
+                            <button class="btn btn-primary profile-button" type="submit">Save Profile</button>
                         </div>
-                        <div class="col-md-6">
-                            <label class="labels">Kelurahan</label>
-                            <select id="kelurahan" class="form-select form-select-sm">
-                                <option selected>--- Pilih Kelurahan ---</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-md-4">
-                            <label class="labels">Rt</label>
-                            <input type="text" class="form-control" placeholder="Rt" value="">
-                        </div>
-                        <div class="col-md-4">
-                            <label class="labels">Rw</label>
-                            <input type="text" class="form-control" value="" placeholder="Rw">
-                        </div>
-                        <div class="col-md-4">
-                            <label class="labels">Kode Pos</label>
-                            <input type="text" class="form-control" value="" placeholder="Kode Pos">
-                        </div>
-                    </div>
-                    
-                    <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div>
+                    </form>
                 </div>
             </div>
         </div>

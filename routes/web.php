@@ -4,6 +4,7 @@ use App\Models\Employees;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CityController;
+use App\Http\Controllers\FilmController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProvinceController;
@@ -49,6 +50,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function(){
             Route::resource('/setting/location', LocationController::class);
             Route::resource('/setting/city', CityController::class);
             Route::resource('/setting/province', ProvinceController::class);
+            Route::resource('/setting/film', FilmController::class);
         }); 
 });
 
@@ -81,4 +83,8 @@ Route::prefix('emp')->group(function(){
 });
 
 Route::get('/forbidden', function(){return view('forbidden');});
+
+Route::get('/test', function(){
+    return view('test');
+});
 

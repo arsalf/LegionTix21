@@ -79,7 +79,7 @@
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#film">
+        <a class="nav-link" href="{{route('film.create')}}">
           <i class="menu-icon mdi mdi-movie"></i>
           <span class="menu-title">Film</span>
         </a>
