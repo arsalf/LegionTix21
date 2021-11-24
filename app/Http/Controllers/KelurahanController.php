@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\City;
-use App\Models\Profile;
-use App\Models\Province;
+use App\Models\Kelurahan;
 use Illuminate\Http\Request;
 
-class ProfileController extends Controller
+class KelurahanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +15,6 @@ class ProfileController extends Controller
     public function index()
     {
         //
-        $profile = Profile::where('account_id', auth()->user()->id)->get();
-        return view('app.admin.profile.index', ['profiles'=>$profile]);
     }
 
     /**
@@ -29,8 +25,6 @@ class ProfileController extends Controller
     public function create()
     {
         //
-
-        return view('app.admin.profile.create');
     }
 
     /**
@@ -42,24 +36,6 @@ class ProfileController extends Controller
     public function store(Request $request)
     {
         //
-        $this->validate($request, [
-            'first_name'=>'required',
-            'last_name'=>'required',
-            'birth_date'=>'required',
-            'kelurahan'=>'required',
-            'address'=>'required',
-        ]);
-
-        $data = new Profile;
-        $data->first_name = $request->first_name;
-        $data->last_name = $request->last_name;
-        $data->birth_date = $request->birth_date;
-        $data->address = $request->address;
-        $data->account_id = auth()->user()->id;
-        $data->kelurahan_id = $request->kelurahan;
-        $data->save();
-
-        return redirect()->route('profile.index')->with('status', 'Success add profile!');
     }
 
     /**
@@ -71,9 +47,6 @@ class ProfileController extends Controller
     public function show($id)
     {
         //
-        $prov = Province::all();
-        $city = City::all();
-
     }
 
     /**
@@ -85,8 +58,6 @@ class ProfileController extends Controller
     public function edit($id)
     {
         //
-
-        return view('app.admin.profile.edit');
     }
 
     /**
@@ -110,5 +81,10 @@ class ProfileController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function getKelurahan($id){
+        $data = Kelurahan::where('kecamatan_id', $id)->get();
+        
+        return $data;
     }
 }
