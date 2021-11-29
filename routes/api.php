@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\CityController;
+use App\Http\Controllers\KecamatanController;
+use App\Http\Controllers\KelurahanController;
 use App\Http\Controllers\ProvinceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -23,4 +25,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('provinsi/{id}', [ProvinceController::class, 'getProvinsi']);
 Route::get('provinsi', [ProvinceController::class, 'getAllProvinsi']);
 Route::get('city/{id}', [CityController::class, 'getCity']);
-Route::get('city', [CityController::class, 'getAllCity']);
+Route::get('kecamatan/{id}', [KecamatanController::class, 'getKecamatan']);
+Route::get('kelurahan/{id}', [KelurahanController::class, 'getKelurahan']);

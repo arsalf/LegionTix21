@@ -60,42 +60,52 @@
             </div>
             <div class="col-md-8 border-right">
                 <div class="p-3 py-5">
-                    <form action="{{route('profile.store')}}" method="POST">
+                    @php
+                        $prov = 0;
+                    @endphp
+                    @foreach ($profiles as $item)
+                    @php
+                        $prov = $item->prov_id;
+                    @endphp
+                    <form action="{{route('profile.update', $item->id)}}" method="POST">
                         @csrf
                         <div class="d-flex justify-content-between align-items-center mb-3">
                             <h4 class="text-right">Profile Settings</h4>
                         </div>
+                        
                         <div class="row mt-2">
                             <div class="col-md-6">
                                 <label class="labels">First Name</label>
-                                <input type="text" class="form-control" placeholder="First Name" name="first_name" value="">
+                                <input type="text" class="form-control" placeholder="First Name" name="first_name" value="{{$item->first_name}}">
                             </div>
                             <div class="col-md-6">
                                 <label class="labels">Last Name</label>
-                                <input type="text" name="last_name" class="form-control" value="" placeholder="Last Name">
+                                <input type="text" name="last_name" class="form-control" value="{{$item->last_name}}" placeholder="Last Name">
                             </div>
                         </div>
                         <div class="row mt-3">
                             <div class="col-md-6">
                                 <label class="labels">Nomor Telepon</label>
-                                <input type="text" class="form-control" placeholder="Phone Number" name="no_telp" value="">
+                                <input type="text" class="form-control" placeholder="Phone Number" name="no_telp" value="{{Auth::user()->no_telp}}">
                             </div>
                             <div class="col-md-6">
                                 <label class="labels">Tanggal Lahir</label>    
-                                <input class="form-control" type="date" id="birthday" name="birth_date">
+                                <input class="form-control" type="date" id="birthday" name="birth_date" value="{{$item->birth_date}}">
                             </div>
                         </div>
                         <div class="row mt-3">
                             <div class="col-md-6">
                                 <label class="labels">Provinsi</label>
                                 <select id="provinsi" class="form-select form-select-sm" name="provinsi">
-                                    <option selected>--- Pilih Provinsi ---</option>
+                                    <option>--- Pilih Provinsi ---</option>
+                                   
                                 </select> 
                             </div>
                             <div class="col-md-6">
                                 <label class="labels">Kabupaten/Kota</label>
                                 <select id="city" class="form-select form-select-sm" name="city">
-                                    <option selected>--- Pilih Kabupaten/Kota ---</option>
+                                    <option>--- Pilih Kabupaten/Kota ---</option>
+                                    
                                 </select>
                             </div>                        
                         </div>
@@ -103,26 +113,29 @@
                             <div class="col-md-6">
                                 <label class="labels">Kecamatan</label>
                                 <select id="kecamatan" class="form-select form-select-sm" name="kecamatan">
-                                    <option selected>--- Pilih Kecamatan ---</option>
+                                    <option>--- Pilih Kecamatan ---</option>
+                                    
                                 </select>
                             </div>
                             <div class="col-md-6">
                                 <label class="labels">Kelurahan</label>
                                 <select id="kelurahan" class="form-select form-select-sm" name="kelurahan">
-                                    <option selected>--- Pilih Kelurahan ---</option>
+                                    <option>--- Pilih Kelurahan ---</option>
                                 </select>
                             </div>
                         </div>
                         <div class="row mt-3">
                             <div class="col-md-12">
                                 <label class="labels">Nama Jalan/Daerah/Blok Rumah</label>
-                                <input type="text" class="form-control" placeholder="Nama Jalan/Daerah/Blok/Rumah" name="address" value="">
+                                <input type="text" class="form-control" placeholder="Nama Jalan/Daerah/Blok/Rumah" name="address" value="{{$item->address}}">
                             </div>
-                        </div>                        
+                        </div>                                 
+                        
                         <div class="mt-5 text-center">
                             <button class="btn btn-primary profile-button" type="submit">Save Profile</button>
                         </div>
                     </form>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -140,4 +153,16 @@
 var render=createwidgetlokasi("provinsi","kabupaten","kecamatan","kelurahan");
 </script> --}}
 <script src="{{url('js/location.js')}}"></script>
+<script>
+
+function setProvinsi() { 
+    while(!$('#provinsi').val()!='{{$prov}}'){
+        setTimeout(() => {
+                $("#provinsi").val({{$prov}}); 
+                console.log("masuk");
+            }, 300);
+    }
+ }
+setProvinsi();
+</script>
 @endsection

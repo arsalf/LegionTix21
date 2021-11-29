@@ -6,6 +6,7 @@ use App\Models\City;
 use App\Models\Profile;
 use App\Models\Province;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProfileController extends Controller
 {
@@ -29,7 +30,7 @@ class ProfileController extends Controller
     public function create()
     {
         //
-        
+
         return view('app.admin.profile.create');
     }
 
@@ -42,7 +43,24 @@ class ProfileController extends Controller
     public function store(Request $request)
     {
         //
-        return $request;
+        $this->validate($request, [
+            'first_name'=>'required',
+            'last_name'=>'required',
+            'birth_date'=>'required',
+            'kelurahan'=>'required',
+            'address'=>'required',
+        ]);
+
+        $data = new Profile;
+        $data->first_name = $request->first_name;
+        $data->last_name = $request->last_name;
+        $data->birth_date = $request->birth_date;
+        $data->address = $request->address;
+        $data->account_id = auth()->user()->id;
+        $data->kelurahan_id = $request->kelurahan;
+        $data->save();
+
+        return redirect()->route('profile.index')->with('status', 'Success add profile!');
     }
 
     /**
@@ -56,7 +74,7 @@ class ProfileController extends Controller
         //
         $prov = Province::all();
         $city = City::all();
-        
+
     }
 
     /**
@@ -68,6 +86,15 @@ class ProfileController extends Controller
     public function edit($id)
     {
         //
+        $data = DB::table('PROFILE')
+                    ->join('KELURAHAN', 'KELURAHAN.ID', '=', 'PROFILE.KELURAHAN_ID')
+                    ->join('KECAMATAN', 'KECAMATAN.ID', '=', 'KELURAHAN.KECAMATAN_ID')
+                    ->join('CITY', 'CITY.ID', '=', 'KECAMATAN.CITY_ID')
+                    ->join('PROVINCE', 'PROVINCE.ID', '=', 'CITY.PROVINCE_ID')
+                    ->select('PROFILE.*', 'KELURAHAN.ID as KEL_ID', 'KECAMATAN.ID as KEC_ID', 'CITY.ID as CITY_ID', 'PROVINCE.ID as PROV_ID')
+                    ->get();
+        // return $data;
+        return view('app.admin.profile.edit', ['profiles'=>$data]);
     }
 
     /**
@@ -80,6 +107,7 @@ class ProfileController extends Controller
     public function update(Request $request, $id)
     {
         //
+
     }
 
     /**

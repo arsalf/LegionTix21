@@ -1,8 +1,5 @@
 <?php
 
-use App\Models\Employees;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\FilmController;
 use App\Http\Controllers\LocationController;

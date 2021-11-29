@@ -10,14 +10,15 @@ class Profile extends Model
     use HasFactory;
     public $table = 'PROFILE';
     public $timestamps = false;
+    protected $primaryKey = 'ID';
 
     protected $fillable = [
         'ID',
-        'USERNAME',
-        'EMAIL',
-        'NO_HP',
-        'PASSWORD',
-        'ROLE_ID',
-        'MANAGER_ID',
+        'FIRST_NAME',
+        'LAST_NAME',
+        'BIRTH_DATE',
+        'ACCOUNT_ID',
+        'ADDRESS',
+        'KELURAHAN_ID'
     ];
 }
