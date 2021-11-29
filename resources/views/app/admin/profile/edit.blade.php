@@ -154,15 +154,29 @@ var render=createwidgetlokasi("provinsi","kabupaten","kecamatan","kelurahan");
 </script> --}}
 <script src="{{url('js/location.js')}}"></script>
 <script>
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 
-function setProvinsi() { 
-    while(!$('#provinsi').val()!='{{$prov}}'){
-        setTimeout(() => {
-                $("#provinsi").val({{$prov}}); 
-                console.log("masuk");
-            }, 300);
-    }
- }
-setProvinsi();
+async function demo() {
+  console.log('Taking a break...');
+  await sleep(5000);
+  console.log('Two seconds later, showing sleep in a loop...');
+  $("#provinsi").val({{$prov}});
+  if($('#provinsi').val()!='{{$prov}}'){
+      console.log("belum");
+  }else{
+    console.log("sama");
+  }
+  
+//   // Sleep in loop
+//   for (let i = 0; i < 5; i++) {
+//     if (i === 3)
+//       await sleep(2000);
+    
+//   }
+}
+
+demo();
 </script>
 @endsection
