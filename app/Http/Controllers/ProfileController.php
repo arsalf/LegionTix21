@@ -6,6 +6,7 @@ use App\Models\City;
 use App\Models\Profile;
 use App\Models\Province;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProfileController extends Controller
 {
@@ -85,8 +86,15 @@ class ProfileController extends Controller
     public function edit($id)
     {
         //
-
-        return view('app.admin.profile.edit');
+        $data = DB::table('PROFILE')
+                    ->join('KELURAHAN', 'KELURAHAN.ID', '=', 'PROFILE.KELURAHAN_ID')
+                    ->join('KECAMATAN', 'KECAMATAN.ID', '=', 'KELURAHAN.KECAMATAN_ID')
+                    ->join('CITY', 'CITY.ID', '=', 'KECAMATAN.CITY_ID')
+                    ->join('PROVINCE', 'PROVINCE.ID', '=', 'CITY.PROVINCE_ID')
+                    ->select('PROFILE.*', 'KELURAHAN.ID as KEL_ID', 'KECAMATAN.ID as KEC_ID', 'CITY.ID as CITY_ID', 'PROVINCE.ID as PROV_ID')
+                    ->get();
+        // return $data;
+        return view('app.admin.profile.edit', ['profiles'=>$data]);
     }
 
     /**
@@ -99,6 +107,7 @@ class ProfileController extends Controller
     public function update(Request $request, $id)
     {
         //
+
     }
 
     /**
