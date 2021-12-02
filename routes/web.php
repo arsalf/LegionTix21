@@ -34,9 +34,9 @@ Route::prefix('app')->group(function(){
         return view('app.home.film.detail');
     })->name('app.detail');
 
-    Route::get('/watch', function () {
-        return view('app.home.film.watch');
-    })->name('app.watch');
+    Route::get('/ticket', function () {
+        return view('app.home.film.ticket');
+    })->name('app.ticket');
 
     Route::get('/login', function () {
         return view('app.home.login.login');

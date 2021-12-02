@@ -75,8 +75,13 @@
                                 </div>
                             </div>
                             <div class="anime__details__btn">
-                                <a href="#" class="follow-btn"><i class="fa fa-heart-o"></i> Follow</a>
-                                <a href="{{url('app/watch')}}" class="watch-btn"><span>Watch Now</span> <i
+                                <a href="#" class="follow-btn">
+                                    <i class="fa fa-heart-o"></i> Add to WishList
+                                </a>
+                                <a href="#" data-toggle="modal" data-target=".bd-example-modal-xl" class="follow-btn">
+                                    <i class="fa fa-film"></i><span> Trailers</span>
+                                </a>
+                                <a href="{{url('app/ticket')}}" class="watch-btn"><span>Buy Ticket</span> <i
                                     class="fa fa-angle-right"></i></a>
                                 </div>
                             </div>
@@ -156,35 +161,26 @@
                             </form>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-4">
-                        <div class="anime__details__sidebar">
-                            <div class="section-title">
-                                <h5>you might like...</h5>
-                            </div>
-                            <div class="product__sidebar__view__item set-bg" data-setbg="{{ asset('home/img/sidebar/tv-1.jpg')}}">
-                                <div class="ep">18 / ?</div>
-                                <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                <h5><a href="#">Boruto: Naruto next generations</a></h5>
-                            </div>
-                            <div class="product__sidebar__view__item set-bg" data-setbg="{{ asset('home/img/sidebar/tv-2.jpg')}}">
-                                <div class="ep">18 / ?</div>
-                                <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                <h5><a href="#">The Seven Deadly Sins: Wrath of the Gods</a></h5>
-                            </div>
-                            <div class="product__sidebar__view__item set-bg" data-setbg="{{ asset('home/img/sidebar/tv-3.jpg')}}">
-                                <div class="ep">18 / ?</div>
-                                <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                <h5><a href="#">Sword art online alicization war of underworld</a></h5>
-                            </div>
-                            <div class="product__sidebar__view__item set-bg" data-setbg="{{ asset('home/img/sidebar/tv-4.jpg')}}">
-                                <div class="ep">18 / ?</div>
-                                <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                <h5><a href="#">Fate/stay night: Heaven's Feel I. presage flower</a></h5>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
+
+        <!-- Modal -->
+        <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+              <div class="modal-content">
+                <section class="spad">
+                    <video id="player" playsinline controls data-poster="{{asset('home/videos/anime-watch.jpg')}}">
+                        <source src="{{asset('home/videos/1.mp4')}}" type="video/mp4" />
+                        <!-- Captions are optional -->
+                        <track kind="captions" label="English captions" src="#" srclang="en" default />
+                    </video>
+                </section>
+              </div>
+            </div>
+          </div>
+        <!-- End Modal -->
+
+        
         <!-- Anime Section End -->
 @endsection
