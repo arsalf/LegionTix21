@@ -25,16 +25,16 @@
                             <label for="exampleFormControlSelect1" class="text-white col-sm-2 col-form-label">Studio</label>
                             <div class="text-white col-sm-10">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                                    <label class="form-check-label" for="inlineRadio1">Regular</label>
+                                    <input class="radio-toolbar-input" type="radio" id="radioApple" name="studio" value="apple" checked>
+                                    <label class="radio-toolbar-label" for="radioApple">Apple</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                                    <label class="form-check-label" for="inlineRadio2">3D</label>
+                                    <input class="radio-toolbar-input" type="radio" id="radioBanana" name="studio" value="banana">
+                                <label class="radio-toolbar-label" for="radioBanana">Banana</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
-                                    <label class="form-check-label" for="inlineRadio3">IMAX</label>
+                                    <input class="radio-toolbar-input" type="radio" id="radioOrange" name="studio" value="orange">
+                                <label class="radio-toolbar-label" for="radioOrange">Orange</label>
                                 </div>
                             </div>
                         </div>
@@ -42,98 +42,31 @@
                             <label for="exampleFormControlSelect1" class="text-white col-sm-2 col-form-label">Jam Tayang</label>
                             <div class="text-white col-sm-10">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                                    <label class="form-check-label" for="inlineRadio1">12:30</label>
+                                    <input class="radio-toolbar-input" type="radio" id="jam1" name="jamTayang" value="apple" checked>
+                                    <label class="radio-toolbar-label" for="jam1">12:00</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                                    <label class="form-check-label" for="inlineRadio2">14:00</label>
+                                    <input class="radio-toolbar-input" type="radio" id="jam2" name="jamTayang" value="banana">
+                                <label class="radio-toolbar-label" for="jam2">13:30</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
-                                    <label class="form-check-label" for="inlineRadio3">15:30</label>
+                                    <input class="radio-toolbar-input" type="radio" id="jam3" name="jamTayang" value="orange">
+                                <label class="radio-toolbar-label" for="jam3">15:00</label>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="exampleFormControlSelect1" class="text-white col-sm-2 col-form-label">Kursi</label>
-                            <div class="text-white col-sm-10">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                                    <label class="form-check-label" for="inlineRadio1">A1</label>
+                            <label for="exampleFormControlSelect1" class="text-white col-sm-12 col-form-label">Kursi</label>
+                            <?php for ($i=1; $i <=9 ; $i++) { ?>
+                                <div class="text-white col-sm-12">
+                                    <?php for ($j=1; $j <=12 ; $j++) { ?>
+                                        <div class="form-check form-check-inline">
+                                        <input class="radio-toolbar-input" type="radio" id="kursi<?php echo "$i-$j"; ?>" name="kursi" value="<?php echo "$i-$j"; ?>">
+                                        <label class="radio-toolbar-label" for="kursi<?php echo "$i-$j"; ?>"><?php echo "$i-$j"; ?></label>
+                                    </div>
+                                    <?php } ?>
                                 </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                                    <label class="form-check-label" for="inlineRadio2">A2</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
-                                    <label class="form-check-label" for="inlineRadio3">A3</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                                    <label class="form-check-label" for="inlineRadio1">A4</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                                    <label class="form-check-label" for="inlineRadio2">A5</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
-                                    <label class="form-check-label" for="inlineRadio3">A6</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                                    <label class="form-check-label" for="inlineRadio1">A7</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                                    <label class="form-check-label" for="inlineRadio2">A8</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
-                                    <label class="form-check-label" for="inlineRadio3">A9</label>
-                                </div>
-                            </div>
-                            <div class="text-white offset-sm-2 col-sm-10">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                                    <label class="form-check-label" for="inlineRadio1">B1</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                                    <label class="form-check-label" for="inlineRadio2">B2</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
-                                    <label class="form-check-label" for="inlineRadio3">B3</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                                    <label class="form-check-label" for="inlineRadio1">B4</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                                    <label class="form-check-label" for="inlineRadio2">B5</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
-                                    <label class="form-check-label" for="inlineRadio3">B6</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                                    <label class="form-check-label" for="inlineRadio1">B7</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                                    <label class="form-check-label" for="inlineRadio2">B8</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
-                                    <label class="form-check-label" for="inlineRadio3">B9</label>
-                                </div>
-                            </div>
-                        </div>
+                            <?php } ?>
                         <button type="submit" class="btn btn-success">Buy Ticket</button>
                     </form>
                 </div>
