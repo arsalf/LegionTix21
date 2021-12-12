@@ -16,6 +16,7 @@ class Profile extends Model
         'ID',
         'FIRST_NAME',
         'LAST_NAME',
+        'NO_HP',
         'BIRTH_DATE',
         'ACCOUNT_ID',
         'ADDRESS',
