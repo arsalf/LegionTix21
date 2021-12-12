@@ -26,15 +26,15 @@
                             <div class="text-white col-sm-10">
                                 <div class="form-check form-check-inline">
                                     <input class="radio-toolbar-input" type="radio" id="radioApple" name="studio" value="apple" checked>
-                                    <label class="radio-toolbar-label" for="radioApple">Apple</label>
+                                    <label class="radio-toolbar-label btn-ticket" for="radioApple">Imax</label>
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <input class="radio-toolbar-input" type="radio" id="radioBanana" name="studio" value="banana">
-                                <label class="radio-toolbar-label" for="radioBanana">Banana</label>
+                                <label class="radio-toolbar-label btn-ticket" for="radioBanana">Regular</label>
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <input class="radio-toolbar-input" type="radio" id="radioOrange" name="studio" value="orange">
-                                <label class="radio-toolbar-label" for="radioOrange">Orange</label>
+                                <label class="radio-toolbar-label btn-ticket" for="radioOrange">3d</label>
                                 </div>
                             </div>
                         </div>
@@ -43,35 +43,26 @@
                             <div class="text-white col-sm-10">
                                 <div class="form-check form-check-inline">
                                     <input class="radio-toolbar-input" type="radio" id="jam1" name="jamTayang" value="apple" checked>
-                                    <label class="radio-toolbar-label" for="jam1">12:00</label>
+                                    <label class="radio-toolbar-label btn-ticket" for="jam1">12:00</label>
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <input class="radio-toolbar-input" type="radio" id="jam2" name="jamTayang" value="banana">
-                                <label class="radio-toolbar-label" for="jam2">13:30</label>
+                                <label class="radio-toolbar-label btn-ticket" for="jam2">13:30</label>
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <input class="radio-toolbar-input" type="radio" id="jam3" name="jamTayang" value="orange">
-                                <label class="radio-toolbar-label" for="jam3">15:00</label>
+                                <label class="radio-toolbar-label btn-ticket" for="jam3">15:00</label>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label for="exampleFormControlSelect1" class="text-white col-sm-12 col-form-label">Kursi</label>
-                            <?php for ($i=1; $i <=9 ; $i++) { ?>
-                                <div class="text-white col-sm-12">
-                                    <?php for ($j=1; $j <=12 ; $j++) { ?>
-                                        <div class="form-check form-check-inline">
-                                        <input class="radio-toolbar-input" type="radio" id="kursi<?php echo "$i-$j"; ?>" name="kursi" value="<?php echo "$i-$j"; ?>">
-                                        <label class="radio-toolbar-label" for="kursi<?php echo "$i-$j"; ?>"><?php echo "$i-$j"; ?></label>
-                                    </div>
-                                    <?php } ?>
-                                </div>
-                            <?php } ?>
-                        <button type="submit" class="btn btn-success">Buy Ticket</button>
-                    </form>
+                        <div class="row">
+                            <a href="{{url('app/kursi')}}" class="mt-5 btn btn-success">Buy Ticket</a>
+                        </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <!-- Login Section End -->
-@endsection
+        </section>
+        <!-- Login Section End -->
+        @endsection
+        

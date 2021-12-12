@@ -81,7 +81,7 @@
                                             <li>Active</li>
                                             <li>Movie</li>
                                         </ul>
-                                        <h5><a href="{{ url('app/detail')}}">The Seven Deadly Sins: Wrath of the Gods</a></h5>
+                                        <h5><a href="{{ url('app/detail')}}"> {{ $data->title }} </a></h5>
                                     </div>
                                 </div>
                             </div>
