@@ -8,6 +8,7 @@ use App\Http\Controllers\ProvinceController;
 use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Models\Film;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,16 +28,23 @@ Route::get('/', function () {
 
 Route::prefix('app')->group(function(){
     Route::get('/', function () {
-        return view('app.home.index');
+        $data = Film::find(1);
+        return view('app.home.index',[
+            'data'=>$data, 
+        ]);
     })->name('app');
 
     Route::get('/detail', function () {
         return view('app.home.film.detail');
     })->name('app.detail');
 
-    Route::get('/watch', function () {
-        return view('app.home.film.watch');
-    })->name('app.watch');
+    Route::get('/ticket', function () {
+        return view('app.home.film.ticket');
+    })->name('app.ticket');
+    
+    Route::get('/kursi', function () {
+        return view('app.home.film.kursi');
+    })->name('app.kursi');
 
     Route::get('/login', function () {
         return view('app.home.login.login');
