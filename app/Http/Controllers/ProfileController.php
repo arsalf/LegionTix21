@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\City;
+use App\Models\Kecamatan;
+use App\Models\Kelurahan;
 use App\Models\Profile;
 use App\Models\Province;
 use Illuminate\Http\Request;
@@ -59,6 +61,7 @@ class ProfileController extends Controller
         $data->account_id = auth()->user()->id;
         $data->kelurahan_id = $request->kelurahan;
         $data->save();
+        //statement log
 
         return redirect()->route('profile.index')->with('status', 'Success add profile!');
     }
@@ -91,10 +94,23 @@ class ProfileController extends Controller
                     ->join('KECAMATAN', 'KECAMATAN.ID', '=', 'KELURAHAN.KECAMATAN_ID')
                     ->join('CITY', 'CITY.ID', '=', 'KECAMATAN.CITY_ID')
                     ->join('PROVINCE', 'PROVINCE.ID', '=', 'CITY.PROVINCE_ID')
-                    ->select('PROFILE.*', 'KELURAHAN.ID as KEL_ID', 'KECAMATAN.ID as KEC_ID', 'CITY.ID as CITY_ID', 'PROVINCE.ID as PROV_ID')
+                    ->select('PROFILE.*', 
+                    'KELURAHAN.ID as KEL_ID', 'KELURAHAN.NAME AS KEL_NAME',
+                    'KECAMATAN.ID as KEC_ID', 'KECAMATAN.NAME AS KEC_NAME',
+                    'CITY.ID as CITY_ID', 'CITY.NAME AS CITY_NAME',
+                    'PROVINCE.ID as PROV_ID')
                     ->get();
+        $cities = City::all();
+        $kecs = Kecamatan::all();
+        $kels = Kelurahan::all();
+        
         // return $data;
-        return view('app.admin.profile.edit', ['profiles'=>$data]);
+        return view('app.admin.profile.edit', [
+            'profiles'=>$data,
+            'cities'=>$cities,
+            'kecs'=>$kecs,
+            'kels'=>$kels,
+        ]);
     }
 
     /**

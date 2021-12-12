@@ -64,9 +64,9 @@
                         $prov = 0;
                     @endphp
                     @foreach ($profiles as $item)
-                    @php
-                        $prov = $item->prov_id;
-                    @endphp
+                        @php
+                            $prov = $item->prov_id;
+                        @endphp
                     <form action="{{route('profile.update', $item->id)}}" method="POST">
                         @csrf
                         <div class="d-flex justify-content-between align-items-center mb-3">
@@ -98,14 +98,19 @@
                                 <label class="labels">Provinsi</label>
                                 <select id="provinsi" class="form-select form-select-sm" name="provinsi">
                                     <option>--- Pilih Provinsi ---</option>
-                                   
                                 </select> 
                             </div>
                             <div class="col-md-6">
                                 <label class="labels">Kabupaten/Kota</label>
                                 <select id="city" class="form-select form-select-sm" name="city">
                                     <option>--- Pilih Kabupaten/Kota ---</option>
-                                    
+                                    @foreach ($cities as $city)
+                                        @if ($city->id ==  $item->city_id)
+                                            <option value="{{$city->id}}" selected>{{$city->name}}</option>
+                                        @else
+                                            <option value="{{$city->id}}">{{$city->name}}</option>
+                                        @endif
+                                    @endforeach
                                 </select>
                             </div>                        
                         </div>
@@ -114,13 +119,26 @@
                                 <label class="labels">Kecamatan</label>
                                 <select id="kecamatan" class="form-select form-select-sm" name="kecamatan">
                                     <option>--- Pilih Kecamatan ---</option>
-                                    
+                                    @foreach ($kecs as $kec)
+                                        @if ($kec->id ==  $item->kec_id)
+                                            <option value="{{$kec->id}}" selected>{{$kec->name}}</option>
+                                        @else
+                                            <option value="{{$kec->id}}">{{$kec->name}}</option>
+                                        @endif
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="col-md-6">
                                 <label class="labels">Kelurahan</label>
                                 <select id="kelurahan" class="form-select form-select-sm" name="kelurahan">
-                                    <option>--- Pilih Kelurahan ---</option>
+                                    <option>--- Pilih Kelurahan ---</option>                                
+                                    @foreach ($kels as $kel)
+                                        @if ($kel->id ==  $item->kel_id)
+                                            <option value="{{$kel->id}}" selected>{{$kel->name}}</option>
+                                        @else
+                                            <option value="{{$kel->id}}">{{$kel->name}}</option>
+                                        @endif
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -159,10 +177,12 @@ function sleep(ms) {
 }
 
 async function demo() {
-  console.log('Taking a break...');
-  await sleep(5000);
-  console.log('Two seconds later, showing sleep in a loop...');
+  await sleep(4000);
   $("#provinsi").val({{$prov}});
+  $("#city").prop('disabled', false); //disable
+  $("#kecamatan").prop('disabled', false); //disable
+  $("#kelurahan").prop('disabled', false); //disable
+
   if($('#provinsi').val()!='{{$prov}}'){
       console.log("belum");
   }else{
