@@ -71,15 +71,16 @@
                         <div class="row">
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="{{ asset('home/img/trending/trend-1.jpg') }}">
-                                        <div class="ep">18 / 18</div>
+                                    <div class="product__item__pic set-bg" data-setbg="{{ $data->image }}">
+                                        <div class="ep">{{ $data->rating }}</div>
                                         <div class="comment"><i class="fa fa-comments"></i> 11</div>
-                                        <div class="view"><i class="fa fa-eye"></i> 9141</div>
+                                        <div class="view"><i class="fa fa-time"></i>{{ $data->duration }}</div>
                                     </div>
                                     <div class="product__item__text">
                                         <ul>
-                                            <li>Active</li>
-                                            <li>Movie</li>
+                                            @foreach(explode(',',$data->genre) as $genre)
+                                                <li>{{ $genre }}</li>
+                                            @endforeach
                                         </ul>
                                         <h5><a href="{{ url('app/detail')}}"> {{ $data->title }} </a></h5>
                                     </div>

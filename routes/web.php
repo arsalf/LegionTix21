@@ -30,12 +30,15 @@ Route::prefix('app')->group(function(){
     Route::get('/', function () {
         $data = Film::find(1);
         return view('app.home.index',[
-            'data'=>$data, 
+            'data'=>$data,
         ]);
     })->name('app');
 
     Route::get('/detail', function () {
-        return view('app.home.film.detail');
+        $data = Film::find(1);
+        return view('app.home.film.detail',[
+            'data'=>$data,
+        ]);
     })->name('app.detail');
 
     Route::get('/ticket', function () {

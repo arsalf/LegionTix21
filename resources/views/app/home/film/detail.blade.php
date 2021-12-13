@@ -12,8 +12,7 @@
                 <div class="col-lg-12">
                     <div class="breadcrumb__links">
                         <a href="{{ url('app')}}"><i class="fa fa-home"></i> Home</a>
-                        <a href="#">Categories</a>
-                        <span>Romance</span>
+                        <span>{{ $data->title }}</span>
                     </div>
                 </div>
             </div>
@@ -27,16 +26,14 @@
             <div class="anime__details__content">
                 <div class="row">
                     <div class="col-lg-3">
-                        <div class="anime__details__pic set-bg" data-setbg="{{ asset('home/img/anime/details-pic.jpg')}}">
-                            <div class="comment"><i class="fa fa-comments"></i> 11</div>
-                            <div class="view"><i class="fa fa-eye"></i> 9141</div>
+                        <div class="anime__details__pic set-bg" data-setbg="{{ $data->image }}">
                         </div>
                     </div>
                     <div class="col-lg-9">
                         <div class="anime__details__text">
                             <div class="anime__details__title">
-                                <h3>Fate Stay Night: Unlimited Blade</h3>
-                                <span>フェイト／ステイナイト, Feito／sutei naito</span>
+                                <h3>{{$data->title}}</h3>
+                                <span>{{$data->language}}</span>
                             </div>
                             <div class="anime__details__rating">
                                 <div class="rating">
@@ -56,20 +53,11 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6">
                                         <ul>
-                                            <li><span>Type:</span> TV Series</li>
-                                            <li><span>Studios:</span> Lerche</li>
-                                            <li><span>Date aired:</span> Oct 02, 2019 to ?</li>
-                                            <li><span>Status:</span> Airing</li>
-                                            <li><span>Genre:</span> Action, Adventure, Fantasy, Magic</li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6">
-                                        <ul>
-                                            <li><span>Scores:</span> 7.31 / 1,515</li>
-                                            <li><span>Rating:</span> 8.5 / 161 times</li>
-                                            <li><span>Duration:</span> 24 min/ep</li>
-                                            <li><span>Quality:</span> HD</li>
-                                            <li><span>Views:</span> 131,541</li>
+                                            <li><span>Director:</span> {{$data->director}}</li>
+                                            <li><span>Genre:</span> {{$data->genre}}</li>
+                                            <li><span>Date Release:</span> {{$data->release_date}}</li>
+                                            <li><span>Language:</span> {{$data->language}}</li>
+                                            <li><span>Rating:</span> {{$data->rating}}</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -170,8 +158,8 @@
             <div class="modal-dialog modal-xl">
               <div class="modal-content">
                 <section class="spad">
-                    <video id="player" playsinline controls data-poster="{{asset('home/videos/anime-watch.jpg')}}">
-                        <source src="{{asset('home/videos/1.mp4')}}" type="video/mp4" />
+                    <video id="player" playsinline controls>
+                        <source src="{{$data->trailer}}" type="video/mp4" />
                         <!-- Captions are optional -->
                         <track kind="captions" label="English captions" src="#" srclang="en" default />
                     </video>
