@@ -14,13 +14,6 @@
                     <nav class="header__menu mobile-menu">
                         <ul>
                             <li class="active"><a href="{{url('app')}}">Homepage</a></li>
-                            <li><a href="./categories.html">Categories <span class="arrow_carrot-down"></span></a>
-                                <ul class="dropdown">
-                                    <li><a href="#">A</a></li>
-                                    <li><a href="#">B</a></li>
-                                    <li><a href="#">C</a></li>
-                                </ul>
-                            </li>
                             <li><a href="{{url('app/articel')}}">Articel</a></li>
                             <li><a href="{{url('/')}}">Contacts</a></li>
                         </ul>

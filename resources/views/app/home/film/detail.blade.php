@@ -35,16 +35,6 @@
                                 <h3>{{$data->title}}</h3>
                                 <span>{{$data->language}}</span>
                             </div>
-                            <div class="anime__details__rating">
-                                <div class="rating">
-                                    <a href="#"><i class="fa fa-star"></i></a>
-                                    <a href="#"><i class="fa fa-star"></i></a>
-                                    <a href="#"><i class="fa fa-star"></i></a>
-                                    <a href="#"><i class="fa fa-star"></i></a>
-                                    <a href="#"><i class="fa fa-star-half-o"></i></a>
-                                </div>
-                                <span>1.029 Votes</span>
-                            </div>
                             <p>Every human inhabiting the world of Alcia is branded by a “Count” or a number written on
                                 their body. For Hina’s mother, her total drops to 0 and she’s pulled into the Abyss,
                                 never to be seen again. But her mother’s last words send Hina on a quest to find a
@@ -72,6 +62,7 @@
                                 <a href="{{url('app/ticket')}}" class="watch-btn"><span>Buy Ticket</span> <i
                                     class="fa fa-angle-right"></i></a>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -154,16 +145,10 @@
         </section>
 
         <!-- Modal -->
-        <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+        <div class="modal fade bd-example-modal-xl modal-film" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl">
-              <div class="modal-content">
-                <section class="spad">
-                    <video id="player" playsinline controls>
-                        <source src="{{$data->trailer}}" type="video/mp4" />
-                        <!-- Captions are optional -->
-                        <track kind="captions" label="English captions" src="#" srclang="en" default />
-                    </video>
-                </section>
+              <div class="modal-content modal-film-content">
+                    <iframe src="https://www.imdb.com/video/imdb/vi2959588889/imdb/embed" width="900" height="500" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" frameborder="no" scrolling="no"></iframe>
               </div>
             </div>
           </div>

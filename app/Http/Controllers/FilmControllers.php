@@ -15,10 +15,7 @@ class FilmControllers extends Controller
      */
     public function index()
     {
-        $data = Film::all();
-        return view('app.home.index',[
-            'data'=>$data, 
-        ]);
+        //
     }
 
     /**
@@ -50,7 +47,10 @@ class FilmControllers extends Controller
      */
     public function show($id)
     {
-        //
+        $data = Film::find($id);
+        return view('app.home.film.detail',[
+            'data'=>$data,
+        ]);
     }
 
     /**
