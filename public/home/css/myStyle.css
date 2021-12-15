@@ -46,3 +46,15 @@
 .btn-ticket-2 {
     width: 90px;
 }
+
+.modal-film {
+    padding-top: 100px;
+}
+
+.modal-film-content {
+    padding: 10px 150px;
+}
+
+.nav-film {
+    height: 25px;
+}
