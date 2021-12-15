@@ -2,9 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\City;
-use App\Models\Kecamatan;
-use App\Models\Kelurahan;
 use App\Models\Profile;
 use App\Models\Province;
 use Illuminate\Http\Request;
@@ -58,8 +55,9 @@ class ProfileController extends Controller
         $data->last_name = $request->last_name;
         $data->birth_date = $request->birth_date;
         $data->address = $request->address;
+        $data->no_hp = $request->no_telp;
         $data->account_id = auth()->user()->id;
-        $data->kelurahan_id = $request->kelurahan;
+        $data->village_id = $request->kelurahan;
         $data->save();
         //statement log
 
@@ -75,8 +73,7 @@ class ProfileController extends Controller
     public function show($id)
     {
         //
-        $prov = Province::all();
-        $city = City::all();
+        
 
     }
 
@@ -90,26 +87,20 @@ class ProfileController extends Controller
     {
         //
         $data = DB::table('PROFILE')
-                    ->join('KELURAHAN', 'KELURAHAN.ID', '=', 'PROFILE.KELURAHAN_ID')
-                    ->join('KECAMATAN', 'KECAMATAN.ID', '=', 'KELURAHAN.KECAMATAN_ID')
-                    ->join('CITY', 'CITY.ID', '=', 'KECAMATAN.CITY_ID')
-                    ->join('PROVINCE', 'PROVINCE.ID', '=', 'CITY.PROVINCE_ID')
+                    ->join('VILLAGE', 'VILLAGE.ID', '=', 'PROFILE.VILLAGE_ID')
+                    ->join('DISTRICT', 'DISTRICT.ID', '=', 'VILLAGE.DISTRICT_ID')
+                    ->join('CITY', 'CITY.ID', '=', 'DISTRICT.CITY_ID')
+                    ->join('REGION', 'REGION.ID', '=', 'CITY.REGION_ID')
                     ->select('PROFILE.*', 
-                    'KELURAHAN.ID as KEL_ID', 'KELURAHAN.NAME AS KEL_NAME',
-                    'KECAMATAN.ID as KEC_ID', 'KECAMATAN.NAME AS KEC_NAME',
+                    'VILLAGE.ID as KEL_ID', 'VILLAGE.NAME AS KEL_NAME',
+                    'DISTRICT.ID as KEC_ID', 'DISTRICT.NAME AS KEC_NAME',
                     'CITY.ID as CITY_ID', 'CITY.NAME AS CITY_NAME',
-                    'PROVINCE.ID as PROV_ID')
+                    'REGION.ID as PROV_ID', 'REGION.NAME as PROV_NAME',)
                     ->get();
-        $cities = City::all();
-        $kecs = Kecamatan::all();
-        $kels = Kelurahan::all();
         
         // return $data;
         return view('app.admin.profile.edit', [
-            'profiles'=>$data,
-            'cities'=>$cities,
-            'kecs'=>$kecs,
-            'kels'=>$kels,
+            'profiles'=>$data
         ]);
     }
 
@@ -123,7 +114,16 @@ class ProfileController extends Controller
     public function update(Request $request, $id)
     {
         //
-
+        Profile::where('account_id', $id)->update([            
+            'first_name'=>$request->first_name,
+            'last_name'=>$request->last_name,
+            'birth_date'=>$request->birth_date,
+            'address'=>$request->address,
+            'no_hp'=>$request->no_telp,
+            'village_id'=>$request->kelurahan,
+        ]);
+        
+        return redirect()->route('profile.index')->with('status', 'Success update profile!');
     }
 
     /**

@@ -16,18 +16,14 @@ class CityController extends Controller
     public function index()
     {
         //
-        $data = DB::table('CITY')
-                    ->join('PROVINCE', 'CITY.PROVINCE_ID', '=', 'PROVINCE.ID')
-                    ->orderBy('PROVINCE.ID', 'asc')
-                    ->select('CITY.*', 'PROVINCE.NAME as PROVINCE_NAME')
-                    ->get();
         $dataTable = new City();
-        $arr = $dataTable->getFillable();
-        array_push($arr, 'PROVINCE NAME');
+        $page = 15;
+        $data = DB::table('ViewCity')->paginate($page);
+        
         return view('app.admin.table.index', [
-            'data'=>$data, 
-            'header'=>$arr,
+            'data'=>$data,
             'table_name' => $dataTable->getTable(),
+            'page' => $page,
         ]);
     }
 
@@ -60,16 +56,16 @@ class CityController extends Controller
         //
         $this->validate($request, [
             'name'=>'required|max:50',
-            'province_id'=>'required',
+            'region_id'=>'required',
         ]);
 
         //Save a new data role to db
         $data = new City;
         $data->name = $request->name;
-        $data->province_id = $request->province_id;
+        $data->region_id = $request->region_id;
         $data->save();
 
-        return redirect()->back()->with('status', 'Success add a role!');
+        return redirect()->back()->with('status', 'Success add a city!');
     }
 
     /**
@@ -84,7 +80,7 @@ class CityController extends Controller
         $data = City::find($id);
         $dataTable = new City();
 
-        return view('app.admin.table.index', [
+        return view('app.admin.table.index', [            
             'data'=>$data, 
             'header'=>$dataTable->getFillable(),
             'table_name' => $dataTable->getTable(),
@@ -104,6 +100,7 @@ class CityController extends Controller
         $dataTable = new City();
         
         return view('app.admin.table.edit', [
+            'id'=>$id,
             'data'=>$data,
             'header'=>$dataTable->getFillable(),
             'table_name' => $dataTable->getTable(),
@@ -152,7 +149,7 @@ class CityController extends Controller
     }
 
     public function getCity($id){
-        $data = City::where('province_id', $id)->get();
+        $data = City::where('region_id', $id)->get();
         return $data;
     }
     

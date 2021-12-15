@@ -15,7 +15,8 @@ class FilmController extends Controller
     public function index()
     {
         //
-        $data = Film::orderBy('id', 'asc')->get();
+        $page = 15;
+        $data = Film::orderBy('id', 'asc')->paginate($page);
         $dataTable = new Film();
         
         return view('app.admin.table.index', [

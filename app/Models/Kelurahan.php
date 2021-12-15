@@ -8,12 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Kelurahan extends Model
 {
     use HasFactory;
-    public $table = 'KELURAHAN';
+    public $table = 'VILLAGE';
     public $timestamps = false;
 
     protected $fillable = [
         'ID',
         'NAME',
-        'KECAMATAN_ID'
+        'DISTRICT_ID'
     ];
 }

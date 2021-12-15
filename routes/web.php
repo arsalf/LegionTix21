@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\AccountController;
+use App\Http\Controllers\BioskopController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\FilmController;
-use App\Http\Controllers\LocationController;
+use App\Http\Controllers\KecamatanController;
+use App\Http\Controllers\KelurahanController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProvinceController;
 use App\Http\Controllers\RoleController;
@@ -66,6 +69,7 @@ Route::prefix('app')->group(function(){
 });
 //Authentication needed
 Auth::routes();
+// Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 
 /*
 |--------------------------------------------------------------------------
@@ -81,12 +85,18 @@ Route::middleware(['auth', 'isAdmin'])->group(function(){
                 return view('app.admin.dashboard');
             })->name('dashboard.admin');
 
-            Route::resource('/profile', ProfileController::class);            
-            Route::resource('/setting/role', RoleController::class);
-            Route::resource('/setting/location', LocationController::class);
-            Route::resource('/setting/city', CityController::class);
-            Route::resource('/setting/province', ProvinceController::class);
-            Route::resource('/setting/film', FilmController::class);
+            Route::resource('/profile', ProfileController::class);     
+            Route::prefix('/setting')->group(function(){
+                Route::resource('/account', AccountController::class);
+                Route::resource('/role', RoleController::class);
+                Route::resource('/region', ProvinceController::class);                
+                Route::resource('/city', CityController::class);
+                Route::resource('/district', KecamatanController::class);
+                Route::resource('/village', KelurahanController::class);
+                Route::resource('/film', FilmController::class);
+                Route::resource('/bioskop', BioskopController::class);
+            });
+            
         }); 
 });
 
@@ -99,7 +109,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function(){
 |
 */
 //Customer home
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 
 /*
 |--------------------------------------------------------------------------

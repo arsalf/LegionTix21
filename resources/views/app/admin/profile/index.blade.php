@@ -50,11 +50,7 @@
                                     <h6 class="mb-0">Phone</h6>
                                 </div>
                                 <div class="col-sm-9 ">
-                                    @if (Auth::user()->no_hp)
-                                        <h6 class="mb-0">{{Auth::user()->no_hp}}</h6>    
-                                    @else
-                                        <h6 class="mb-0">-</h6>    
-                                    @endif
+                                    <h6 class="mb-0">{{$item->no_hp}}</h6>
                                 </div>
                             </div>
                             <hr>
@@ -72,13 +68,13 @@
                                     <h6 class="mb-0">Birth Date</h6>
                                 </div>
                                 <div class="col-sm-9 ">
-                                    <h6 class="mb-0">{{$item->birth_date}}</h6>
+                                    <h6 class="mb-0">{{date_format(date_create($item->birth_date), 'd-m-Y')}}</h6>
                                 </div>
                             </div>
                             <hr>
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <a class="btn btn-info" href="{{route('profile.edit', $item->id)}}">Edit</a>
+                                    <a class="btn btn-info" href="{{route('profile.update', $item->account_id)}}">Edit</a>
                                 </div>    
                             </div>
                             @endforeach

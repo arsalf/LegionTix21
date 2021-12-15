@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\Controller;
 use App\Http\Middleware\isAdmin;
+use App\Models\Account;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
@@ -43,7 +45,10 @@ class LoginController extends Controller
 
     public function username()
     {   
-        return 'username';
+        $login = request()->input('username');
+        $field = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+        request()->merge([$field => $login]);
+        return $field;
     }
     
     /**
@@ -54,15 +59,16 @@ class LoginController extends Controller
      */
     public function redirectTo(){
         // admin, owner, manager
-        if(auth()->user()->role_id == 1){
+        $acc = new AccountController();
+        if(!$acc->isRoleName('CUSTOMER') and !$acc->isRoleName('EMPLOYEE')){
             return "/admin/dashboard";
         }
         //employee
-        if(auth()->user()->role_id == 4){
+        if(!$acc->isRoleName('EMPLOYEE')){
             return "/emp/dashboard";
         }
         //customer
-        return "/home";
+        return "/";
     }
     
 }

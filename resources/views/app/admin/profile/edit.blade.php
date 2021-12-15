@@ -46,6 +46,11 @@
     cursor: pointer;
     border: solid 1px #BA68C8
 }
+#kelurahan {
+    background-color: #e9ecef;
+    cursor: no-drop;
+    pointer-events: none;
+}
 </style>
 @endsection
 
@@ -64,95 +69,76 @@
                         $prov = 0;
                     @endphp
                     @foreach ($profiles as $item)
-                        @php
-                            $prov = $item->prov_id;
-                        @endphp
-                    <form action="{{route('profile.update', $item->id)}}" method="POST">
-                        @csrf
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <h4 class="text-right">Profile Settings</h4>
-                        </div>
-                        
-                        <div class="row mt-2">
-                            <div class="col-md-6">
-                                <label class="labels">First Name</label>
-                                <input type="text" class="form-control" placeholder="First Name" name="first_name" value="{{$item->first_name}}">
+                        <form action="{{route('profile.update', $item->account_id)}}" method="POST">
+                            @csrf
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h4 class="text-right">Profile Settings</h4>
                             </div>
-                            <div class="col-md-6">
-                                <label class="labels">Last Name</label>
-                                <input type="text" name="last_name" class="form-control" value="{{$item->last_name}}" placeholder="Last Name">
+                            
+                            <div class="row mt-2">
+                                <div class="col-md-6">
+                                    <label class="labels">First Name</label>
+                                    <input type="text" class="form-control" placeholder="First Name" name="first_name" value="{{$item->first_name}}">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="labels">Last Name</label>
+                                    <input type="text" name="last_name" class="form-control" value="{{$item->last_name}}" placeholder="Last Name">
+                                </div>
                             </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-md-6">
-                                <label class="labels">Nomor Telepon</label>
-                                <input type="text" class="form-control" placeholder="Phone Number" name="no_telp" value="{{Auth::user()->no_telp}}">
+                            <div class="row mt-3">
+                                <div class="col-md-6">
+                                    <label class="labels">Nomor Telepon</label>
+                                    <input type="text" class="form-control" placeholder="Phone Number" name="no_telp" value="{{$item->no_hp}}">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="labels">Tanggal Lahir</label>    
+                                    <input class="form-control" type="date" id="birthday" name="birth_date" value="{{date_format(date_create($item->birth_date), 'Y-m-d')}}">
+                                </div>
                             </div>
-                            <div class="col-md-6">
-                                <label class="labels">Tanggal Lahir</label>    
-                                <input class="form-control" type="date" id="birthday" name="birth_date" value="{{$item->birth_date}}">
+                            <div class="row mt-3">
+                                <div class="col-md-6">
+                                    <label class="labels">Provinsi</label>
+                                    <select id="provinsi" class="form-select form-select-sm" name="provinsi">
+                                        <option>--- Pilih Provinsi ---</option>
+                                        <option value="{{$item->prov_id}}" selected>{{$item->prov_name}}</option>                                    
+                                    </select> 
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="labels">Kabupaten/Kota</label>
+                                    <select id="city" class="form-select form-select-sm" name="city">
+                                        <option>--- Pilih Kabupaten/Kota ---</option>
+                                        <option value="{{$item->city_id}}" selected>{{$item->city_name}}</option>                                    
+                                    </select>
+                                </div>                        
                             </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-md-6">
-                                <label class="labels">Provinsi</label>
-                                <select id="provinsi" class="form-select form-select-sm" name="provinsi">
-                                    <option>--- Pilih Provinsi ---</option>
-                                </select> 
+                            <div class="row mt-3">
+                                <div class="col-md-6">
+                                    <label class="labels">Kecamatan</label>
+                                    <select id="kecamatan" class="form-select form-select-sm" name="kecamatan">
+                                        <option>--- Pilih Kecamatan ---</option>
+                                        <option value="{{$item->kec_id}}" selected>{{$item->kec_name}}</option>                                        
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="labels">Kelurahan</label>
+                                    <select id="kelurahan" class="form-select form-select-sm" name="kelurahan">
+                                        <option>--- Pilih Kelurahan ---</option>                                
+                                        <option value="{{$item->kel_id}}" selected>{{ $item->kel_name}}</option>
+                                    </select>
+                                </div>
                             </div>
-                            <div class="col-md-6">
-                                <label class="labels">Kabupaten/Kota</label>
-                                <select id="city" class="form-select form-select-sm" name="city">
-                                    <option>--- Pilih Kabupaten/Kota ---</option>
-                                    @foreach ($cities as $city)
-                                        @if ($city->id ==  $item->city_id)
-                                            <option value="{{$city->id}}" selected>{{$city->name}}</option>
-                                        @else
-                                            <option value="{{$city->id}}">{{$city->name}}</option>
-                                        @endif
-                                    @endforeach
-                                </select>
-                            </div>                        
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-md-6">
-                                <label class="labels">Kecamatan</label>
-                                <select id="kecamatan" class="form-select form-select-sm" name="kecamatan">
-                                    <option>--- Pilih Kecamatan ---</option>
-                                    @foreach ($kecs as $kec)
-                                        @if ($kec->id ==  $item->kec_id)
-                                            <option value="{{$kec->id}}" selected>{{$kec->name}}</option>
-                                        @else
-                                            <option value="{{$kec->id}}">{{$kec->name}}</option>
-                                        @endif
-                                    @endforeach
-                                </select>
+                            <div class="row mt-3">
+                                <div class="col-md-12">
+                                    <label class="labels">Nama Jalan/Daerah/Blok Rumah</label>
+                                    <input type="text" class="form-control" placeholder="Nama Jalan/Daerah/Blok/Rumah" name="address" value="{{$item->address}}">
+                                </div>
+                            </div>                                 
+                            
+                            <div class="mt-5 text-center">
+                                @method('PUT')        
+                                <button class="btn btn-primary profile-button" type="submit">Save Profile</button>
                             </div>
-                            <div class="col-md-6">
-                                <label class="labels">Kelurahan</label>
-                                <select id="kelurahan" class="form-select form-select-sm" name="kelurahan">
-                                    <option>--- Pilih Kelurahan ---</option>                                
-                                    @foreach ($kels as $kel)
-                                        @if ($kel->id ==  $item->kel_id)
-                                            <option value="{{$kel->id}}" selected>{{$kel->name}}</option>
-                                        @else
-                                            <option value="{{$kel->id}}">{{$kel->name}}</option>
-                                        @endif
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-md-12">
-                                <label class="labels">Nama Jalan/Daerah/Blok Rumah</label>
-                                <input type="text" class="form-control" placeholder="Nama Jalan/Daerah/Blok/Rumah" name="address" value="{{$item->address}}">
-                            </div>
-                        </div>                                 
-                        
-                        <div class="mt-5 text-center">
-                            <button class="btn btn-primary profile-button" type="submit">Save Profile</button>
-                        </div>
-                    </form>
+                        </form>
                     @endforeach
                 </div>
             </div>
@@ -172,31 +158,9 @@ var render=createwidgetlokasi("provinsi","kabupaten","kecamatan","kelurahan");
 </script> --}}
 <script src="{{url('js/location.js')}}"></script>
 <script>
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-async function demo() {
-  await sleep(4000);
-  $("#provinsi").val({{$prov}});
-  $("#city").prop('disabled', false); //disable
-  $("#kecamatan").prop('disabled', false); //disable
-  $("#kelurahan").prop('disabled', false); //disable
-
-  if($('#provinsi').val()!='{{$prov}}'){
-      console.log("belum");
-  }else{
-    console.log("sama");
-  }
-  
-//   // Sleep in loop
-//   for (let i = 0; i < 5; i++) {
-//     if (i === 3)
-//       await sleep(2000);
-    
-//   }
-}
-
-demo();
+    $(document).ready(function()
+    {
+        $("#kelurahan").prop('disabled', false); //enable
+    })
 </script>
 @endsection
