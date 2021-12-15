@@ -19,35 +19,32 @@ class AccountController extends Controller
      */
     public function index()
     {                   
-        $Param1 = 'aas';
-        $param2 = 'sdaf';
-        DB::select('exec insertRole(?,?)',array($Param1,$param2));
-        // $dataTable = new Account();        
-        // $page = 15;
+        $dataTable = new Account();        
+        $page = 15;
 
-        // if ($this->isRoleName('ADMIN')) {
-        //     $page=5;
-        //     $data = DB::table('ViewAccount')
-        //     ->paginate($page);
-        // }else if($this->isRoleName('OWNER')){
-        //     $data =  DB::table('ViewAccount')
-        //     ->where('role_name', '=', 'MANAGER')
-        //     ->where('manager_id', '=', auth()->user()->id)
-        //     ->paginate($page);
-        // }else if($this->isRoleName('MANAGER')){
-        //     $data = DB::table('ViewAccount')
-        //     ->where('role_name', '=', 'EMPLOYEE')
-        //     ->where('manager_id', '=', auth()->user()->id)
-        //     ->paginate($page);   
-        // }else{
-        //     return view('forbidden');
-        // }
+        if ($this->isRoleName('ADMIN')) {
+            $page=5;
+            $data = DB::table('ViewAccount')
+            ->paginate($page);
+        }else if($this->isRoleName('OWNER')){
+            $data =  DB::table('ViewAccount')
+            ->where('role_name', '=', 'MANAGER')
+            ->where('manager_id', '=', auth()->user()->id)
+            ->paginate($page);
+        }else if($this->isRoleName('MANAGER')){
+            $data = DB::table('ViewAccount')
+            ->where('role_name', '=', 'EMPLOYEE')
+            ->where('manager_id', '=', auth()->user()->id)
+            ->paginate($page);   
+        }else{
+            return view('forbidden');
+        }
 
-        // return view('app.admin.table.index', [
-        //     'data'=>$data,             
-        //     'table_name' => $dataTable->getTable(),
-        //     'page' => $page,
-        // ]);
+        return view('app.admin.table.index', [
+            'data'=>$data,             
+            'table_name' => $dataTable->getTable(),
+            'page' => $page,
+        ]);
     }
 
     /**
@@ -88,7 +85,7 @@ class AccountController extends Controller
         $account->password = Hash::make($request->password);
 
         if ($this->isRoleName('ADMIN')) {
-            $account->role_name = 'OWNER';
+            $account->role_name = 'CUSTOMER';
         }else if($this->isRoleName('OWNER')){
             $account->role_name = 'MANAGER';
         }else if($this->isRoleName('MANAGER')){

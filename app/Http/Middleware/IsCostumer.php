@@ -16,7 +16,7 @@ class IsCostumer
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->user()->role_name == 'COSTUMER'){
+        if(auth()->user()->role_name == 'CUSTOMER'){
             return $next($request);
         }
         //page error
