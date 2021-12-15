@@ -68,7 +68,9 @@ class LoginController extends Controller
             return "/emp/dashboard";
         }
         //customer
-        return "/";
+        if($acc->isRoleName('CUSTOMER')){
+            return "/app";
+        }
     }
     
 }

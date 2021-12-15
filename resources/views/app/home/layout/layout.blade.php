@@ -51,7 +51,7 @@
             <div class="loader"></div>
         </div>
         <!-- ======= Header ======= -->
-       {{ View::make('app.home.layout.navbar') }}
+       {{ View::make('app.home.layout.navbarCust') }}
         <!-- End Header -->
 
         <!-- Content-->
