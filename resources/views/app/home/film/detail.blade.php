@@ -41,13 +41,23 @@
                             legendary hero from the Waste War - the fabled Ace!</p>
                             <div class="anime__details__widget">
                                 <div class="row">
-                                    <div class="col-lg-6 col-md-6">
+                                    <div class="col-lg-12 col-md-12">
                                         <ul>
                                             <li><span>Director:</span> {{$data->director}}</li>
                                             <li><span>Genre:</span> {{$data->genre}}</li>
                                             <li><span>Date Release:</span> {{$data->release_date}}</li>
                                             <li><span>Language:</span> {{$data->language}}</li>
                                             <li><span>Rating:</span> {{$data->rating}}</li>
+                                            <li>
+                                                <span><b>Cast</b></span>
+                                            </li>
+                                            <span class="text-white">
+                                                <a href="#">coba</a>,
+                                                <a href="#">coba</a>,
+                                                <a href="#">coba</a>,
+                                                <a href="#">coba</a>,
+                                                <a href="#">coba</a>
+                                            </span>
                                         </ul>
                                     </div>
                                 </div>
@@ -62,8 +72,8 @@
                                 <a href="{{url('app/ticket')}}" class="watch-btn"><span>Buy Ticket</span> <i
                                     class="fa fa-angle-right"></i></a>
                                 </div>
-
                             </div>
+
                         </div>
                     </div>
                 </div>
