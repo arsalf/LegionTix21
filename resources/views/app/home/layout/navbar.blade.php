@@ -5,7 +5,7 @@
             <div class="col-lg-2">
                 <div class="header__logo">
                     <a href="{{url('app')}}">
-                        <img src="{{ asset('home/img/logo.png') }}" alt="">
+                        <img src="{{ asset('/img/logo-baru2.png') }}" alt="" class="nav-film" style="transform: scale(2)">
                     </a>
                 </div>
             </div>
