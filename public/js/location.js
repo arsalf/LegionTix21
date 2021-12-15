@@ -61,6 +61,7 @@ $(document).ready(function($) {
         $("#city").prop('disabled', false); //enable
         $("#kecamatan").prop('disabled', true); //disable
         $("#kelurahan").prop('disabled', true); //disable
+        $("#kelurahan").css('background-color', '#e9ecef');
 
         //insialisasi
         initOption('#city', 'Kabupaten/Kota');
@@ -77,6 +78,7 @@ $(document).ready(function($) {
     $('#city').on('change', function() {
         $("#kecamatan").prop('disabled', false); //enable
         $("#kelurahan").prop('disabled', true); //disable
+        $("#kelurahan").css('background-color', '#e9ecef');
 
         //insialisasi
         initOption('#kecamatan', 'Kecamatan');
@@ -91,6 +93,8 @@ $(document).ready(function($) {
 
     $('#kecamatan').on('change', function() {
         $("#kelurahan").prop('disabled', false); //enable
+        $("#kelurahan").css('pointer-events', 'initial');
+        $("#kelurahan").css('background-color', 'white');
 
         //insialisasi
         initOption('#kelurahan', 'Kelurahan');

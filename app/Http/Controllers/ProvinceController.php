@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Province;
+use App\Models\Region;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProvinceController extends Controller
 {
@@ -15,13 +16,16 @@ class ProvinceController extends Controller
     public function index()
     {
         //
-        $data = Province::all();
-        $dataTable = new Province();
+        $dataTable = new Region();
+        $page = 10;
+        $data = DB::table('ViewProvinsi')
+        ->paginate($page);
+
         
         return view('app.admin.table.index', [
-            'data'=>$data, 
-            'header'=>$dataTable->getFillable(),
+            'data'=>$data,             
             'table_name' => $dataTable->getTable(),
+            'page' => $page,
         ]);
     }
 
@@ -34,7 +38,7 @@ class ProvinceController extends Controller
     {
         //
         $data = "";
-        $dataTable = new Province();
+        $dataTable = new Region();
         
         return view('app.admin.table.create', [
             'data'=>$data,
@@ -57,7 +61,7 @@ class ProvinceController extends Controller
         ]);
 
         //Save a new data role to db
-        $data = new Province;
+        $data = new Region;
         $data->name = $request->name;
         $data->save();
 
@@ -73,8 +77,8 @@ class ProvinceController extends Controller
     public function show($id)
     {
         //
-        $data = Province::find($id);
-        $dataTable = new Province();
+        $data = Region::find($id);
+        $dataTable = new Region();
 
         return view('app.admin.table.index', [
             'data'=>$data, 
@@ -92,12 +96,12 @@ class ProvinceController extends Controller
     public function edit($id)
     {
         //
-        $data = Province::find($id);
-        $dataTable = new Province();
+        $data = Region::find($id);
+        $dataTable = new Region();
         
         return view('app.admin.table.edit', [
-            'data'=>$data,
-            'header'=>$dataTable->getFillable(),
+            'id'=>$id,
+            'data'=>$data,            
             'table_name' => $dataTable->getTable(),
         ]);
     }
@@ -112,19 +116,17 @@ class ProvinceController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $this->validate($request, [
-            'id'=>'required',
+        $this->validate($request, [            
             'name'=>'required|max:50'
         ]);
         
-        Province::where('id', $id)->update([
-            'id'=>$request->id,
+        Region::where('id', $id)->update([            
             'name'=>$request->name,
         ]);
         
         $id = $request->id;
 
-        return redirect()->route('province.edit', $id)->with('status', 'Success update province!');
+        return redirect()->back()->with('status', 'Success update provinsi!');
     }
 
     /**
@@ -136,21 +138,21 @@ class ProvinceController extends Controller
     public function destroy($id)
     {
         //
-        $data = Province::find($id);
-        Province::where('id', $id)->delete();
+        $data = Region::find($id);
+        Region::where('id', $id)->delete();
         
 
-        return redirect()->back()->with('status', 'Success delete a province '.$data->name.'!');
+        return redirect()->back()->with('status', 'Success delete a Region '.$data->name.'!');
     }
 
     public function getProvinsi($id){
-        $data = Province::find($id);
+        $data = Region::find($id);
         return $data;
     }
 
     public function getAllProvinsi()
     {
-        $data = Province::all();
+        $data = Region::all();
         return $data;
     }
     

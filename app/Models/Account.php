@@ -11,14 +11,11 @@ class Account extends Authenticatable
     public $table = 'ACCOUNT';
     public $timestamps = false;
 
-    protected $fillable = [
-        'ID',
+    protected $fillable = [      
         'USERNAME',
         'EMAIL',
-        'NO_HP',
         'PASSWORD',
-        'ROLE_ID',
-        'MANAGER_ID',
+        'ROLE_NAME',
     ];
     
     /**
@@ -27,7 +24,10 @@ class Account extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password',
+        'ID',        
+        'ACCOUNT_ID',
+        'isActive',        
+        'password',        
         'remember_token',
     ];
 }

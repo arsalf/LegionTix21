@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Http\Controllers\AccountController;
 use Closure;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,8 @@ class isAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->user()->role_id == 1){
+        $acc = new AccountController();
+        if(!$acc->isRoleName('CUSTOMER') and !$acc->isRoleName('EMPLOYEE')){
             return $next($request);
         }
         //page error
