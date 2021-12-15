@@ -5,7 +5,7 @@
             <div class="col-lg-2">
                 <div class="header__logo">
                     <a href="{{url('app')}}">
-                        <img src="{{ asset('home/img/logo.png') }}" alt="">
+                        <img src="{{ asset('/img/logo-baru2.png') }}" alt="" class="nav-film" style="transform: scale(2)">
                     </a>
                 </div>
             </div>
@@ -14,13 +14,6 @@
                     <nav class="header__menu mobile-menu">
                         <ul>
                             <li class="active"><a href="{{url('app')}}">Homepage</a></li>
-                            <li><a href="./categories.html">Categories <span class="arrow_carrot-down"></span></a>
-                                <ul class="dropdown">
-                                    <li><a href="#">A</a></li>
-                                    <li><a href="#">B</a></li>
-                                    <li><a href="#">C</a></li>
-                                </ul>
-                            </li>
                             <li><a href="{{url('app/articel')}}">Articel</a></li>
                             <li><a href="{{url('/')}}">Contacts</a></li>
                         </ul>

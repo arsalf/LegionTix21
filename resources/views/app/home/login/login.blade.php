@@ -27,7 +27,7 @@
                 <div class="col-lg-6">
                     <div class="login__form">
                         <h3>Login</h3>
-                        <form action="#">
+                        <form action="{{ route('login') }}">
                             <div class="input__item">
                                 <input type="text" placeholder="Username / Email">
                                 <span class="icon_mail"></span>

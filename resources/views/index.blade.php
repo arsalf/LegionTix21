@@ -8,7 +8,7 @@
   <!-- ======= Hero Section ======= -->
   <section id="hero">
     <div class="hero-container">
-      <a href="#" class="hero-logo" data-aos="zoom-in"><img src="{{ asset('img/hero-logo2.png') }}" style="transform: scale(1.5)" alt=""></a>
+      <a href="#" class="hero-logo" data-aos="zoom-in"><img src="{{ asset('img/logo-baru.png') }}" style="height: 200px" alt=""></a>
       <h1 data-aos="zoom-in">Welcome To Legion Tix</h1>
       <h2 data-aos="fade-up">Legion for honnor</h2>
       <a data-aos="fade-up" data-aos-delay="200" href="{{url('app')}}" class="btn-get-started scrollto">Get Started</a>
@@ -27,7 +27,7 @@
       <div class="row">
         <div class="col-lg-6" data-aos="fade-right">
           <div class="image">
-            <img src="{{ asset('img/logo2.png') }}" class="img-fluid" alt="">
+            <img src="{{ asset('img/logo-baru.png') }}" class="img-fluid" alt="">
           </div>
         </div>
         <div class="col-lg-6" data-aos="fade-left">
@@ -180,6 +180,40 @@
 					</div>
 
 					<div class="row">
+						{{-- Nuno --}}
+						<div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+							<div class="member" data-aos="zoom-in" data-aos-delay="200">
+								<div class="member-img">
+									<img
+										src="{{ asset('img/team/team-3.jpg') }}"
+										class="img-fluid"
+										alt=""
+									/>
+									<div class="social">
+										<a href=""
+											><i
+												class=" bi bi-facebook"
+											></i
+										></a>
+										<a href=""
+											><i
+												class=" bi bi-instagram"
+											></i
+										></a>
+										<a href=""
+											><i
+												class=" bi bi-linkedin"
+											></i
+										></a>
+									</div>
+								</div>
+								<div class="member-info">
+									<h4>Nuno Alwi A</h4>
+								</div>
+							</div>
+						</div>
+						
+						{{-- Arsal --}}
 						<div class="col-lg-4 col-md-6 d-flex align-items-stretch">
 							<div class="member" data-aos="zoom-in">
 								<div class="member-img">
@@ -211,12 +245,14 @@
 								</div>
 							</div>
 						</div>
+						
 
+						{{-- Zidan --}}
 						<div class="col-lg-4 col-md-6 d-flex align-items-stretch">
 							<div class="member" data-aos="zoom-in" data-aos-delay="100">
 								<div class="member-img">
 									<img
-                    src="{{ asset('img/team/team-2.jpg') }}"
+                    					src="{{ asset('img/team/team-2.jpg') }}"
 										class="img-fluid"
 										alt=""
 									/>
@@ -244,37 +280,6 @@
 							</div>
 						</div>
 
-						<div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-							<div class="member" data-aos="zoom-in" data-aos-delay="200">
-								<div class="member-img">
-									<img
-                    src="{{ asset('img/team/team-3.jpg') }}"
-										class="img-fluid"
-										alt=""
-									/>
-									<div class="social">
-										<a href=""
-											><i
-												class=" bi bi-facebook"
-											></i
-										></a>
-										<a href=""
-											><i
-												class=" bi bi-instagram"
-											></i
-										></a>
-										<a href=""
-											><i
-												class=" bi bi-linkedin"
-											></i
-										></a>
-									</div>
-								</div>
-								<div class="member-info">
-									<h4>Nuno Alwi A</h4>
-								</div>
-							</div>
-						</div>
 					</div>
 				</div>
 			</section>
