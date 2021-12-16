@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Role;
+use App\Models\TypeStudio;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Exception;
 
-class RoleController extends Controller
+class TypeStudioController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,14 +16,14 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //Index Role Manage Table
-        $data = Role::orderBy('name', 'asc')
-        ->paginate(15);
-        $dataTable = new Role();
+        $dataTable = new TypeStudio();
+        $page = 15;
+        $data = TypeStudio::paginate($page);
         
         return view('app.admin.table.index', [
-            'data'=>$data,             
+            'data'=>$data,
             'table_name' => $dataTable->getTable(),
+            'page' => $page,
         ]);
     }
 
@@ -34,9 +34,9 @@ class RoleController extends Controller
      */
     public function create()
     {
-        // form to create role name
+        //            
         $data = "";
-        $dataTable = new Role();
+        $dataTable = new TypeStudio();
         
         return view('app.admin.table.create', [
             'data'=>$data,
@@ -53,98 +53,77 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name'=>'required|max:10',
-            'description'=>'required'
-        ]);
+        //
+        $type = new TypeStudio;
+        $type->name = $request->name;;
+        $type->save();
 
-        //Save a new data role to db
-        $data = new Role;
-        $data->name = $request->name;
-        $data->description = $request->description;
-        $data->save();
-
-        return redirect()->back()->with('status', 'Success add a role!');
+        return redirect()->back()->with('status', 'success add type studio');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\TypeStudio  $typeStudio
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(TypeStudio $typeStudio)
     {
         //
-        $data = Role::find($id);
-        $dataTable = new Role();
-
-        return view('app.admin.table.index', [
-            'data'=>$data, 
-            'header'=>$dataTable->getFillable(),
-            'table_name' => $dataTable->getTable(),
-        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\TypeStudio  $typeStudio
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //        
-        $data = Role::where('name', '=', $id)
-        ->select('name', 'description')
-        ->first();
-        $dataTable = new Role();
-        
-        return view('app.admin.table.edit', [
-            'id' => $id,
-            'data'=>$data,
-            'table_name' => $dataTable->getTable(),
-        ]);
+        //
+        $data = TypeStudio::where('name', '=', $id)->first();               
+        $dataTable = new TypeStudio();
+         
+         return view('app.admin.table.edit', [
+             'id' => $id,
+             'data'=>$data,
+             'table_name' => $dataTable->getTable(),
+         ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\TypeStudio  $typeStudio
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         //
-        $this->validate($request, [  
-            'name'=>'required',
-            'description'=>'required'
-        ]);
         try{
-            Role::where('name', '=', $id)
+            TypeStudio::where('name', '=', $id)
                 ->update([
-                    'name'=>$request->name,
-                    'description'=>$request->description,
+                    'name'=>$request->name,                    
                 ]);            
         }catch(Exception $e){
             return redirect()->back()->withError($e->getMessage())->withInput();
         }
 
-        return redirect()->route('role.index')->with('status', 'Success update role!');
+        return redirect()->route('typestudio.index')->with('status', 'Success update role!');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\TypeStudio  $typeStudio
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         //
         try{
-            Role::where('name', '=', $id)
+            TypeStudio::where('name', '=', $id)
             ->delete();
         }catch(Exception $e){
             return redirect()->back()->withError($e->getMessage())->withInput();

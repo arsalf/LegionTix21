@@ -46,8 +46,7 @@
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="collapse" href="#company"
-        aria-expanded="false" aria-controls="comapany">
+        <a class="nav-link" data-bs-toggle="collapse" href="#company" aria-expanded="false" aria-controls="comapany">
           <i class="menu-icon mdi mdi-hospital-building"></i>
           <span class="menu-title">Company</span>
           <i class="menu-arrow"></i>
@@ -55,8 +54,9 @@
         <div class="collapse" id="company">
             <ul class="nav flex-column sub-menu">
               <li class="nav-item"> <a class="nav-link" href="{{route('bioskop.index')}}">Bioskop</a></li>
-              <li class="nav-item"> <a class="nav-link" href="pages/tables/basic-table.html">Studio</a></li>
-              <li class="nav-item"><a class="nav-link" href="pages/tables/basic-table.html">Kursi</a></li>
+              <li class="nav-item"> <a class="nav-link" href="{{route('typestudio.index')}}">Type Studio</a></li>
+              <li class="nav-item"> <a class="nav-link" href="{{route('studio.index')}}">Studio</a></li>              
+              <li class="nav-item"><a class="nav-link" href="{{route('kursi.index')}}">Kursi</a></li>
             </ul>
         </div>
       </li>
