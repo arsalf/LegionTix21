@@ -69,7 +69,7 @@
                                 <a href="#" data-toggle="modal" data-target=".bd-example-modal-xl" class="follow-btn">
                                     <i class="fa fa-film"></i><span> Trailers</span>
                                 </a>
-                                <a href="{{url('app/ticket')}}" class="watch-btn"><span>Buy Ticket</span> <i
+                                <a href="{{ route('tiket.index') }}" class="watch-btn"><span>Buy Ticket</span> <i
                                     class="fa fa-angle-right"></i></a>
                                 </div>
                             </div>

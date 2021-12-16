@@ -21,21 +21,21 @@
                             <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" placeholder="Username" autofocus>
                             <span class="icon_profile"></span>
 
-                            @error('username')
-                                <span class="invalid-feedback" role="alert">
+                            {{-- @error('username')
+                                <span class="invalid-feedback text-danger" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
-                            @enderror
+                            @enderror --}}
                         </div>
                         <div class="input__item">
                             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Password">
                             <span class="icon_lock"></span>
 
-                            @error('password')
-                                <span class="invalid-feedback" role="alert">
+                            {{-- @error('password')
+                                <span class="invalid-feedback text-danger" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
-                            @enderror
+                            @enderror --}}
                         </div>
                         <div class="form-group row">
                             <div class="col-md-12">

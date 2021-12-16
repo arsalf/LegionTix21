@@ -10,7 +10,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <form >
+                    <form method="GET">
                         <div class="row">
                             <label for="exampleFormControlSelect1" class="mb-3 text-white col-sm-12 col-form-label">Kursi</label>
                         </div>
@@ -41,7 +41,11 @@
                                         <?php } ?>
                                     </div>
                                 <?php } ?>
-
+                            </div>
+                            <div class="text-left text-white col-md-2">
+                                <h5> <b> Bioskop </b> : {{$bioskop}} </h5>
+                                <h5> <b> Studio </b> : {{$studio}} </h5>
+                                <h5> <b> Jam Tayang </b> : {{$jam}} </h5> 
                             </div>
                         </div>
                         <div class="row">
