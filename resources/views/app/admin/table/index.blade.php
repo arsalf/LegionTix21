@@ -40,7 +40,7 @@ form{
                             $json = json_decode(json_encode($item), 1);
                         @endphp
                         @foreach ($json as $key => $value)
-                        <th scope="col">{{$key}}</th>   
+                        <th scope="col">{{$key}}</th>
                         @endforeach
                         @break
                     @endforeach                    
@@ -70,9 +70,13 @@ form{
                         @endforeach
                         <td>
                             <div class="d-flex justify-content-center">                                
-                                <a class="btn btn-warning text-light" style="text-decoration: none" href="{{route(strtolower($table_name).'.edit', $item->id)}}">edit</a>
-                                
+                                @if(!is_null($item->id))
+                                <a class="btn btn-warning text-light" style="text-decoration: none" href="{{route(strtolower($table_name).'.edit', $item->id)}}">edit</a>                                
                                 <form action="{{route(strtolower($table_name).'.destroy', $item->id)}}" method="POST">
+                                @else
+                                <a class="btn btn-warning text-light" style="text-decoration: none" href="{{route(strtolower($table_name).'.edit', $item->name)}}">edit</a>
+                                <form action="{{route(strtolower($table_name).'.destroy', $item->name)}}" method="POST">
+                                @endif
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="text-white btn btn-danger">

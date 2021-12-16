@@ -153,8 +153,13 @@ class BioskopController extends Controller
      * @param  \App\Models\Bioskop  $bioskop
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Bioskop $bioskop)
+    public function destroy($id)
     {
         //
+        $data = Bioskop::find($id);
+        $data->isActive = 0;
+        $data->save();
+
+        return redirect()->back()->with('status', 'success delete bioskop');        
     }
 }

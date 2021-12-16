@@ -35,7 +35,7 @@ class AccountController extends Controller
             $data = DB::table('ViewAccount')
             ->where('role_name', '=', 'EMPLOYEE')
             ->where('manager_id', '=', auth()->user()->id)
-            ->paginate($page);   
+            ->paginate($page);
         }else{
             return view('forbidden');
         }
@@ -93,7 +93,7 @@ class AccountController extends Controller
         }
         
         $account->account_id = auth()->user()->id;
-        $account->isActive = 1;      
+        $account->isActive = 1;
         
         try{
             $account->save();
@@ -157,7 +157,6 @@ class AccountController extends Controller
         }catch(Exception $e){
             return redirect()->back()->withError($e->getMessage())->withInput();
         }
-        
 
         return redirect()->back()->with('status', 'Success update account!');
     }

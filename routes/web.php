@@ -7,10 +7,13 @@ use App\Http\Controllers\FilmController;
 use App\Http\Controllers\KecamatanController;
 use App\Http\Controllers\KelurahanController;
 use App\Http\Controllers\FilmControllers;
+use App\Http\Controllers\KursiController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProvinceController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\StudioController;
+use App\Http\Controllers\TypeStudioController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Models\Film;
@@ -53,12 +56,15 @@ Route::middleware(['auth', 'isAdmin'])->group(function(){
             Route::prefix('/setting')->group(function(){
                 Route::resource('/account', AccountController::class);
                 Route::resource('/role', RoleController::class);
-                Route::resource('/region', ProvinceController::class);                
+                Route::resource('/region', ProvinceController::class);          
                 Route::resource('/city', CityController::class);
                 Route::resource('/district', KecamatanController::class);
                 Route::resource('/village', KelurahanController::class);
                 Route::resource('/film', FilmController::class);
                 Route::resource('/bioskop', BioskopController::class);
+                Route::resource('/studio', StudioController::class);
+                Route::resource('/typestudio', TypeStudioController::class);
+                Route::resource('/kursi', KursiController::class);
             });
             
         }); 
