@@ -425,7 +425,6 @@ ol {
     display: inline-block;
     font-size: 18px;
     color: #ffffff;
-    margin-right: 30px;
 }
 
 .header__right a:last-child {
@@ -1823,7 +1822,7 @@ ol {
     color: #ffffff;
     font-weight: 700;
     font-family: "Oswald", sans-serif;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
 
 .login__register .primary-btn {

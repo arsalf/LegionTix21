@@ -58,3 +58,11 @@
 .nav-film {
     height: 25px;
 }
+
+.selectFilm {
+    width: 300px;
+}
+
+.selectFilm option {
+    width: 300px;
+}

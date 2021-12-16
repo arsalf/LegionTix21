@@ -9,6 +9,7 @@ use App\Http\Controllers\KelurahanController;
 use App\Http\Controllers\FilmControllers;
 use App\Http\Controllers\KursiController;
 use App\Http\Controllers\LocationController;
+use App\Http\Controllers\TiketControllers;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProvinceController;
 use App\Http\Controllers\RoleController;
@@ -103,14 +104,6 @@ Route::prefix('app')->group(function(){
     })->name('app.register');
 
     Route::middleware(['auth', 'IsCostumer'])->group(function(){
-        Route::get('/ticket', function () {
-            return view('app.home.film.ticket');
-        })->name('app.ticket');
-        
-        Route::get('/kursi', function () {
-            return view('app.home.film.kursi');
-        })->name('app.kursi');
-
         Route::prefix('articel')->group(function(){
             Route::get('/', function () {
                 return view('app.home.articel.index');
@@ -120,8 +113,23 @@ Route::prefix('app')->group(function(){
                 return view('app.home.articel.detail');
             })->name('app.articelDetail');
         });
-    });
 
+        
+        Route::post('/kursi/{id}/{bioskop}/{studio}/{jam}', function () {
+            $id = \Request::segment(3);
+            $bioskop = \Request::segment(4);
+            $studio = \Request::segment(5);
+            $jam = \Request::segment(6);
+            return view('app.home.film.kursi',[
+                'id'=>$id,
+                'bioskop'=>$bioskop,
+                'studio'=>$studio,
+                'jam'=>$jam,
+            ]);
+        })->name('app.kursi');
+        Route::resource('/tiket', TiketControllers::class);
+    });
+    
     Route::resource('/films', FilmControllers::class);
 });
 /*
