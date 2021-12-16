@@ -60,16 +60,16 @@ class LoginController extends Controller
     public function redirectTo(){
         // admin, owner, manager
         $acc = new AccountController();
+        //customer
+        if($acc->isRoleName('CUSTOMER')){
+            return "/app";
+        }
         if(!$acc->isRoleName('CUSTOMER') and !$acc->isRoleName('EMPLOYEE')){
             return "/admin/dashboard";
         }
         //employee
         if(!$acc->isRoleName('EMPLOYEE')){
             return "/emp/dashboard";
-        }
-        //customer
-        if($acc->isRoleName('CUSTOMER')){
-            return "/app";
         }
     }
     

@@ -50,8 +50,13 @@
         <div id="preloder">
             <div class="loader"></div>
         </div>
+
         <!-- ======= Header ======= -->
-       {{ View::make('app.home.layout.navbarCust') }}
+        @if ( Auth::user())
+            {{ View::make('app.home.layout.navbarCust') }}
+        @else
+            {{ View::make('app.home.layout.navbar') }}
+        @endif
         <!-- End Header -->
 
         <!-- Content-->

@@ -22,13 +22,19 @@
             </div>
             <div class="col-lg-3">
                 <div class="text-white header__right">
-                    <a href="#" class="search-switch"><span class="icon_search"></span></a>
+                    <a href="#" class="mr-3 search-switch"><span class="icon_search"></span></a>
                     <button class="rounded-circle"><span class="icon_profile"></span></button>
                     <div class="d-inline-block">
                         <span>{{Auth::user()->username}}</span>
                     </div>
-                    <div class="ml-3 d-inline-block">
-                        <a href="#"><b> Logout </b></a>
+                    <div class="ml-5 d-inline-block">
+                        <a href="{{ route('logout')}}" onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();"><i class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>{{ __('Logout') }}
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                        
                     </div>
                 </div>
             </div>
