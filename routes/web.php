@@ -108,6 +108,7 @@ Route::prefix('app')->group(function(){
             })->name('app.articelDetail');
         });
 
+        
         Route::post('/kursi/{id}/{bioskop}/{studio}/{jam}', function () {
             $id = \Request::segment(3);
             $bioskop = \Request::segment(4);
