@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class TiketControllers extends Controller
+class DompetControllers extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,7 +35,7 @@ class TiketControllers extends Controller
      */
     public function store(Request $request)
     {
-        return $request;
+        //
     }
 
     /**
@@ -46,9 +46,7 @@ class TiketControllers extends Controller
      */
     public function show($id)
     {
-        return view('app.home.film.ticket',[
-            'id'=>$id,
-        ]);
+        //
     }
 
     /**
@@ -59,7 +57,7 @@ class TiketControllers extends Controller
      */
     public function edit($id)
     {
-        //
+        return 'plus 10 nih bos';
     }
 
     /**

@@ -1,13 +1,16 @@
 <?php
 
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\ArtikelControllers;
 use App\Http\Controllers\BioskopController;
 use App\Http\Controllers\CityController;
+use App\Http\Controllers\DompetControllers;
 use App\Http\Controllers\FilmController;
 use App\Http\Controllers\KecamatanController;
 use App\Http\Controllers\KelurahanController;
 use App\Http\Controllers\FilmControllers;
 use App\Http\Controllers\KursiController;
+use App\Http\Controllers\KursiControllers;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\TiketControllers;
 use App\Http\Controllers\ProfileController;
@@ -95,41 +98,13 @@ Route::prefix('app')->group(function(){
         ]);
     })->name('app');
 
-    Route::get('/login', function () {
-        return view('app.home.login.login');
-    })->name('app.login');
-    
-    Route::get('/register', function () {
-        return view('app.home.login.register');
-    })->name('app.register');
-
     Route::middleware(['auth', 'IsCostumer'])->group(function(){
-        Route::prefix('articel')->group(function(){
-            Route::get('/', function () {
-                return view('app.home.articel.index');
-            })->name('app.articel');
-            
-            Route::get('/detail', function () {
-                return view('app.home.articel.detail');
-            })->name('app.articelDetail');
-        });
-
         
-        Route::post('/kursi/{id}/{bioskop}/{studio}/{jam}', function () {
-            $id = \Request::segment(3);
-            $bioskop = \Request::segment(4);
-            $studio = \Request::segment(5);
-            $jam = \Request::segment(6);
-            return view('app.home.film.kursi',[
-                'id'=>$id,
-                'bioskop'=>$bioskop,
-                'studio'=>$studio,
-                'jam'=>$jam,
-            ]);
-        })->name('app.kursi');
+        Route::resource('/dompet', DompetControllers::class);
         Route::resource('/tiket', TiketControllers::class);
+        Route::resource('/kursis', KursiControllers::class);    
+        Route::resource('/artikel', ArtikelControllers::class);
     });
-    
     Route::resource('/films', FilmControllers::class);
 });
 /*

@@ -10,12 +10,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <form method="POST" action="{{ route('app.kursi',[1,1,2,3]) }}">
+                    <form method="POST" action="{{ route('kursis.store') }}">
                         @csrf
+                            <input type="hidden" name="idFilm" value="{{$id}}">
                             <div class="form-group row">
                                 <label for="bioskop" class="text-white col-sm-2 col-form-label">Bioskop</label>
                                 <div class="text-dark col-sm-10">
-                                    <select id="bioskop" class="selectFilm">
+                                    <select id="bioskop" name="bioskop" class="selectFilm">
                                         <option value="Jatos - XXI">Jatos - XXI</option>
                                         <option value="Bubat - XXI">Bubat - XXI</option>
                                         <option value="PVJ - CGV">PVJ - CGV</option>
@@ -43,15 +44,15 @@
                                 <label class="text-white d-flex flex-column justify-content-center col-sm-2 col-form-label">Jam Tayang</label>
                                 <div class="text-white col-sm-10">
                                     <div class="form-check form-check-inline">
-                                        <input class="radio-toolbar-input" type="radio" id="jam1" name="jamTayang" value="12:00" checked>
+                                        <input class="radio-toolbar-input" type="radio" id="jam1" name="jamTayang" value="1" checked>
                                         <label class="radio-toolbar-label btn-ticket" for="jam1">12:00</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="radio-toolbar-input" type="radio" id="jam2" name="jamTayang" value="13:30">
+                                        <input class="radio-toolbar-input" type="radio" id="jam2" name="jamTayang" value="2">
                                     <label class="radio-toolbar-label btn-ticket" for="jam2">13:30</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="radio-toolbar-input" type="radio" id="jam3" name="jamTayang" value="15:00">
+                                        <input class="radio-toolbar-input" type="radio" id="jam3" name="jamTayang" value="3">
                                     <label class="radio-toolbar-label btn-ticket" for="jam3">15:00</label>
                                     </div>
                                 </div>
