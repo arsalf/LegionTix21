@@ -14,8 +14,8 @@
                     <nav class="header__menu mobile-menu">
                         <ul>
                             <li class="active"><a href="{{url('app')}}">Homepage</a></li>
-                            <li><a href="{{url('app/articel')}}">Articel</a></li>
-                            <li><a href="{{url('/')}}">Contacts</a></li>
+                            <li><a href="{{ route('artikel.index') }}">Articel</a></li>
+                            <li><a href="{{ url('/') }}">Contacts</a></li>
                         </ul>
                     </nav>
                 </div>

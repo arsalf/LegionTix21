@@ -30,7 +30,7 @@
                             <div class="blog__item set-bg" data-setbg="{{asset('home/img/blog/blog-1')}}.jpg">
                                 <div class="blog__item__text">
                                     <p><span class="icon_calendar"></span> 01 March 2020</p>
-                                    <h4><a href="{{url('app/articel/detail')}}">Yuri Kuma Arashi Viverra Tortor Pharetra</a></h4>
+                                    <h4><a href="{{ route('artikel.show',1) }}">Yuri Kuma Arashi Viverra Tortor Pharetra</a></h4>
                                 </div>
                             </div>
                         </div>
