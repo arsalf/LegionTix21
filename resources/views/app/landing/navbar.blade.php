@@ -12,7 +12,7 @@
             <li><a class="nav-link scrollto" href="#team">Team</a></li>
             <li><a class="nav-link scrollto" href="#faq">FAQ</a></li>
             <li><a class="px-4 py-2 mx-5 nav-link btn" style="background: #4d6680;
-                color: white;" href="{{url('app')}}">To App</a></li>
+                color: white;" href="{{url('app/home')}}">To App</a></li>
             
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>

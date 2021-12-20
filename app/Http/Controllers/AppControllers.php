@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use App\Models\Dompet;
+use App\Models\Film;
 use App\Models\TopUp;
 
-class DompetControllers extends Controller
+class AppControllers extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +16,18 @@ class DompetControllers extends Controller
      */
     public function index()
     {
-        //
+        $topup = TopUp::all();
+        $filmRating = Film::orderBy('rating', 'asc')->paginate(3);
+        $filmOnGoing = Film::orderBy('title', 'asc')->paginate(6);
+        $filmComingSoon = Film::orderBy('id', 'desc')->paginate(6);
+        // $filmOnGoing = Film::where('release_date', '<', $current_timestamp = Carbon::now()->timestamp)->orderBy('rating', 'asc')->paginate(6);
+        // $filmComingSoon = Film::where('release_date', '>', $current_timestamp = Carbon::now()->timestamp)->orderBy('rating', 'asc')->paginate(6);
+        return view('app.home.index',[
+            'topup'=>$topup,
+            'filmRating'=>$filmRating,
+            'filmOnGoing'=>$filmOnGoing,
+            'filmComingSoon'=>$filmComingSoon,
+        ]);
     }
 
     /**
@@ -38,16 +48,7 @@ class DompetControllers extends Controller
      */
     public function store(Request $request)
     {
-        try{
-            DB::insert(
-                'insert into topup (nominal, dompet_id) values (?, ?)', 
-                [$request->nominal, $request->dompet_id]);
-        }catch(Exception $e){
-            return redirect()->back()->withError($e->getMessage())->withInput();
-        }
-        $data = TopUp::all()->last();
-
-        return redirect()->back()->with('status', $data->kode_pembayaran);
+        //
     }
 
     /**
@@ -58,7 +59,10 @@ class DompetControllers extends Controller
      */
     public function show($id)
     {
-        //
+        $topup = TopUp::all()->where('status', '=', 'PENDING');
+        return view('app.home.profile',[
+            'topup'=>$topup,
+        ]);
     }
 
     /**
@@ -69,7 +73,7 @@ class DompetControllers extends Controller
      */
     public function edit($id)
     {
-        return 'plus 10 nih bos';
+        //
     }
 
     /**
