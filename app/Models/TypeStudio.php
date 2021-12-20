@@ -14,6 +14,6 @@ class TypeStudio extends Model
     public $incrementing = false;
 
     protected $fillable = [
-        'NAME',
+        'NAME',        
     ];
 }

@@ -53,8 +53,7 @@
         </a>
         <div class="collapse" id="company">
             <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="{{route('bioskop.index')}}">Bioskop</a></li>
-              <li class="nav-item"> <a class="nav-link" href="{{route('typestudio.index')}}">Type Studio</a></li>
+              <li class="nav-item"> <a class="nav-link" href="{{route('bioskop.index')}}">Bioskop</a></li>              
               <li class="nav-item"> <a class="nav-link" href="{{route('studio.index')}}">Studio</a></li>              
               <li class="nav-item"><a class="nav-link" href="{{route('kursi.index')}}">Kursi</a></li>
             </ul>

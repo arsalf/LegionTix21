@@ -63,7 +63,7 @@ class StudioController extends Controller
         if(!$result->value){
             $data = new Studio;
             $data->name = $request->name;
-            $data->typeStudio_name = $request->typestudio_name;    
+            $data->type = $request->type;    
             $data->bioskop_id = $request->bioskop_id;
             $data->save();
         }else{

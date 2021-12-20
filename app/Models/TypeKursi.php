@@ -5,20 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Studio extends Model
+class TypeKursi extends Model
 {
     use HasFactory;
-    public $table = 'STUDIO';
+    use HasFactory;
+    public $table = 'TYPEKURSI';
     public $timestamps = false;
+    protected $primaryKey = 'NAME';
+    public $incrementing = false;
 
     protected $fillable = [
-        'NAME',
-        'type',
-        'bioskop_id',
-    ];
-
-    protected $hidden = [
-        'id',
-        'isactive',
+        'NAME',        
+        'JUMLAH'
     ];
 }

@@ -85,7 +85,7 @@ class AccountController extends Controller
         $account->password = Hash::make($request->password);
 
         if ($this->isRoleName('ADMIN')) {
-            $account->role_name = 'CUSTOMER';
+            $account->role_name = $request->role_name;
         }else if($this->isRoleName('OWNER')){
             $account->role_name = 'MANAGER';
         }else if($this->isRoleName('MANAGER')){
