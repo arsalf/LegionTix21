@@ -5,6 +5,7 @@
 @endsection
 
 @section('custom_css')
+<link rel="stylesheet" href="{{asset('cinema/style.css')}}" />
 <style>
 .table-responsive{
     background-color: white;
@@ -29,24 +30,79 @@ form{
     @endif
 
     <div class="container">
-      <div class="row">
-        <select class="form-select" aria-label="Default select example">
-          <option selected>Open this select menu</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
-        </select>
+      <div class="row mb-3">
+        <form action="{{route('kursi.tampil')}}" method="post">
+            @csrf
+            <div class="col">
+                <select id="studio" name="studio" class="form-select" aria-label="Default select example">
+                    <option selected>---- Select studio ----</option>
+                    @foreach($data as $item)
+                      <option value="{{$item->id}}">{{$item->name}}</option>
+                    @endforeach          
+                </select>
+            </div>
+            <div class="col mt-3">
+                <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary">select</button>
+                </div>                
+            </div>              
+        </form>        
       </div>
-      <div class="row">
-        
-      </div>
-    </div>
-    
-    <div class="page mt-2">
+      {{-- <div class="row">
         <div class="d-flex justify-content-center">
-        {{ $data->links() }}
-        </div>
-    </div>
-    
+            <div class="wrapper">
+                <div class="layout-sheet">
+                    <div class="screen"></div>
+                    <div id='layout'></div>            
+                </div>
+            </div>
+        </div>        
+      </div> --}}
+    </div>    
 </div>
+@endsection
+
+@section('custom_js')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+{{-- <script>
+    $('#studio').on('change', function(){                
+        var id = $(this).val();
+        $.ajax({
+            type: 'GET',
+            url: '/api/kursi/'+id,
+            data: [],
+            dataType: 'json',
+            success: function(data) {
+                console.log(data);    
+                var temp = data[0].k_row;                
+                var str = `<div id="`+data[0].k_row+`" class="r_ow">`;
+
+                for (let index = 0; index < data.length; index++) {
+                    if(data[index].k_row!=temp){
+                        str = str + `</div><div id="`+data[index].k_row+`" class="r_ow">`;
+                        if(data[index].jumlah==2){
+                            str = str + `<div class="double-seat selected">`+data[index].k_row+data[index].k_seat+`</div>`;                            
+                        }else{
+                            str = str + `<div class="seat selected">`+data[index].k_row+data[index].k_seat+`</div>`;                            
+                        }                                                                                
+                    }else{
+                        if(data[index].jumlah==2){
+                            str = str + `<div class="double-seat selected">`+data[index].k_row+data[index].k_seat+`</div>`;                            
+                        }else{
+                            str = str + `<div class="seat selected">`+data[index].k_row+data[index].k_seat+`</div>`;                            
+                        }
+                    }
+                    temp = data[index].k_row;
+                }
+                $('#layout').html(str);
+                $('.layout-sheet').addClass('active-sheet');
+            },
+            error: function(data) {
+                // alert(data.statusText);
+                // // $('#demo').html(data);
+                console.log(data);
+            }
+        });
+    });
+</script> --}}
 @endsection

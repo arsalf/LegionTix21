@@ -64,11 +64,14 @@ Route::middleware(['auth', 'isAdmin'])->group(function(){
                 Route::resource('/city', CityController::class);
                 Route::resource('/district', KecamatanController::class);
                 Route::resource('/village', KelurahanController::class);
+                Route::get('/film/search', [FilmController::class, 'searchData'])
+                ->name('film.search');
                 Route::resource('/film', FilmController::class);
                 Route::resource('/bioskop', BioskopController::class);
                 Route::resource('/studio', StudioController::class);
-                Route::resource('/typestudio', TypeStudioController::class);
-                Route::resource('/kursi', KursiController::class);
+                Route::resource('/typestudio', TypeStudioController::class);                
+                Route::resource('/kursi', KursiController::class);   
+                
             });
             
         }); 

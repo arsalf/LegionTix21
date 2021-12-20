@@ -3,14 +3,13 @@
     box-sizing: border-box;
 }
 
-body {
+.wrapper {
     background-color: #242333;
     display: flex;
     flex-direction: column;
     color: white;
     align-items: center;
     justify-content: center;
-    height: 100vh;
     font-family: 'Lato', 'sans-serif';
 }
 
@@ -30,12 +29,25 @@ body {
     appearance: none;
 }
 
-.container {
+.layout-sheet {
+    width: auto;
     perspective: 1000px;
-    margin-bottom: 30px;
 }
 
-.seat {
+.layout-sheet.active-sheet {
+    padding: 1em;
+}
+
+.row>.wrapper {
+    flex-shrink: 0;
+    width: auto;
+    max-width: 100%;
+    padding-right: 0;
+    padding-left: 0;
+    margin-top: 0;
+}
+
+.single-seat {
     text-align: center !important;
     font-size: 12px;
     background-color: #444451;
@@ -46,33 +58,37 @@ body {
     border-top-right-radius: 20px;
 }
 
-.seat.selected {
+.single-seat.selected {
     color: #242333;
-    background-color: #6feaf6;
+    background-color: #00ff22;
 }
 
-.seat.occupied {
+.single-seat.occupied {
     color: #242333;
     background-color: #fff;
 }
 
+.single-seat.deleted {
+    color: #ffffff;
+    background-color: rgb(255, 0, 0);
+}
 
-/* 
-.seat:nth-of-type(10) {
+
+/* .single-seat:nth-of-type(5) {
     margin-right: 28px;
 } */
 
 
-/* .seat:nth-last-of-type(2) {
+/* .single-seat:nth-last-of-type(2) {
     margin-left: 18px;
 } */
 
-.seat:not(.occupied):hover {
+.single-seat:not(.occupied):hover {
     cursor: pointer;
     transform: scale(1.2);
 }
 
-.showcase .seat:not(.occupied):hover {
+.showcase .single-seat:not(.occupied):hover {
     cursor: default;
     transform: scale(1);
 }
@@ -80,7 +96,7 @@ body {
 .double-seat {
     text-align: center !important;
     font-size: 12px;
-    background-color: #444451;
+    background-color: #445148;
     height: 23px;
     width: 50px;
     margin: 6px;
@@ -90,7 +106,7 @@ body {
 
 .double-seat.selected {
     color: #242333;
-    background-color: #6feaf6;
+    background-color: #2bff00;
 }
 
 .double-seat.occupied {
@@ -140,12 +156,12 @@ body {
     margin-left: 10px;
 }
 
-.row {
+.r_ow {
     display: flex;
 }
 
 .screen {
-    background-color: #fff;
+    background-color: rgb(255, 0, 0);
     height: 70px;
     width: 100%;
     margin: 15px 0;
