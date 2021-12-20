@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AppControllers;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ArtikelControllers;
 use App\Http\Controllers\BioskopController;
@@ -20,7 +21,6 @@ use App\Http\Controllers\StudioController;
 use App\Http\Controllers\TypeStudioController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Models\Film;
 use Carbon\Carbon;
 /*
 |--------------------------------------------------------------------------
@@ -88,19 +88,10 @@ Route::middleware(['auth', 'isAdmin'])->group(function(){
 
 //Customer home
 Route::prefix('app')->group(function(){
-    Route::get('/', function () {
-        $filmRating = Film::orderBy('rating', 'asc')->paginate(3);
-        $filmOnGoing = Film::orderBy('title', 'asc')->paginate(6);
-        $filmComingSoon = Film::orderBy('id', 'desc')->paginate(6);
-        // $filmOnGoing = Film::where('release_date', '<', $current_timestamp = Carbon::now()->timestamp)->orderBy('rating', 'asc')->paginate(6);
-        // $filmComingSoon = Film::where('release_date', '>', $current_timestamp = Carbon::now()->timestamp)->orderBy('rating', 'asc')->paginate(6);
-        return view('app.home.index',[
-            'filmRating'=>$filmRating,
-            'filmOnGoing'=>$filmOnGoing,
-            'filmComingSoon'=>$filmComingSoon,
-        ]);
-    })->name('app');
-
+    Route::get('/bayarTopUp', function () {
+        return view('app.home.bayarTopUp');
+    })->name('app.bayarTopUp');
+    Route::resource('/home', AppControllers::class);
     Route::middleware(['auth', 'IsCostumer'])->group(function(){
         
         Route::resource('/dompet', DompetControllers::class);

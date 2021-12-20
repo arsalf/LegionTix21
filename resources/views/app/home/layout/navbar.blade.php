@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-lg-2">
                 <div class="header__logo">
-                    <a href="{{url('app')}}">
+                    <a href="{{url('app/home')}}">
                         <img src="{{ asset('/img/logo-baru2.png') }}" alt="" class="nav-film" style="transform: scale(2)">
                     </a>
                 </div>
@@ -13,7 +13,7 @@
                 <div class="header__nav">
                     <nav class="header__menu mobile-menu">
                         <ul>
-                            <li class="active"><a href="{{url('app')}}">Homepage</a></li>
+                            <li class="active"><a href="{{url('app/home')}}">Homepage</a></li>
                             <li><a href="{{ route('artikel.index') }}">Articel</a></li>
                             <li><a href="{{ url('/') }}">Contacts</a></li>
                         </ul>
@@ -22,7 +22,6 @@
             </div>
             <div class="col-lg-2">
                 <div class="header__right">
-                    <a href="#" class="search-switch"><span class="icon_search"></span></a>
                     <a class="ml-3" href="{{url('login')}}"><span class="icon_profile"></span></a>
                 </div>
             </div>
