@@ -19,10 +19,10 @@
           <div class="alert alert-success">{{session('status')}}</div>
           @endif
             <div class="row gutters-sm">
-                <div class="col-md-4 mb-3">
+                <div class="mb-3 col-md-4">
                     <div class="card">
                         <div class="card-body">
-                            <div class="d-flex flex-column align-items-center text-center">
+                            <div class="text-center d-flex flex-column align-items-center">
                             <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
                             <div class="mt-3">
                                 <h4>{{Auth::user()->username}}</h4>
@@ -33,7 +33,7 @@
                     </div>
                 </div>
                 <div class="col-md-8">
-                    <div class="card mb-3">
+                    <div class="mb-3 card">
                         <div class="card-body">
                           @foreach ($profiles as $item)              
                             <div class="row">

@@ -14,12 +14,12 @@ class TopUp extends Model
     protected $fillable = [
         "DOMPET_ID",
         "NOMINAL",
+        "STATUS",
     ];
     
     protected $hidden = [
         "ID",
         "KODE_PEMBAYARAN",
-        "STATUS",
         "CREATED_AT",
         "CONFIRMED_AT",
     ];

@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Film;
 use App\Models\TopUp;
+use App\Models\Dompet;
+use PDO;
 
 class AppControllers extends Controller
 {
@@ -48,7 +51,27 @@ class AppControllers extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $pdo = DB::getPdo();    
+        $stmt = $pdo->prepare("
+        begin
+            bayartopup(:p1, :p2);
+        end;");        
+
+        $param1 = $request->inputKode;
+        $stmt->bindParam(':p1', $param1, PDO::PARAM_STR);
+        $param2 = $request->inputNominal;
+        $stmt->bindParam(':p2', $param2, PDO::PARAM_STR);
+        try{
+            $stmt->execute();
+        }catch(Exception $e){
+            return redirect()->back()->withErrors($e->getMessage());
+        }            
+
+        if ($param2 == 0) {
+            return redirect()->back()->with('status', 'Pembayaran berhasil, terimakasih!');
+        }else{
+            return redirect()->back()->with('status', 'Pembayaran berhasil, kembalian anda Rp.'.$param2);
+        }
     }
 
     /**
@@ -59,9 +82,11 @@ class AppControllers extends Controller
      */
     public function show($id)
     {
-        $topup = TopUp::all()->where('status', '=', 'PENDING');
+        $dompet = Dompet::all()->where('account_id', '=', $id);
+        $topup = TopUp::all()->where('dompet_id', '=', $id);
         return view('app.home.profile',[
             'topup'=>$topup,
+            'dompet'=>$dompet,
         ]);
     }
 

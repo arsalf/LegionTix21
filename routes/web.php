@@ -65,31 +65,26 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
         Route::resource('/setting/location', LocationController::class);
         Route::resource('/setting/city', CityController::class);
         Route::resource('/setting/province', ProvinceController::class);
-    });
-
-            Route::resource('/profile', ProfileController::class);     
-            Route::prefix('/setting')->group(function(){
-                Route::resource('/account', AccountController::class);
-                Route::resource('/role', RoleController::class);
-                Route::resource('/region', ProvinceController::class);          
-                Route::resource('/city', CityController::class);
-                Route::resource('/district', KecamatanController::class);
-                Route::resource('/village', KelurahanController::class);
-                Route::get('/film/search', [FilmController::class, 'searchData'])
-                ->name('film.search');
-                Route::resource('/film', FilmController::class);
-                Route::resource('/bioskop', BioskopController::class);
-                Route::resource('/studio', StudioController::class);
-                Route::resource('/typestudio', TypeStudioController::class);                
-                Route::resource('/kursi', KursiController::class);   
-                Route::resource('/showtime', ShowTimeController::class);
-                Route::resource('/day', DayController::class);
-                Route::resource('/hargatiket', HargaTiketController::class); 
-            });
-            
-        }); 
-});
-
+        Route::resource('/profile', ProfileController::class);     
+        Route::prefix('/setting')->group(function(){
+            Route::resource('/account', AccountController::class);
+            Route::resource('/role', RoleController::class);
+            Route::resource('/region', ProvinceController::class);          
+            Route::resource('/city', CityController::class);
+            Route::resource('/district', KecamatanController::class);
+            Route::resource('/village', KelurahanController::class);
+            Route::get('/film/search', [FilmController::class, 'searchData'])->name('film.search');
+            Route::resource('/film', FilmController::class);
+            Route::resource('/bioskop', BioskopController::class);
+            Route::resource('/studio', StudioController::class);
+            Route::resource('/typestudio', TypeStudioController::class);                
+            Route::resource('/kursi', KursiController::class);   
+            Route::resource('/showtime', ShowTimeController::class);
+            Route::resource('/day', DayController::class);
+            Route::resource('/hargatiket', HargaTiketController::class); 
+        });
+    });        
+}); 
 
 /*
 |--------------------------------------------------------------------------
