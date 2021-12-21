@@ -42,43 +42,44 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
-    <title>@yield('title')</title>
-    @yield('style')
+    <title> Bayar Top Up </title>
 </head>
-    <body>
-        <!-- Page Preloder -->
-        <div id="preloder">
-            <div class="loader"></div>
-        </div>
+<body>
 
-        <!-- ======= Header ======= -->
-        @if ( Auth::user())
-            {{ View::make('app.home.layout.navbarCust') }}
-        @else
-            {{ View::make('app.home.layout.navbar') }}
-        @endif
-        <!-- End Header -->
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
 
-        <!-- Content-->
-        @yield('content')
-        <!-- End Content -->
+    <div class="container mt-5 mb-5 text-white" style="min-height: 800px; padding-top:300px;">
+        <form method="POST" action="{{ route('dompet.store') }}">
+            <input type="hidden" name="dompet_id" value="{{ Auth::user()->id }}">
+            @csrf
+            <div class="form-group row">
+                <label for="inputKode" class="col-sm-2"><b> Kode Pembayaran </b></label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputKode" placeholder="Kode Pembayaran">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputNominal" class="col-sm-2">Nominal</label>
+                <div class="col-sm-10">
+                    <input type="Number" class="form-control" id="inputNominal" placeholder="Nominal">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Top Up!</button>
+        </form>
+    </div>
 
-        <!-- Footer -->
-        {{ View::make('app.home.layout.footer')}}
-        <!-- End Footer -->
-
-        
-        <!-- Js Plugins -->
-        <script src="{{ asset('home/js/jquery-3.3.1.min.js') }}"></script>
-        <script src="{{ asset('home/js/bootstrap.min.js') }}"></script>
-        <script src="{{ asset('home/js/player.js') }}"></script>
-        <script src="{{ asset('home/js/jquery.nice-select.min.js') }}"></script>
-        <script src="{{ asset('home/js/mixitup.min.js') }}"></script>
-        <script src="{{ asset('home/js/jquery.slicknav.js') }}"></script>
-        <script src="{{ asset('home/js/owl.carousel.min.js') }}"></script>
-        <script src="{{ asset('home/js/main.js') }}"></script>
-        
-        @yield('js')
+    <!-- Js Plugins -->
+    <script src="{{ asset('home/js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ asset('home/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('home/js/player.js') }}"></script>
+    <script src="{{ asset('home/js/jquery.nice-select.min.js') }}"></script>
+    <script src="{{ asset('home/js/mixitup.min.js') }}"></script>
+    <script src="{{ asset('home/js/jquery.slicknav.js') }}"></script>
+    <script src="{{ asset('home/js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('home/js/main.js') }}"></script>
     
     </body>
 </html>

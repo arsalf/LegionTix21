@@ -1,15 +1,19 @@
 <?php
 
+use App\Http\Controllers\AppControllers;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\ArtikelControllers;
 use App\Http\Controllers\BioskopController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\DayController;
+use App\Http\Controllers\DompetControllers;
 use App\Http\Controllers\FilmController;
 use App\Http\Controllers\KecamatanController;
 use App\Http\Controllers\KelurahanController;
 use App\Http\Controllers\FilmControllers;
 use App\Http\Controllers\HargaTiketController;
 use App\Http\Controllers\KursiController;
+use App\Http\Controllers\KursiControllers;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\TiketControllers;
 use App\Http\Controllers\ProfileController;
@@ -20,7 +24,6 @@ use App\Http\Controllers\StudioController;
 use App\Http\Controllers\TypeStudioController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Models\Film;
 use Carbon\Carbon;
 /*
 |--------------------------------------------------------------------------
@@ -90,54 +93,17 @@ Route::middleware(['auth', 'isAdmin'])->group(function(){
 
 //Customer home
 Route::prefix('app')->group(function(){
-    Route::get('/', function () {
-        $filmRating = Film::orderBy('rating', 'asc')->paginate(3);
-        $filmOnGoing = Film::orderBy('title', 'asc')->paginate(6);
-        $filmComingSoon = Film::orderBy('id', 'desc')->paginate(6);
-        // $filmOnGoing = Film::where('release_date', '<', $current_timestamp = Carbon::now()->timestamp)->orderBy('rating', 'asc')->paginate(6);
-        // $filmComingSoon = Film::where('release_date', '>', $current_timestamp = Carbon::now()->timestamp)->orderBy('rating', 'asc')->paginate(6);
-        return view('app.home.index',[
-            'filmRating'=>$filmRating,
-            'filmOnGoing'=>$filmOnGoing,
-            'filmComingSoon'=>$filmComingSoon,
-        ]);
-    })->name('app');
-
-    Route::get('/login', function () {
-        return view('app.home.login.login');
-    })->name('app.login');
-    
-    Route::get('/register', function () {
-        return view('app.home.login.register');
-    })->name('app.register');
-
+    Route::get('/bayarTopUp', function () {
+        return view('app.home.bayarTopUp');
+    })->name('app.bayarTopUp');
+    Route::resource('/home', AppControllers::class);
     Route::middleware(['auth', 'IsCostumer'])->group(function(){
-        Route::prefix('articel')->group(function(){
-            Route::get('/', function () {
-                return view('app.home.articel.index');
-            })->name('app.articel');
-            
-            Route::get('/detail', function () {
-                return view('app.home.articel.detail');
-            })->name('app.articelDetail');
-        });
-
         
-        Route::post('/kursi/{id}/{bioskop}/{studio}/{jam}', function () {
-            $id = \Request::segment(3);
-            $bioskop = \Request::segment(4);
-            $studio = \Request::segment(5);
-            $jam = \Request::segment(6);
-            return view('app.home.film.kursi',[
-                'id'=>$id,
-                'bioskop'=>$bioskop,
-                'studio'=>$studio,
-                'jam'=>$jam,
-            ]);
-        })->name('app.kursi');
+        Route::resource('/dompet', DompetControllers::class);
         Route::resource('/tiket', TiketControllers::class);
+        Route::resource('/kursis', KursiControllers::class);    
+        Route::resource('/artikel', ArtikelControllers::class);
     });
-    
     Route::resource('/films', FilmControllers::class);
 });
 /*

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Film;
 
 class KursiControllers extends Controller
 {
@@ -35,7 +36,11 @@ class KursiControllers extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = Film::find($request->idFilm);
+        return view('app.home.film.kursi',[
+            'data'=>$request,
+            'film'=>$data,
+        ]);
     }
 
     /**

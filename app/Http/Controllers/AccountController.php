@@ -72,7 +72,6 @@ class AccountController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $this->validate($request, [
             'username' => 'required|alpha_dash|string|max:50|unique:account',
             'email' => 'required|string|email|max:255|unique:account',

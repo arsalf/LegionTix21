@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Film;
+use App\Models\TopUp;
 
-class TiketControllers extends Controller
+class AppControllers extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +16,18 @@ class TiketControllers extends Controller
      */
     public function index()
     {
-        //
+        $topup = TopUp::all();
+        $filmRating = Film::orderBy('rating', 'asc')->paginate(3);
+        $filmOnGoing = Film::orderBy('title', 'asc')->paginate(6);
+        $filmComingSoon = Film::orderBy('id', 'desc')->paginate(6);
+        // $filmOnGoing = Film::where('release_date', '<', $current_timestamp = Carbon::now()->timestamp)->orderBy('rating', 'asc')->paginate(6);
+        // $filmComingSoon = Film::where('release_date', '>', $current_timestamp = Carbon::now()->timestamp)->orderBy('rating', 'asc')->paginate(6);
+        return view('app.home.index',[
+            'topup'=>$topup,
+            'filmRating'=>$filmRating,
+            'filmOnGoing'=>$filmOnGoing,
+            'filmComingSoon'=>$filmComingSoon,
+        ]);
     }
 
     /**
@@ -35,7 +48,7 @@ class TiketControllers extends Controller
      */
     public function store(Request $request)
     {
-        return $request;
+        //
     }
 
     /**
@@ -46,8 +59,9 @@ class TiketControllers extends Controller
      */
     public function show($id)
     {
-        return view('app.home.film.ticket',[
-            'id'=>$id,
+        $topup = TopUp::all()->where('status', '=', 'PENDING');
+        return view('app.home.profile',[
+            'topup'=>$topup,
         ]);
     }
 

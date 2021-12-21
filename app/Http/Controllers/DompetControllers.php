@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Models\Dompet;
+use App\Models\TopUp;
 
-class TiketControllers extends Controller
+class DompetControllers extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,7 +38,16 @@ class TiketControllers extends Controller
      */
     public function store(Request $request)
     {
-        return $request;
+        try{
+            DB::insert(
+                'insert into topup (nominal, dompet_id) values (?, ?)', 
+                [$request->nominal, $request->dompet_id]);
+        }catch(Exception $e){
+            return redirect()->back()->withError($e->getMessage())->withInput();
+        }
+        $data = TopUp::all()->last();
+
+        return redirect()->back()->with('status', $data->kode_pembayaran);
     }
 
     /**
@@ -46,9 +58,7 @@ class TiketControllers extends Controller
      */
     public function show($id)
     {
-        return view('app.home.film.ticket',[
-            'id'=>$id,
-        ]);
+        //
     }
 
     /**
@@ -59,7 +69,7 @@ class TiketControllers extends Controller
      */
     public function edit($id)
     {
-        //
+        return 'plus 10 nih bos';
     }
 
     /**
