@@ -24,11 +24,11 @@ class RedirectIfAuthenticated
         if (Auth::user()) {
             // admin, owner, manager
             $acc = new AccountController();
-            if(!$acc->isRoleName('CUSTOMER') and !$acc->isRoleName('EMPLOYEE')){
+            if (!$acc->isRoleName('CUSTOMER') and !$acc->isRoleName('EMPLOYEE')) {
                 return redirect("/admin/dashboard");
             }
             //employee
-            if(!$acc->isRoleName('EMPLOYEE')){
+            if ($acc->isRoleName('EMPLOYEE')) {
                 return redirect("/emp/dashboard");
             }
             //customer
