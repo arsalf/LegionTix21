@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
+use App\Http\Controllers\AccountController;
 
 class Authenticate extends Middleware
 {
@@ -17,5 +18,16 @@ class Authenticate extends Middleware
         if (! $request->expectsJson()) {
             return route('login');
         }
+        // admin, owner, manager
+        $acc = new AccountController();
+        if(!$acc->isRoleName('CUSTOMER') and !$acc->isRoleName('EMPLOYEE')){
+            return "/admin/dashboard";
+        }
+        //employee
+        if(!$acc->isRoleName('EMPLOYEE')){
+            return "/emp/dashboard";
+        }
+        //customer
+        return "/";
     }
 }
