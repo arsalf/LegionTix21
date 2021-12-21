@@ -8,28 +8,26 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class Account extends Authenticatable
 {
     use HasFactory;
-    public $table = 'ViewDompetAccount';
+    public $table = 'Account';
     public $timestamps = false;
 
-    protected $fillable = [      
+    protected $fillable = [
         'USERNAME',
         'EMAIL',
         'PASSWORD',
         'ROLE_NAME',
-        'BALANCE',
-        'KOIN',
     ];
-    
+
     /**
      * The attributes that should be hidden for serialization.
      *
      * @var array
      */
     protected $hidden = [
-        'ID',        
+        'ID',
         'ACCOUNT_ID',
-        'isActive',        
-        'password',        
+        'isActive',
+        'password',
         'remember_token',
     ];
 }

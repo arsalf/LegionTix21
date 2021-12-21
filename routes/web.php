@@ -61,34 +61,28 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
         })->name('dashboard.admin');
 
         Route::resource('/profile', ProfileController::class);
-        Route::resource('/setting/role', RoleController::class);
-        Route::resource('/setting/location', LocationController::class);
-        Route::resource('/setting/city', CityController::class);
-        Route::resource('/setting/province', ProvinceController::class);
-    });
-
-            Route::resource('/profile', ProfileController::class);     
-            Route::prefix('/setting')->group(function(){
-                Route::resource('/account', AccountController::class);
-                Route::resource('/role', RoleController::class);
-                Route::resource('/region', ProvinceController::class);          
-                Route::resource('/city', CityController::class);
-                Route::resource('/district', KecamatanController::class);
-                Route::resource('/village', KelurahanController::class);
-                Route::get('/film/search', [FilmController::class, 'searchData'])
+        Route::prefix('/setting')->group(function () {
+            Route::resource('/account', AccountController::class);
+            Route::resource('/role', RoleController::class);
+            Route::resource('/region', ProvinceController::class);
+            Route::resource('/city', CityController::class);
+            Route::resource('/district', KecamatanController::class);
+            Route::resource('/village', KelurahanController::class);
+            Route::get('/film/search', [FilmController::class, 'searchData'])
                 ->name('film.search');
-                Route::resource('/film', FilmController::class);
-                Route::resource('/bioskop', BioskopController::class);
-                Route::resource('/studio', StudioController::class);
-                Route::resource('/typestudio', TypeStudioController::class);                
-                Route::resource('/kursi', KursiController::class);   
-                Route::resource('/showtime', ShowTimeController::class);
-                Route::resource('/day', DayController::class);
-                Route::resource('/hargatiket', HargaTiketController::class); 
-            });
-            
-        }); 
+            Route::resource('/film', FilmController::class);
+            Route::resource('/bioskop', BioskopController::class);
+            Route::resource('/studio', StudioController::class);
+            Route::resource('/typestudio', TypeStudioController::class);
+            Route::resource('/kursi', KursiController::class);
+            Route::resource('/showtime', ShowTimeController::class);
+            Route::resource('/day', DayController::class);
+            Route::resource('/hargatiket', HargaTiketController::class);
+        });
+    });
 });
+
+
 
 
 /*
@@ -100,18 +94,17 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
 */
 
 
-
 //Customer home
-Route::prefix('app')->group(function(){
+Route::prefix('app')->group(function () {
     Route::get('/bayarTopUp', function () {
         return view('app.home.bayarTopUp');
     })->name('app.bayarTopUp');
     Route::resource('/home', AppControllers::class);
-    Route::middleware(['auth', 'IsCostumer'])->group(function(){
-        
+    Route::middleware(['auth', 'IsCostumer'])->group(function () {
+
         Route::resource('/dompet', DompetControllers::class);
         Route::resource('/tiket', TiketControllers::class);
-        Route::resource('/kursis', KursiControllers::class);    
+        Route::resource('/kursis', KursiControllers::class);
         Route::resource('/artikel', ArtikelControllers::class);
     });
     Route::resource('/films', FilmControllers::class);
