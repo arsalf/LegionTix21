@@ -37,19 +37,19 @@ Auth::routes();
 | Path atau url buat admin, owner dan manager
 |
 */
-Route::middleware(['auth', 'isAdmin'])->group(function(){
-        Route::prefix('admin')->group(function(){
-            
-            Route::get('/dashboard', function () {
-                return view('app.admin.dashboard');
-            })->name('dashboard.admin');
+Route::middleware(['auth', 'isAdmin'])->group(function () {
+    Route::prefix('admin')->group(function () {
 
-            Route::resource('/profile', ProfileController::class);            
-            Route::resource('/setting/role', RoleController::class);
-            Route::resource('/setting/location', LocationController::class);
-            Route::resource('/setting/city', CityController::class);
-            Route::resource('/setting/province', ProvinceController::class);
-        }); 
+        Route::get('/dashboard', function () {
+            return view('app.admin.dashboard');
+        })->name('dashboard.admin');
+
+        Route::resource('/profile', ProfileController::class);
+        Route::resource('/setting/role', RoleController::class);
+        Route::resource('/setting/location', LocationController::class);
+        Route::resource('/setting/city', CityController::class);
+        Route::resource('/setting/province', ProvinceController::class);
+    });
 });
 
 
@@ -62,7 +62,6 @@ Route::middleware(['auth', 'isAdmin'])->group(function(){
 */
 //Customer home
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 /*
 |--------------------------------------------------------------------------
 | EMPLOYEE ROUTE
@@ -70,13 +69,17 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 | Path atau url buat employee
 |
 */
-Route::middleware(['auth', 'isEmploy'])->group(function(){
-    Route::prefix('emp')->group(function(){
+Route::middleware(['auth', 'isEmploy'])->group(function () {
+    Route::prefix('emp')->group(function () {
         Route::get('/dashboard', function () {
-            return view('app.admin.dashboard');
+            return view('app.employee.index');
         });
-    }); 
+        Route::get('/seatSelection', function () {
+            return view('app.employee.seatSelection');
+        });
+    });
 });
 
-Route::get('/forbidden', function(){return view('forbidden');});
-
+Route::get('/forbidden', function () {
+    return view('forbidden');
+});
