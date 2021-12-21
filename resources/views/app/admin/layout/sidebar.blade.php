@@ -28,10 +28,7 @@
         </a>
         <div class="collapse" id="account">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="pages/tables/basic-table.html">admin</a></li>
-            <li class="nav-item"> <a class="nav-link" href="pages/tables/basic-table.html">owner</a></li>
-            <li class="nav-item"> <a class="nav-link" href="pages/tables/basic-table.html">manager</a></li>
-            <li class="nav-item"> <a class="nav-link" href="pages/tables/basic-table.html">employee</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{route('account.index')}}">account</a></li>
           </ul>
         </div>
       </li>
@@ -43,10 +40,26 @@
         </a>
         <div class="collapse" id="app">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="{{route('role.index')}}">Role</a></li>
-            <li class="nav-item"> <a class="nav-link" href="#">Permission</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{route('role.index')}}">Role</a></li>            
+            <li class="nav-item"> <a class="nav-link" href="{{route('day.index')}}">Day</a></li>
             <li class="nav-item"> <a class="nav-link" href="#">Artikel</a></li>
           </ul>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-bs-toggle="collapse" href="#company" aria-expanded="false" aria-controls="comapany">
+          <i class="menu-icon mdi mdi-hospital-building"></i>
+          <span class="menu-title">Company</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="company">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"> <a class="nav-link" href="{{route('bioskop.index')}}">Bioskop</a></li>              
+              <li class="nav-item"> <a class="nav-link" href="{{route('studio.index')}}">Studio</a></li>              
+              <li class="nav-item"><a class="nav-link" href="{{route('kursi.index')}}">Kursi</a></li>
+              <li class="nav-item"><a class="nav-link" href="{{route('showtime.index')}}">Showtime</a></li>
+              <li class="nav-item"><a class="nav-link" href="{{route('hargatiket.index')}}">Harga tiket</a></li>
+            </ul>
         </div>
       </li>
       <li class="nav-item">
@@ -57,29 +70,15 @@
         </a>
         <div class="collapse" id="location">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="{{route('location.index')}}">Location</a></li>
-            <li class="nav-item"> <a class="nav-link" href="{{route('city.index')}}">City</a></li>
-            <li class="nav-item"> <a class="nav-link" href="{{route('province.index')}}">Province</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{route('region.index')}}">Province</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{route('city.index')}}">City</a></li>            
+            <li class="nav-item"> <a class="nav-link" href="{{route('district.index')}}">District</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{route('village.index')}}">Village</a></li>            
           </ul>
         </div>
-      </li>
+      </li>      
       <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="collapse" href="#company"
-        aria-expanded="false" aria-controls="comapany">
-          <i class="menu-icon mdi mdi-hospital-building"></i>
-          <span class="menu-title">Company</span>
-          <i class="menu-arrow"></i>
-        </a>
-        <div class="collapse" id="company">
-            <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="pages/tables/basic-table.html">Bioskop</a></li>
-              <li class="nav-item"> <a class="nav-link" href="pages/tables/basic-table.html">Studio</a></li>
-              <li class="nav-item"><a class="nav-link" href="pages/tables/basic-table.html">Kursi</a></li>
-            </ul>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#film">
+        <a class="nav-link" href="{{route('film.index')}}">
           <i class="menu-icon mdi mdi-movie"></i>
           <span class="menu-title">Film</span>
         </a>

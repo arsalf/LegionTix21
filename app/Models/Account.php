@@ -8,17 +8,16 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class Account extends Authenticatable
 {
     use HasFactory;
-    public $table = 'ACCOUNT';
+    public $table = 'ViewDompetAccount';
     public $timestamps = false;
 
-    protected $fillable = [
-        'ID',
+    protected $fillable = [      
         'USERNAME',
         'EMAIL',
-        'NO_HP',
         'PASSWORD',
-        'ROLE_ID',
-        'MANAGER_ID',
+        'ROLE_NAME',
+        'BALANCE',
+        'KOIN',
     ];
     
     /**
@@ -27,7 +26,10 @@ class Account extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password',
+        'ID',        
+        'ACCOUNT_ID',
+        'isActive',        
+        'password',        
         'remember_token',
     ];
 }

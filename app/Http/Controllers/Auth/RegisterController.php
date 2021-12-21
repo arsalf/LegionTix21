@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\Controller;
 use App\Models\Account;
 use App\Providers\RouteServiceProvider;
@@ -29,8 +30,21 @@ class RegisterController extends Controller
      * Where to redirect users after registration.
      *
      * @var string
-     */
-    protected $redirectTo = RouteServiceProvider::HOME;
+     */    
+    public function redirectTo(){
+        // admin, owner, manager
+        $acc = new AccountController();
+        if(!$acc->isRoleName('CUSTOMER') and !$acc->isRoleName('EMPLOYEE')){
+            return "/admin/dashboard";
+        }
+        //employee
+        if(!$acc->isRoleName('EMPLOYEE')){
+            return "/emp/dashboard";
+        }
+        //customer
+        return "/";
+    }
+    //protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
      * Create a new controller instance.
@@ -51,7 +65,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'username' => ['required', 'string', 'max:50', 'unique:account'],
+            'username' => ['required', 'string', 'alpha_dash', 'max:50', 'unique:account'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:account'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -69,7 +83,7 @@ class RegisterController extends Controller
         $account->username = $data['username'];
         $account->email = $data['email'];
         $account->password = Hash::make($data['password']);
-        $account->role_id = 1;
+        $account->role_name = 'ADMIN';
         $account->save();
         return $account;
     }

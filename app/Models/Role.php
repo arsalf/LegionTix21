@@ -11,11 +11,11 @@ class Role extends Model
 
     public $table = 'ROLE';
     public $timestamps = false;
-    protected $primaryKey = 'ID';
-    public $incrementing = true;
+    protected $primaryKey = 'NAME';
+    public $incrementing = false;
   
-    protected $fillable = [
-        'ID',
+    protected $fillable = [        
         'NAME',
+        'DESCRIPTION',
     ];
 }
