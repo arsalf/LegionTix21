@@ -52,12 +52,20 @@ Auth::routes();
 | Path atau url buat admin, owner dan manager
 |
 */
-Route::middleware(['auth', 'isAdmin'])->group(function(){
-        Route::prefix('admin')->group(function(){
-            
-            Route::get('/dashboard', function () {
-                return view('app.admin.dashboard');
-            })->name('dashboard.admin');
+Route::middleware(['auth', 'isAdmin'])->group(function () {
+    Route::prefix('admin')->group(function () {
+
+
+        Route::get('/dashboard', function () {
+            return view('app.admin.dashboard');
+        })->name('dashboard.admin');
+
+        Route::resource('/profile', ProfileController::class);
+        Route::resource('/setting/role', RoleController::class);
+        Route::resource('/setting/location', LocationController::class);
+        Route::resource('/setting/city', CityController::class);
+        Route::resource('/setting/province', ProvinceController::class);
+    });
 
             Route::resource('/profile', ProfileController::class);     
             Route::prefix('/setting')->group(function(){
@@ -91,6 +99,8 @@ Route::middleware(['auth', 'isAdmin'])->group(function(){
 |
 */
 
+
+
 //Customer home
 Route::prefix('app')->group(function(){
     Route::get('/bayarTopUp', function () {
@@ -106,6 +116,7 @@ Route::prefix('app')->group(function(){
     });
     Route::resource('/films', FilmControllers::class);
 });
+
 /*
 |--------------------------------------------------------------------------
 | EMPLOYEE ROUTE
@@ -113,19 +124,18 @@ Route::prefix('app')->group(function(){
 | Path atau url buat employee
 |
 */
-Route::middleware(['auth', 'isEmploy'])->group(function(){
 
-});
-
-Route::prefix('emp')->group(function(){
-    Route::get('/dashboard', function () {
-        return view('app.admin.dashboard');
+Route::middleware(['auth', 'isEmploy'])->group(function () {
+    Route::prefix('emp')->group(function () {
+        Route::get('/dashboard', function () {
+            return view('app.employee.index');
+        });
+        Route::get('/seatSelection', function () {
+            return view('app.employee.seatSelection');
+        });
     });
 });
 
-Route::get('/forbidden', function(){return view('forbidden');});
-
-Route::get('/test', function(){
-    return view('test');
+Route::get('/forbidden', function () {
+    return view('forbidden');
 });
-
