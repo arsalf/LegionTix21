@@ -37,6 +37,13 @@
   flex-direction: column;
 }
 
+ul {
+  list-style: none;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  padding-inline-start: 0;
+}
+
 .film {
   display: flex;
   flex-direction: row;
@@ -45,14 +52,13 @@
   width: 100%;
   height: 168px;
   padding: 12px;
-  margin-bottom: 32px;
+  margin-bottom: 20px;
   color: white;
   box-sizing: border-box;
 }
 
 .filmPoster {
   display: inline-block;
-  width: 180px;
   height: 100%;
 }
 
