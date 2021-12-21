@@ -24,6 +24,17 @@ Breadcrumbs::for('category', function ($trail, $category) {
     $trail->push($category, route('role.index'));
 });
 
+// Home > Setting > Kursi 
+Breadcrumbs::for('kursi', function ($trail) {
+    $trail->parent('setting');
+    $trail->push('Kursi', route('kursi.index'));
+});
+
+// Home > Setting > Kursi > [studio]
+Breadcrumbs::for('studio', function ($trail, $category) {
+    $trail->parent('kursi');
+    $trail->push($category, route('kursi.index'));
+});
 
 // // Home > Setting
 // Breadcrumbs::for('setting', function ($trail) {

@@ -15,12 +15,6 @@ class Location extends Model
     protected $fillable = [
         'ID',
         'NAME',
-        'RT',
-        'RW',
-        'KELURAHAN',
-        'KECAMATAN',
-        'KODE_POS',
-        'ACCOUNT_ID',
-        'LOCATION_ID',
+        'KELURAHAN_ID'
     ];
 }

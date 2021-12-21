@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\Controller;
 use App\Http\Middleware\isAdmin;
+use App\Models\Account;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
@@ -23,13 +25,36 @@ class LoginController extends Controller
     */
 
     use AuthenticatesUsers;
+    /**
+     * Replace
+     * Where to redirect users after login.
+     *
+     * @var string
+     */
+    
+    public function redirectTo(){
+        // admin, owner, manager
+        $acc = new AccountController();
+        //customer
+        if($acc->isRoleName('CUSTOMER')){
+            return "/app";
+        }
+        if(!$acc->isRoleName('CUSTOMER') and !$acc->isRoleName('EMPLOYEE')){
+            return "/admin/dashboard";
+        }
+        //employee
+        if(!$acc->isRoleName('EMPLOYEE')){
+            return "/emp/dashboard";
+        }
+        return "/forbidden";
+    }
 
     /**
      * Where to redirect users after login.
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    //protected $redirectTo;
 
     /**
      * Create a new controller instance.
@@ -43,26 +68,12 @@ class LoginController extends Controller
 
     public function username()
     {   
-        return 'username';
+        $login = request()->input('username');
+        $field = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+        request()->merge([$field => $login]);
+        return $field;
     }
     
-    /**
-     * Replace
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    public function redirectTo(){
-        // admin, owner, manager
-        if(auth()->user()->role_id == 1){
-            return "/admin/dashboard";
-        }
-        //employee
-        if(auth()->user()->role_id == 4){
-            return "/emp/dashboard";
-        }
-        //customer
-        return "/home";
-    }
+
     
 }

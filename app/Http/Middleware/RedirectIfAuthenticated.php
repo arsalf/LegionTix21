@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Providers\RouteServiceProvider;
+use App\Http\Controllers\AccountController;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,11 +21,18 @@ class RedirectIfAuthenticated
     public function handle(Request $request, Closure $next, ...$guards)
     {
         $guards = empty($guards) ? [null] : $guards;
-
-        foreach ($guards as $guard) {
-            if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+        if (Auth::user()) {
+            // admin, owner, manager
+            $acc = new AccountController();
+            if(!$acc->isRoleName('CUSTOMER') and !$acc->isRoleName('EMPLOYEE')){
+                return redirect("/admin/dashboard");
             }
+            //employee
+            if(!$acc->isRoleName('EMPLOYEE')){
+                return redirect("/emp/dashboard");
+            }
+            //customer
+            return redirect("/");
         }
 
         return $next($request);

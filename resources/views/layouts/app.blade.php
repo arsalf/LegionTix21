@@ -1,20 +1,35 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="description" content="Anime Template">
+    <meta name="keywords" content="Anime, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="{{ asset('home/css/bootstrap.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('home/css/font-awesome.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('home/css/elegant-icons.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('home/css/plyr.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('home/css/nice-select.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('home/css/owl.carousel.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('home/css/slicknav.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('home/css/style.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('home/css/myStyle.css') }}" type="text/css">
 
     <title>Hello, world!</title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+    {{-- <nav class="bg-white shadow-sm navbar navbar-expand-md navbar-light">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
                 {{ config('app.name', 'Laravel') }}
@@ -24,13 +39,8 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <!-- Left Side Of Navbar -->
-                <ul class="navbar-nav mr-auto">
-
-                </ul>
-
                 <!-- Right Side Of Navbar -->
-                <ul class="navbar-nav ml-auto">
+                <ul class="ml-auto navbar-nav">
                     <!-- Authentication Links -->
                     @guest
                         @if (Route::has('login'))
@@ -68,7 +78,7 @@
                 </ul>
             </div>
         </div>
-    </nav>
+    </nav> --}}
 
     <main class="py-4">
         @yield('content')
