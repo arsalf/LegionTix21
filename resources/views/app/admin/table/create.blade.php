@@ -58,6 +58,11 @@
                             </select>
                         </div>
                     </div>
+                @elseif($head == 'WAKTU')   
+                <div class="mb-3">
+                    <label class="form-label">{{$head}}</label>
+                    <input type="datetime-local" name="{{strtolower($head)}}" class="form-control" placeholder="{{strtolower($table_name)}} {{strtolower($head)}}">            
+                </div>   
                 @else
                     <div class="mb-3">
                         <label class="form-label">{{$head}}</label>

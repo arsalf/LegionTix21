@@ -73,7 +73,30 @@
                             </select>
                         </div>
                     </div>
+                    <script>
+                        $(document).ready(function() {
+                            $("#kelurahan").prop('disabled', false); //enable
+                            var id = {{$data->prov_id}};
+                            $('#provinsi option:nth-child(2)').remove();
+                            var skip = true;
+                            function checkFlag() {
+                                if($('#provinsi').val() == id || skip) {                
+                                    window.setTimeout(checkFlag, 1000); /* this checks the flag every 100 milliseconds*/
+                                    skip = false;
+                                    $('#provinsi').val(id);    
+                                } else {
+                                    $('#provinsi').val(id);                                
+                                }
+                            }
+                            checkFlag();
+                        });
+                    </script>
                     @break
+                @elseif(strtolower($key) == 'waktu')
+                <div class="mb-3">
+                    <label class="form-label">{{$key}}</label>
+                    <input type="datetime-local" name="{{strtolower($key)}}" class="form-control" placeholder=" " value="{{ date('Y-m-d\TH:i:s', strtotime($value))}}">            
+                </div>  
                 @else
                     <div class="mb-3">
                         <label class="form-label">{{$key}}</label>
@@ -95,22 +118,4 @@
 var render=createwidgetlokasi("provinsi","kabupaten","kecamatan","kelurahan");
 </script> --}}
 <script src="{{url('js/location.js')}}"></script>
-<script>
-    $(document).ready(function() {
-        $("#kelurahan").prop('disabled', false); //enable
-        var id = {{$data->prov_id}};
-        $('#provinsi option:nth-child(2)').remove();
-        var skip = true;
-        function checkFlag() {
-            if($('#provinsi').val() == id || skip) {                
-                window.setTimeout(checkFlag, 1000); /* this checks the flag every 100 milliseconds*/
-                skip = false;
-                $('#provinsi').val(id);    
-            } else {
-                $('#provinsi').val(id);                                
-            }
-        }
-        checkFlag();
-    });
-</script>
 @endsection

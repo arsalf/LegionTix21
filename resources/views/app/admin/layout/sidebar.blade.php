@@ -41,6 +41,7 @@
         <div class="collapse" id="app">
           <ul class="nav flex-column sub-menu">
             <li class="nav-item"> <a class="nav-link" href="{{route('role.index')}}">Role</a></li>            
+            <li class="nav-item"> <a class="nav-link" href="{{route('day.index')}}">Day</a></li>
             <li class="nav-item"> <a class="nav-link" href="#">Artikel</a></li>
           </ul>
         </div>
@@ -56,6 +57,8 @@
               <li class="nav-item"> <a class="nav-link" href="{{route('bioskop.index')}}">Bioskop</a></li>              
               <li class="nav-item"> <a class="nav-link" href="{{route('studio.index')}}">Studio</a></li>              
               <li class="nav-item"><a class="nav-link" href="{{route('kursi.index')}}">Kursi</a></li>
+              <li class="nav-item"><a class="nav-link" href="{{route('showtime.index')}}">Showtime</a></li>
+              <li class="nav-item"><a class="nav-link" href="{{route('hargatiket.index')}}">Harga tiket</a></li>
             </ul>
         </div>
       </li>
