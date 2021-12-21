@@ -25,13 +25,36 @@ class LoginController extends Controller
     */
 
     use AuthenticatesUsers;
+    /**
+     * Replace
+     * Where to redirect users after login.
+     *
+     * @var string
+     */
+    
+    public function redirectTo(){
+        // admin, owner, manager
+        $acc = new AccountController();
+        //customer
+        if($acc->isRoleName('CUSTOMER')){
+            return "/app";
+        }
+        if(!$acc->isRoleName('CUSTOMER') and !$acc->isRoleName('EMPLOYEE')){
+            return "/admin/dashboard";
+        }
+        //employee
+        if(!$acc->isRoleName('EMPLOYEE')){
+            return "/emp/dashboard";
+        }
+        return "/forbidden";
+    }
 
     /**
      * Where to redirect users after login.
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    //protected $redirectTo;
 
     /**
      * Create a new controller instance.
@@ -51,26 +74,6 @@ class LoginController extends Controller
         return $field;
     }
     
-    /**
-     * Replace
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    public function redirectTo(){
-        // admin, owner, manager
-        $acc = new AccountController();
-        //customer
-        if($acc->isRoleName('CUSTOMER')){
-            return "/app";
-        }
-        if(!$acc->isRoleName('CUSTOMER') and !$acc->isRoleName('EMPLOYEE')){
-            return "/admin/dashboard";
-        }
-        //employee
-        if(!$acc->isRoleName('EMPLOYEE')){
-            return "/emp/dashboard";
-        }
-    }
+
     
 }

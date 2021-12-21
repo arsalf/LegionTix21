@@ -30,8 +30,21 @@ class RegisterController extends Controller
      * Where to redirect users after registration.
      *
      * @var string
-     */
-    protected $redirectTo = RouteServiceProvider::HOME;
+     */    
+    public function redirectTo(){
+        // admin, owner, manager
+        $acc = new AccountController();
+        if(!$acc->isRoleName('CUSTOMER') and !$acc->isRoleName('EMPLOYEE')){
+            return "/admin/dashboard";
+        }
+        //employee
+        if(!$acc->isRoleName('EMPLOYEE')){
+            return "/emp/dashboard";
+        }
+        //customer
+        return "/";
+    }
+    //protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
      * Create a new controller instance.
@@ -73,19 +86,5 @@ class RegisterController extends Controller
         $account->role_name = 'ADMIN';
         $account->save();
         return $account;
-    }
-
-    public function redirectTo(){
-        // admin, owner, manager
-        $acc = new AccountController();
-        if(!$acc->isRoleName('CUSTOMER') and !$acc->isRoleName('EMPLOYEE')){
-            return "/admin/dashboard";
-        }
-        //employee
-        if(!$acc->isRoleName('EMPLOYEE')){
-            return "/emp/dashboard";
-        }
-        //customer
-        return "/";
     }
 }
