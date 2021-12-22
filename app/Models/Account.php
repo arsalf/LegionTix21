@@ -11,20 +11,20 @@ class Account extends Authenticatable
     public $table = 'ACCOUNT';
     public $timestamps = false;
 
-    protected $fillable = [      
+    protected $fillable = [
         'USERNAME',
         'EMAIL',
         'PASSWORD',
         'ROLE_NAME',
     ];
-    
+
     /**
      * The attributes that should be hidden for serialization.
      *
      * @var array
      */
     protected $hidden = [
-        'ID',        
+        'ID',
         'ACCOUNT_ID',
         'isActive',        
         'password',        

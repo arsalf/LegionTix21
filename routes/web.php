@@ -53,18 +53,19 @@ Auth::routes();
 | Path atau url buat admin, owner dan manager
 |
 */
-Route::middleware(['auth', 'isAdmin'])->group(function(){
-        Route::prefix('admin')->group(function(){
-            
-            Route::get('/dashboard', function () {
-                return view('app.admin.dashboard');
-            })->name('dashboard.admin');
+Route::middleware(['auth', 'isAdmin'])->group(function () {
+    Route::prefix('admin')->group(function () {
 
-            Route::resource('/profile', ProfileController::class);     
-            Route::prefix('/setting')->group(function(){
+
+        Route::get('/dashboard', function () {
+            return view('app.admin.dashboard');
+        })->name('dashboard.admin');
+
+        Route::resource('/profile', ProfileController::class);
+        Route::prefix('/setting')->group(function () {
                 Route::resource('/account', AccountController::class);
                 Route::resource('/role', RoleController::class);
-                Route::resource('/region', ProvinceController::class);          
+                Route::resource('/region', ProvinceController::class);
                 Route::resource('/city', CityController::class);
                 Route::resource('/district', KecamatanController::class);
                 Route::resource('/village', KelurahanController::class);
@@ -85,6 +86,8 @@ Route::middleware(['auth', 'isAdmin'])->group(function(){
 });
 
 
+
+
 /*
 |--------------------------------------------------------------------------
 | CUSTOMER ROUTE
@@ -93,14 +96,15 @@ Route::middleware(['auth', 'isAdmin'])->group(function(){
 |
 */
 
+
 //Customer home
-Route::prefix('app')->group(function(){
+Route::prefix('app')->group(function () {
     Route::get('/bayarTopUp', function () {
         return view('app.home.bayarTopUp');
     })->name('app.bayarTopUp');
     Route::resource('/home', AppControllers::class);
-    Route::middleware(['auth', 'IsCostumer'])->group(function(){
-        
+    Route::middleware(['auth', 'IsCostumer'])->group(function () {
+
         Route::resource('/dompet', DompetControllers::class);
         Route::resource('/tiket', TiketControllers::class);
         Route::resource('/kursis', KursiControllers::class);    
@@ -108,6 +112,7 @@ Route::prefix('app')->group(function(){
     });
     Route::resource('/films', FilmControllers::class);
 });
+
 /*
 |--------------------------------------------------------------------------
 | EMPLOYEE ROUTE
@@ -115,19 +120,18 @@ Route::prefix('app')->group(function(){
 | Path atau url buat employee
 |
 */
-Route::middleware(['auth', 'isEmploy'])->group(function(){
 
-});
-
-Route::prefix('emp')->group(function(){
-    Route::get('/dashboard', function () {
-        return view('app.admin.dashboard');
+Route::middleware(['auth', 'isEmploy'])->group(function () {
+    Route::prefix('emp')->group(function () {
+        Route::get('/dashboard', function () {
+            return view('app.employee.index');
+        });
+        Route::get('/seatSelection', function () {
+            return view('app.employee.seatSelection');
+        });
     });
 });
 
-Route::get('/forbidden', function(){return view('forbidden');});
-
-Route::get('/test', function(){
-    return view('test');
+Route::get('/forbidden', function () {
+    return view('forbidden');
 });
-
