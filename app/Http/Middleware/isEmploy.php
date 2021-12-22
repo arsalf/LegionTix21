@@ -16,7 +16,7 @@ class isEmploy
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->user()->role_id == 4){
+        if (auth()->user()->role_name == 'EMPLOYEE') {
             return $next($request);
         }
         //page error

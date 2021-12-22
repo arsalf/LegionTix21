@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Day;
+use Exception;
+use App\Models\Artikel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
-class DayController extends Controller
+class ArtikelController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,13 +17,15 @@ class DayController extends Controller
     public function index()
     {
         //
-        $data = Day::orderBy('name', 'desc')->paginate(15);
-        $dataTable = new Day();
-        
+        $page = 15;
+        $dataTable = new Artikel();
+        $data = Artikel::paginate($page);
+
         return view('app.admin.table.index', [
-            'data'=>$data,
+            'data'=>$data,             
             'table_name' => $dataTable->getTable(),
         ]);
+
     }
 
     /**
@@ -32,6 +36,13 @@ class DayController extends Controller
     public function create()
     {
         //
+        $dataTable = new Artikel();
+        $arr = $dataTable->getFillable();
+
+        return view('app.admin.table.create', [            
+            'header'=>$arr,
+            'table_name' => $dataTable->getTable(),
+        ]);
     }
 
     /**
@@ -43,6 +54,27 @@ class DayController extends Controller
     public function store(Request $request)
     {
         //
+        $data = new Artikel;
+        $data->judul = $request->judul;
+        $data->isi = $request->isi;
+        $data->koin_plus = $request->koin_plus;
+        if($request->hasFile('gambar')){            
+            $image = $request->file('gambar');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $image->move('uploads/artikel/'.$filename);            
+            $data->gambar = $filename;
+        }else{
+            return "tak ada";
+        }
+        
+        $data->author = auth()->user()->username;
+
+        try{
+            $data->save();
+        }catch(Exception $e){
+            return redirect()->back()->withError($e->getMessage());
+        }
+        return redirect()->back()->with('status', 'success add artikel');
     }
 
     /**
@@ -88,5 +120,13 @@ class DayController extends Controller
     public function destroy($id)
     {
         //
+        $data = Artikel::find($id);
+        try{
+            $data->delete();
+        }catch(Exception $e){
+            return redirect()->back()->withError($e->getMessage());            
+        }
+
+        return redirect()->back()->with('status', 'success delete artikel');
     }
 }
