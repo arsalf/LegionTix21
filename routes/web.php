@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AppControllers;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\ArtikelControllers;
 use App\Http\Controllers\BioskopController;
 use App\Http\Controllers\CityController;
@@ -77,6 +78,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function(){
                 Route::resource('/showtime', ShowTimeController::class);
                 Route::resource('/day', DayController::class);
                 Route::resource('/hargatiket', HargaTiketController::class); 
+                Route::resource('/artikel', ArtikelController::class);
             });
             
         }); 
@@ -102,7 +104,7 @@ Route::prefix('app')->group(function(){
         Route::resource('/dompet', DompetControllers::class);
         Route::resource('/tiket', TiketControllers::class);
         Route::resource('/kursis', KursiControllers::class);    
-        Route::resource('/artikel', ArtikelControllers::class);
+        //Route::resource('/artikel', ArtikelControllers::class);
     });
     Route::resource('/films', FilmControllers::class);
 });
