@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class TiketControllers extends Controller
@@ -46,7 +47,14 @@ class TiketControllers extends Controller
      */
     public function show($id)
     {
+        $data = DB::table('showtime')
+        ->join('studio', 'showtime.studio_id', '=', 'studio.id')
+        ->join('bioskop', 'studio.bioskop_id', '=', 'bioskop.id')
+        ->select('showtime.waktu', 'showtime.film_id', 'studio.type as studio_type','bioskop.name as bioskop_name','bioskop.type as bioskop_type')
+        ->where('showtime.film_id', '=', $id)
+        ->get();
         return view('app.home.film.ticket',[
+            'data'=>$data,
             'id'=>$id,
         ]);
     }

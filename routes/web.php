@@ -87,7 +87,6 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
 
 
 
-
 /*
 |--------------------------------------------------------------------------
 | CUSTOMER ROUTE

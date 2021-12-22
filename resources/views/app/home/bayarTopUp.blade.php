@@ -51,25 +51,44 @@
         <div class="loader"></div>
     </div>
 
+    @if (\Session::has('status'))
+    <div class="container mt-5" style="position: relative;">
+        <div class="alert alert-success alert-dismissible fade show" role="alert" 
+             style="
+                    position: absolute;
+                    right: 0;
+                    left: 0;"
+        >
+            {!! \Session::get('status') !!}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+    @endif
+    <!-- Header End -->
+
     <div class="container mt-5 mb-5 text-white" style="min-height: 800px; padding-top:300px;">
-        <form method="POST" action="{{ route('dompet.store') }}">
+        <form method="POST" action="{{ route('home.store') }}">
             <input type="hidden" name="dompet_id" value="{{ Auth::user()->id }}">
             @csrf
             <div class="form-group row">
                 <label for="inputKode" class="col-sm-2"><b> Kode Pembayaran </b></label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputKode" placeholder="Kode Pembayaran">
+                    <input type="text" class="form-control" id="inputKode" name="inputKode" placeholder="Kode Pembayaran">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="inputNominal" class="col-sm-2">Nominal</label>
                 <div class="col-sm-10">
-                    <input type="Number" class="form-control" id="inputNominal" placeholder="Nominal">
+                    <input type="Number" class="form-control" id="inputNominal" name="inputNominal" placeholder="Nominal">
                 </div>
             </div>
             <button type="submit" class="btn btn-primary">Top Up!</button>
         </form>
     </div>
+
+
 
     <!-- Js Plugins -->
     <script src="{{ asset('home/js/jquery-3.3.1.min.js') }}"></script>

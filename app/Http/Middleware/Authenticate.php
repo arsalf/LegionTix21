@@ -28,6 +28,8 @@ class Authenticate extends Middleware
             return "/emp/dashboard";
         }
         //customer
-        return "/";
+        if($acc->isRoleName('CUTOMER')){
+            return "/app/home";
+        }
     }
 }
