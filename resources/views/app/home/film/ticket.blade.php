@@ -17,44 +17,32 @@
                                 <label for="bioskop" class="text-white col-sm-2 col-form-label">Bioskop</label>
                                 <div class="text-dark col-sm-10">
                                     <select id="bioskop" name="bioskop" class="selectFilm">
-                                        <option value="Jatos - XXI">Jatos - XXI</option>
-                                        <option value="Bubat - XXI">Bubat - XXI</option>
-                                        <option value="PVJ - CGV">PVJ - CGV</option>
+                                        @foreach ($data as $item)
+                                            <option value="{{$item->bioskop_name}} - {{$item->bioskop_type}}">{{$item->bioskop_name}} - {{$item->bioskop_type}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="text-white d-flex flex-column justify-content-center col-sm-2 col-form-label">Studio</label>
                                 <div class="text-white col-sm-10">
-                                    <div class="form-check form-check-inline">
-                                        <input class="radio-toolbar-input" type="radio" id="radioApple" name="studio" value="Imax" checked>
-                                        <label class="radio-toolbar-label btn-ticket" for="radioApple">Imax</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="radio-toolbar-input" type="radio" id="radioBanana" name="studio" value="Regular">
-                                    <label class="radio-toolbar-label btn-ticket" for="radioBanana">Regular</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="radio-toolbar-input" type="radio" id="radioOrange" name="studio" value="3D">
-                                    <label class="radio-toolbar-label btn-ticket" for="radioOrange">3D</label>
-                                    </div>
+                                    @foreach ($data as $item)
+                                        <div class="form-check form-check-inline">
+                                            <input class="radio-toolbar-input" type="radio" id="radio{{$item->studio_type}}" name="studio" value="{{$item->studio_type}}">
+                                            <label class="radio-toolbar-label btn-ticket" for="radio{{$item->studio_type}}">{{$item->studio_type}}</label>
+                                        </div>
+                                    @endforeach
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="text-white d-flex flex-column justify-content-center col-sm-2 col-form-label">Jam Tayang</label>
                                 <div class="text-white col-sm-10">
-                                    <div class="form-check form-check-inline">
-                                        <input class="radio-toolbar-input" type="radio" id="jam1" name="jamTayang" value="1" checked>
-                                        <label class="radio-toolbar-label btn-ticket" for="jam1">12:00</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="radio-toolbar-input" type="radio" id="jam2" name="jamTayang" value="2">
-                                    <label class="radio-toolbar-label btn-ticket" for="jam2">13:30</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="radio-toolbar-input" type="radio" id="jam3" name="jamTayang" value="3">
-                                    <label class="radio-toolbar-label btn-ticket" for="jam3">15:00</label>
-                                    </div>
+                                    @foreach ($data as $item)
+                                        <div class="form-check form-check-inline">
+                                            <input class="radio-toolbar-input" type="radio" id="jam{{$item->waktu}}" name="jamTayang" value="{{$item->waktu}}">
+                                            <label class="radio-toolbar-label btn-ticket" for="jam{{$item->waktu}}">{{$item->waktu}}</label>
+                                        </div>
+                                    @endforeach
                                 </div>
                             </div>
                             <div class="row">

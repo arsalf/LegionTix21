@@ -23,6 +23,7 @@
 @endif
 
 <div class="container mt-5 mb-5" style="min-height: 500px">
+    {{date('Y-m-d H:i:s')}}
     <section class="mb-2 text-white">
         @foreach ($dompet as $item)
         <div class="form-group row">

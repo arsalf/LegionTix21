@@ -19,15 +19,20 @@ class AppControllers extends Controller
      */
     public function index()
     {
-        $topup = TopUp::all();
-        $filmRating = Film::orderBy('rating', 'asc')->paginate(3);
+        $batasTanggal = date('Y-m-d', strtotime('+7 days', strtotime(date('Y-m-d H:i:s'))));
+        $data = DB::table('showtime')
+        ->join('film', 'showtime.film_id', '=', 'film.id')
+        ->join('studio', 'showtime.studio_id', '=', 'studio.id')
+        ->select('showtime.waktu', 'film.*', 'studio.type','studio.name',)
+        ->orderBy('rating', 'asc')
+        // ->where('waktu', '<', $batasTanggal)
+        ->paginate(3);
+        // $data = Film::orderBy('rating', 'asc')->where('RELEASE_DATE', '<', $batasTanggal)->paginate(3);
         $filmOnGoing = Film::orderBy('title', 'asc')->paginate(6);
         $filmComingSoon = Film::orderBy('id', 'desc')->paginate(6);
-        // $filmOnGoing = Film::where('release_date', '<', $current_timestamp = Carbon::now()->timestamp)->orderBy('rating', 'asc')->paginate(6);
-        // $filmComingSoon = Film::where('release_date', '>', $current_timestamp = Carbon::now()->timestamp)->orderBy('rating', 'asc')->paginate(6);
         return view('app.home.index',[
-            'topup'=>$topup,
-            'filmRating'=>$filmRating,
+            'data'=>$data,
+            // 'filmRating'=>$filmRating,
             'filmOnGoing'=>$filmOnGoing,
             'filmComingSoon'=>$filmComingSoon,
         ]);

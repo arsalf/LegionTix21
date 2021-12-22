@@ -9,7 +9,7 @@
     <section class="hero">
         <div class="container">
             <div class="hero__slider owl-carousel">
-                @foreach($filmRating as $film)
+                @foreach($data as $film)
                     <div class="hero__items set-bg" data-setbg="{{ $film->image }}">
                         <div class="row">
                             <div class="col-lg-6">
@@ -28,7 +28,14 @@
             </div>
         </section>
         <!-- Hero Section End -->
-        
+        {{-- <div class="text-white">
+            @foreach ($data as $item)
+                <p>{{$item->id}}</p>
+                <p>{{$item->title}}</p>
+                <p>{{$item->type}}</p>    
+                <p>{{$item->waktu}}</p>
+            @endforeach
+        </div> --}}
         <!-- Product Section Begin -->
         <section class="product spad">
             <div class="container">

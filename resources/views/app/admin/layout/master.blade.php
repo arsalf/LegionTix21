@@ -23,6 +23,7 @@
   <link rel="shortcut icon" href="{{url('admin/images/favicon.png')}}" />
 </head>
 <body>
+  <?php date_default_timezone_set('Asia/Jakarta'); ?>
   <div class="container-scroller"> 
     <!-- partial:partials/_navbar.html -->
     {{View::make('app.admin.layout.navbar')}}
