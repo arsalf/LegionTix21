@@ -9,15 +9,19 @@ class Artikel extends Model
 {
     use HasFactory;
     public $table = 'ARTIKEL';
-    public $timestamps = false;
 
     protected $fillable = [
         "ID",
         "JUDUL",
         "ISI",
-        "GAMBAR",
+        "GAMBAR",        
+        "KOIN_PLUS"
+    ];
+
+    protected $hidden=[
         "AUTHOR",
-        "KOIN_PLUS",
         "VIEW",
+        "CREATED_AT",
+        "UPDATED_AT"
     ];
 }

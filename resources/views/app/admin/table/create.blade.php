@@ -25,7 +25,7 @@
         <div class="alert alert-danger">{{ session('error') }}</div>
     @endif
 
-    <form action="{{route(strtolower($table_name).'.store')}}" method="POST">
+    <form action="{{route(strtolower($table_name).'.store')}}" method="POST" enctype="multipart/form-data">
         @csrf
         @foreach ($header as $head)
             @if ($head != 'ID')
@@ -59,10 +59,15 @@
                         </div>
                     </div>
                 @elseif($head == 'WAKTU')   
+                    <div class="mb-3">
+                        <label class="form-label">{{$head}}</label>
+                        <input type="datetime-local" name="{{strtolower($head)}}" class="form-control" placeholder="{{strtolower($table_name)}} {{strtolower($head)}}">            
+                    </div>
+                @elseif($head=='GAMBAR')
                 <div class="mb-3">
                     <label class="form-label">{{$head}}</label>
-                    <input type="datetime-local" name="{{strtolower($head)}}" class="form-control" placeholder="{{strtolower($table_name)}} {{strtolower($head)}}">            
-                </div>   
+                    <input type="file" name="{{strtolower($head)}}" class="form-control" placeholder="{{strtolower($table_name)}} {{strtolower($head)}}">            
+                </div>
                 @else
                     <div class="mb-3">
                         <label class="form-label">{{$head}}</label>

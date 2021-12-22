@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class Account extends Authenticatable
 {
     use HasFactory;
-    public $table = 'Account';
+    public $table = 'ACCOUNT';
     public $timestamps = false;
 
     protected $fillable = [
@@ -26,8 +26,8 @@ class Account extends Authenticatable
     protected $hidden = [
         'ID',
         'ACCOUNT_ID',
-        'isActive',
-        'password',
-        'remember_token',
+        'isActive',        
+        'password',        
+        'remember_token',        
     ];
 }

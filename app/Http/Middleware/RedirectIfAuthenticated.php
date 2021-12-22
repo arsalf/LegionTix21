@@ -28,11 +28,11 @@ class RedirectIfAuthenticated
                 return redirect("/admin/dashboard");
             }
             //employee
-            if ($acc->isRoleName('EMPLOYEE')) {
+            if($acc->isRoleName('EMPLOYEE')){
                 return redirect("/emp/dashboard");
             }
             //customer
-            return redirect("/");
+            return redirect("/app/home");
         }
 
         return $next($request);

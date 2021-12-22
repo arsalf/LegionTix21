@@ -97,6 +97,60 @@ class FilmController extends Controller
             }            
         }else{
             //by search
+            try{
+                // "ID",
+                // "IMDB_ID",
+                // "TITLE",
+                // "IMAGE",
+                // "PLOT",
+                // "DURATION",
+                // "GENRE",
+                // "RATING",
+                // "DIRECTOR",
+                // "ACTORS",
+                // "TRAILER",
+                // "RELEASE_DATE",
+                // "LANGUAGE",
+                // "COUNTRY",
+                $data = Http::get('https://imdb-api.com/en/API/Title/k_1q09gcv7/'.$request->id_imdb);           
+                $film = new Film;
+                $film->imdb_id = $request->id_imdb;
+                $film->title = $data['title'];
+                $film->image = $data['image'];
+
+                $durasi = $data['runtimeMins'];
+                $result = DB::selectOne("select itodate($durasi) as value from dual");   
+                $durasi = date('Y/m/d H:i', strtotime($result->value));
+                $film->duration = $durasi;
+
+                $arr = explode(", ", $data['genres']);
+                $genre = $arr[0];
+                $film->genre = $genre;
+
+                $film->rating = $data['imDbRating'];
+                $film->director = $data['directors'];
+                $film->actors = $data['stars'];
+                $film->trailer = $data['trailer'];
+                $film->release_date = date("Y/m/d", strtotime($data['releaseDate']));
+                $film->plot = $data['plot'];
+
+                $arr = explode(', ', $data['languages']);
+                $lang = $arr[0];
+                $film->language = $lang;
+
+                $arr = explode(", ", $data['countries']);
+                $country = $arr[0];
+                $film->country = $country;                
+                
+                try{
+                    $film->save();
+                }catch(Exception $e){
+                    return redirect()->back()->withErrors($e->getMessage());
+                }     
+
+            }catch(Exception $e){
+                return redirect()->back()->withError($e->getMessage());
+            }            
         }
 
         return redirect()->back()->with('status', 'success add film!');
@@ -145,6 +199,14 @@ class FilmController extends Controller
     public function destroy($id)
     {
         //
+        try{
+            $film = Film::find($id);
+            $film->delete();
+        }catch(Exception $e){
+            return redirect()->back()->withError($e->getMessage());
+        }
+
+        return redirect()->back()->with('status', 'success delete film');
     }
 
     public function searchData(Request $request){        

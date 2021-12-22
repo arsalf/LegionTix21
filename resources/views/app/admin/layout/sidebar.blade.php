@@ -42,7 +42,7 @@
           <ul class="nav flex-column sub-menu">
             <li class="nav-item"> <a class="nav-link" href="{{route('role.index')}}">Role</a></li>            
             <li class="nav-item"> <a class="nav-link" href="{{route('day.index')}}">Day</a></li>
-            <li class="nav-item"> <a class="nav-link" href="#">Artikel</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{route('artikel.index')}}">Artikel</a></li>
           </ul>
         </div>
       </li>

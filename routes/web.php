@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AppControllers;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\ArtikelControllers;
 use App\Http\Controllers\BioskopController;
 use App\Http\Controllers\CityController;
@@ -62,24 +63,26 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
 
         Route::resource('/profile', ProfileController::class);
         Route::prefix('/setting')->group(function () {
-            Route::resource('/account', AccountController::class);
-            Route::resource('/role', RoleController::class);
-            Route::resource('/region', ProvinceController::class);
-            Route::resource('/city', CityController::class);
-            Route::resource('/district', KecamatanController::class);
-            Route::resource('/village', KelurahanController::class);
-            Route::get('/film/search', [FilmController::class, 'searchData'])
+                Route::resource('/account', AccountController::class);
+                Route::resource('/role', RoleController::class);
+                Route::resource('/region', ProvinceController::class);
+                Route::resource('/city', CityController::class);
+                Route::resource('/district', KecamatanController::class);
+                Route::resource('/village', KelurahanController::class);
+                Route::get('/film/search', [FilmController::class, 'searchData'])
                 ->name('film.search');
-            Route::resource('/film', FilmController::class);
-            Route::resource('/bioskop', BioskopController::class);
-            Route::resource('/studio', StudioController::class);
-            Route::resource('/typestudio', TypeStudioController::class);
-            Route::resource('/kursi', KursiController::class);
-            Route::resource('/showtime', ShowTimeController::class);
-            Route::resource('/day', DayController::class);
-            Route::resource('/hargatiket', HargaTiketController::class);
-        });
-    });
+                Route::resource('/film', FilmController::class);
+                Route::resource('/bioskop', BioskopController::class);
+                Route::resource('/studio', StudioController::class);
+                Route::resource('/typestudio', TypeStudioController::class);                
+                Route::resource('/kursi', KursiController::class);   
+                Route::resource('/showtime', ShowTimeController::class);
+                Route::resource('/day', DayController::class);
+                Route::resource('/hargatiket', HargaTiketController::class); 
+                Route::resource('/artikel', ArtikelController::class);
+            });
+            
+        }); 
 });
 
 
@@ -104,8 +107,8 @@ Route::prefix('app')->group(function () {
 
         Route::resource('/dompet', DompetControllers::class);
         Route::resource('/tiket', TiketControllers::class);
-        Route::resource('/kursis', KursiControllers::class);
-        Route::resource('/artikel', ArtikelControllers::class);
+        Route::resource('/kursis', KursiControllers::class);    
+        //Route::resource('/artikel', ArtikelControllers::class);
     });
     Route::resource('/films', FilmControllers::class);
 });

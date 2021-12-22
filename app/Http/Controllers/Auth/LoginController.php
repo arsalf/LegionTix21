@@ -37,7 +37,7 @@ class LoginController extends Controller
         $acc = new AccountController();
         //customer
         if($acc->isRoleName('CUSTOMER')){
-            return "/app";
+            return "/app/home";
         }
         if(!$acc->isRoleName('CUSTOMER') and !$acc->isRoleName('EMPLOYEE')){
             return "/admin/dashboard";
