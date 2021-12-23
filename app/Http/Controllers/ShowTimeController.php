@@ -150,4 +150,14 @@ class ShowTimeController extends Controller
         }
         return redirect()->back()->with('status', 'success delete showtime');
     }
+
+    
+    public function getJamTayang($id){
+        $data = DB::table('showTimeStudio')
+        // ->where('studio_id',$id)
+        ->distinct()
+        ->get(['waktu']);
+
+        return $data;
+    }
 }

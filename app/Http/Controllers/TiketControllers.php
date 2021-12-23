@@ -47,14 +47,13 @@ class TiketControllers extends Controller
      */
     public function show($id)
     {
-        $data = DB::table('showtime')
-        ->join('studio', 'showtime.studio_id', '=', 'studio.id')
-        ->join('bioskop', 'studio.bioskop_id', '=', 'bioskop.id')
-        ->select('showtime.waktu', 'showtime.film_id', 'studio.type as studio_type','bioskop.name as bioskop_name','bioskop.type as bioskop_type')
-        ->where('showtime.film_id', '=', $id)
-        ->get();
+        $dataStudio = DB::table('showTimeStudio')->distinct()->get(['studio_type','studio_id','studio_name']);
+        $dataShowtime = DB::table('showTimeStudio')->distinct()->get(['waktu']);
+        $dataBioskop = DB::table('showTimeStudio')->distinct()->get(['bioskop_name','bioskop_type']);
         return view('app.home.film.ticket',[
-            'data'=>$data,
+            'dataStudio'=>$dataStudio,
+            'dataShowtime'=>$dataShowtime,
+            'dataBioskop'=>$dataBioskop,
             'id'=>$id,
         ]);
     }

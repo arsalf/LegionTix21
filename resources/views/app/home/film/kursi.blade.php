@@ -4,6 +4,19 @@
     Detail Film
 @endsection
 
+@section('custom_css')
+    <link rel="stylesheet" href="{{asset('cinema/style.css')}}" />
+    <style>
+    .table-responsive{
+        background-color: white;
+    }
+    form{
+        display: inline-block;
+        margin-left: 1em;
+    }
+    </style>
+@endsection
+
 @section('content')
 
     <section class="p-5">
@@ -18,30 +31,42 @@
                         <div class="text-center form-group row ">
                             <div class="col-md-10">
                                 <img class="mb-5 " src="{{ asset('home/img/layar.jpg')}}" alt="" style="height: 500px; width: 100%;">
-                                <?php for ($j=1; $j <=1; $j++) { ?>
-                                    <div class="text-white col-sm-12">
-                                        <?php
-                                            $char = range('A', 'H');
-                                            foreach ($char as $abjad) { ?>
-                                            <div class="form-check form-check-inline">
-                                                <input class="radio-toolbar-input" type="radio" id="kursi<?= "$abjad-$j"; ?>" name="kursi" value="<?= "$abjad-$j"; ?>">
-                                                <label class="text-center radio-toolbar-label btn-ticket-2" for="kursi<?= "$abjad-$j"; ?>"><?= "$abjad$j-Ex"; ?></label>
-                                            </div>
-                                        <?php } ?>
+                                <div class="wrapper">
+                                    @php
+                                        $temp = 'A';
+                                    @endphp
+                                    <div class="layout-sheet active-sheet">
+                                        <div class="screen"><p class="text-center">LAYAR</p></div>
+                                            <div class="r_ow">
+                                            @foreach ($dataKursi as $item)
+                                                @php       
+                                                    $str = '';       
+                                                    $val = '';      
+                                                    if($item->k_row!=$temp){
+                                                    $str = $str.'</div>
+                                                            <div class="r_ow">';                        
+                                                    }
+                                                    $str = $str.'<div class="'.strtolower($item->type_name)."-seat ";
+                                                // //check jumlah kursi            
+                                                // if($item->jumlah==2){
+                                                //     $str = $str.'"double-seat ';                          
+                                                // }else{
+                                                //     $str = $str.'"seat ';
+                                                // }
+                                                //check is active
+                                                    if($item->isactive){
+                                                    $str = $str.'selected';
+                                                    }else{
+                                                    $str = $str.'deleted';
+                                                    }
+                                                    $str = $str.'" data-value="'.$item->k_row.'-'.$item->k_seat.'-'.$item->jumlah.'-'.$item->isactive.'-'.$item->type_name.'">'.$item->k_row.$item->k_seat.'</div>';
+                                                    $temp = $item->k_row;
+                                                    echo $str;
+                                                @endphp
+                                            @endforeach
+                                        </div>                
                                     </div>
-                                <?php } ?>
-                                <?php for ($j=1; $j <=10; $j++) { ?>
-                                    <div class="text-white col-sm-12">
-                                        <?php
-                                            $char = range('A', 'O');
-                                            foreach ($char as $abjad) { ?>
-                                            <div class="form-check form-check-inline">
-                                                <input class="radio-toolbar-input" type="radio" id="kursi<?= "$abjad-$j"; ?>" name="kursi" value="<?= "$abjad-$j"; ?>">
-                                                <label class="text-center radio-toolbar-label btn-ticket-1" for="kursi<?= "$abjad-$j"; ?>"><?= "$abjad$j"; ?></label>
-                                            </div>
-                                        <?php } ?>
-                                    </div>
-                                <?php } ?>
+                                </div>
                             </div>
                             <div class="text-left text-white col-md-2 d-flex flex-column">
                                 <div class="my-3">
@@ -88,6 +113,7 @@
 @endsection
 
 @section('js')
+        <script src="{{asset('/js/admin/cinemas.js')}}"></script>
         <script>
             $("input[type='radio']").click(function(){
                 var radioValue = $("input[name='kursi']:checked").val();

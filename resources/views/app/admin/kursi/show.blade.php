@@ -77,14 +77,14 @@ form{
             </div>
             @csrf
             @method('PUT')
-            <button id="submit" type="submit" style="display:none" class="btn btn-primary mt-3">Update</button>
+            <button id="submit" type="submit" style="display:none" class="mt-3 btn btn-primary">Update</button>
           </form>  
           <form action="{{route('kursi.destroy', $id)}}" method="POST">
             @csrf
             <div class="setting-kursi-del">
             </div>
             @method('DELETE')
-            <button id="delete" type="submit" style="display:none" class="btn btn-danger mt-3">Delete</button>
+            <button id="delete" type="submit" style="display:none" class="mt-3 btn btn-danger">Delete</button>
           </form>
         </div>
       </div>
