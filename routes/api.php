@@ -5,6 +5,8 @@ use App\Http\Controllers\KecamatanController;
 use App\Http\Controllers\KelurahanController;
 use App\Http\Controllers\KursiController;
 use App\Http\Controllers\ProvinceController;
+use App\Http\Controllers\StudioController;
+use App\Http\Controllers\ShowTimeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -29,4 +31,5 @@ Route::get('provinsi', [ProvinceController::class, 'getAllProvinsi']);
 Route::get('city/{id}', [CityController::class, 'getCity']);
 Route::get('kecamatan/{id}', [KecamatanController::class, 'getKecamatan']);
 Route::get('kelurahan/{id}', [KelurahanController::class, 'getKelurahan']);
-Route::get('kursi/{id}', [KursiController::class, 'getKursi']);
+Route::get('studio/{id}', [StudioController::class, 'getStudio']);
+Route::get('showtime/{id}', [ShowTimeController::class, 'getJamTayang']);

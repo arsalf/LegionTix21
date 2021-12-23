@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Film;
 
@@ -37,9 +38,13 @@ class KursiControllers extends Controller
     public function store(Request $request)
     {
         $data = Film::find($request->idFilm);
+        $dataKursi = DB::table('ViewKursi')
+        ->where('studio_id', '=', $request->studio)
+        ->get();
         return view('app.home.film.kursi',[
             'data'=>$request,
             'film'=>$data,
+            'dataKursi'=>$dataKursi,             
         ]);
     }
 

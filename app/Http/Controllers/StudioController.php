@@ -145,4 +145,13 @@ class StudioController extends Controller
         
         return redirect()->back()->with('status', 'success delete studio');        
     }
+
+    public function getStudio($name){
+        $data = DB::table('showTimeStudio')
+        // ->where('bioskop_name',$name)
+        ->distinct()
+        ->get(['studio_type','studio_id','studio_name']);
+
+        return $data;
+    }
 }
