@@ -20,13 +20,13 @@ class BioskopController extends Controller
         $page = 15;
         $acc = new AccountController();
         if($acc->isRoleName('ADMIN')){            
-            $data = DB::table('ViewBioskop')->paginate($page);    
+            $data = DB::table('ViewBioskop')->paginate($page);
         }else if($acc->isRoleName('OWNER')){
             $data = DB::table('ViewBioskop')             
                     ->where('leader_id', '=', auth()->user()->id)
                     ->orWhere('atasan_id', '=' ,auth()->user()->id)                    
                     ->paginate($page);
-        }        
+        }
 
         $dataTable = new Bioskop();
         $arr = $dataTable->getFillable();
