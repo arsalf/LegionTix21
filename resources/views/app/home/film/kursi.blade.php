@@ -30,7 +30,7 @@
                         </div>
                         <div class="text-center form-group row ">
                             <div class="col-md-10">
-                                <img class="mb-5 " src="{{ asset('home/img/layar.jpg')}}" alt="" style="height: 500px; width: 100%;">
+                                <img class="mb-5" id="bisa" src="{{ asset('home/img/layar.jpg')}}" alt="" style="height: 500px; width: 100%;">
                                 <div class="wrapper">
                                     @php
                                         $temp = 'A';
@@ -43,10 +43,10 @@
                                                     $str = '';       
                                                     $val = '';      
                                                     if($item->k_row!=$temp){
-                                                    $str = $str.'</div>
-                                                            <div class="r_ow">';                        
+                                                        $str = $str.'</div>
+                                                                <div class="r_ow">';                        
                                                     }
-                                                    $str = $str.'<div class="'.strtolower($item->type_name)."-seat ";
+                                                    $str = $str.'<div name="kursi" class="'.strtolower($item->type_name)."-seat ";
                                                 // //check jumlah kursi            
                                                 // if($item->jumlah==2){
                                                 //     $str = $str.'"double-seat ';                          
@@ -92,12 +92,14 @@
                                 <div class="my-3">
                                     <h5> <b> Kursi </b> : </h4>
                                     <h5 id="bookingKursi"> </h5> 
-                                    <input type="hidden" name="bookingKursi" id="inputBookingKursi">
+                                    <input type="hidden" name="kursi_id" id="inputBookingKursi" value="">
+                                    <input type="hidden" name="kursi_kolom" id="inputBookingKursi" value="3">
+                                    <input type="hidden" name="kursi_baris" id="inputBookingKursi" value="A">
                                 </div>
                                 <div class="my-3">
                                     <h5> <b> Total Harga </b> : </h4>
                                     <h5 id="harga"> Rp 50.000,00 </h5> 
-                                    <input type="hidden" name="harga" value="Rp 50.000,00">
+                                    <input type="hidden" name="harga" value="520000">
                                 </div>
                             </div>
                         </div>
@@ -115,10 +117,12 @@
 @section('js')
         <script src="{{asset('/js/admin/cinemas.js')}}"></script>
         <script>
-            $("input[type='radio']").click(function(){
-                var radioValue = $("input[name='kursi']:checked").val();
-                $("#bookingKursi").text(radioValue);
-                $("#inputBookingKursi").val(radioValue);
+            $("#kursi").click(function(){
+                alert("masuk");
+                // var radioValue = this.data('value');
+                // alert(radioValue);
+                // $("#bookingKursi").text(radioValue);
+                // $("#inputBookingKursi").val(radioValue);
             });
         </script>
 @endsection
