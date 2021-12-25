@@ -55,7 +55,7 @@ form{
                       // }else{
                       //     $str = $str.'"seat ';
                       // }
-                      //check is active
+                      // check is active
                       if($item->isactive){
                         $str = $str.'selected';
                       }else{
