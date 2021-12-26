@@ -24,20 +24,33 @@
 @section('content')
     <!-- Login Section Begin -->
     <section class="p-5">
-        <div class="container">
-            <div class="text-white">                    
+        <div class="container" style="margin-bottom:200px">
+            <div class="">                    
                 <div class="row">
-                    <div class="col">
-                        <div class="form-group">
-                            <label for="exampleFormControlSelect1">TANGGAL : </label>
-                            <select class="form-control" id="selecthari">
-                              <option>SENIN</option>
-                              <option>SELASA</option>
-                              <option>RABU</option>
-                              <option>KAMIS</option>
-                              <option>JUMAT</option>
-                            </select>
-                        </div>
+                    <div class="col bg-white">
+                        <legend class="text-center">Day</legend>
+                        <form action="" method="GET">
+                            <div class="d-flex justify-content-center">
+                                @foreach($days as $day)
+                                <?php 
+                                    date_default_timezone_set("Asia/Jakarta");
+                                    if(isset($_GET['day'])){
+                                        if($_GET['day']==$day->tanggal){
+                                            echo '<button name="day" class="btn btn-sm btn-success m-2" value="'.$day->tanggal.'">'.$day->tanggal.'<br>'.$day->name.'</button>';
+                                        }else{
+                                            echo '<button name="day" class="btn btn-sm btn-primary m-2" value="'.$day->tanggal.'">'.$day->tanggal.'<br>'.$day->name.'</button>';
+                                        }
+                                    }else{
+                                        if(strtolower($day->tanggal)==strtolower(date('d-M-Y'))){
+                                            echo '<button name="day" class="btn btn-sm btn-success m-2" value="'.$day->tanggal.'">'.$day->tanggal.'<br>'.$day->name.'</button>';
+                                        }else{
+                                            echo '<button name="day" class="btn btn-sm btn-primary m-2" value="'.$day->tanggal.'">'.$day->tanggal.'<br>'.$day->name.'</button>';
+                                        }
+                                    }
+                                ?>
+                                @endforeach
+                            </div>
+                        </form> 
                     </div>
                 </div>  
                 <div class="row text-white">
@@ -54,11 +67,13 @@
                             <?php                            
                                 if($bioskop!=$cinema->bioskop_name){
                                     $bioskop = $cinema->bioskop_name;
-                                    $str = $str.$bioskop_temp.'<div class="box">
+                                    $studio = '';
+                                    $studio_temp = '';
+                                    $str = $str.$bioskop_temp.'<div class="box my-4">
                                                     <div class="bioskop-name">
                                                         <h3>'.$bioskop.'</h3>
                                                     </div>';                                                  
-                                    $bioskop_temp = '</div>';
+                                    $bioskop_temp = '</div></div></div>';
                                 }          
                                 if($studio!=$cinema->studio_type){     
                                     $studio = $cinema->studio_type;
@@ -73,9 +88,6 @@
                                 $str = $str.$showtime;
                             ?>  
                         @endforeach
-                                </div>
-                            </div>                            
-                        </div>  
                         <?php
                             $str = $str.'
                                         </div>

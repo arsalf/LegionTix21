@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Film;
 use App\Models\TopUp;
 use App\Models\Dompet;
+use Exception;
 use PDO;
 
 class AppControllers extends Controller
@@ -28,8 +29,9 @@ class AppControllers extends Controller
         // ->where('waktu', '<', $batasTanggal)
         ->paginate(3);
         // $data = Film::orderBy('rating', 'asc')->where('RELEASE_DATE', '<', $batasTanggal)->paginate(3);
-        $filmOnGoing = Film::orderBy('title', 'asc')->paginate(6);
-        $filmComingSoon = Film::orderBy('id', 'desc')->paginate(6);
+        $filmOnGoing = DB::table('viewFilmOnGoing')->paginate(6);
+        $filmComingSoon = Film::where('release_date', '>', date('Y-m-d H:i:s'))
+        ->orderBy('id', 'desc')->paginate(6);
         return view('app.home.index',[
             'data'=>$data,
             // 'filmRating'=>$filmRating,

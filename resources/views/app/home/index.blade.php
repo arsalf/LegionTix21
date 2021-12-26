@@ -9,7 +9,7 @@
     <section class="hero">
         <div class="container">
             <div class="hero__slider owl-carousel">
-                @foreach($data as $film)
+                @foreach($filmOnGoing as $film)
                     <div class="hero__items set-bg" data-setbg="{{ $film->image }}">
                         <div class="row">
                             <div class="col-lg-6">
@@ -26,18 +26,8 @@
                     </div>
                 @endforeach
             </div>
-        </section>
-        <!-- Hero Section End -->
-        {{-- <div class="text-white">
-            @foreach ($data as $item)
-                <p>{{$item->id}}</p>
-                <p>{{$item->title}}</p>
-                <p>{{$item->type}}</p>    
-                <p>{{$item->waktu}}</p>
-            @endforeach
-        </div> --}}
-        <!-- Product Section Begin -->
-        <section class="product spad">
+        </div>
+        <div class="product spad">
             <div class="container">
             <div class="row">
                 <div class="col-lg-8">
@@ -45,12 +35,12 @@
                         <div class="row">
                             <div class="col-lg-8 col-md-8 col-sm-8">
                                 <div class="section-title">
-                                    <h4>Trending Now</h4>
+                                    <h4>Sedang Tayang</h4>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4">
                                 <div class="btn__all">
-                                    <a href="#" class="primary-btn">View All <span class="arrow_right"></span></a>
+                                    {{-- <a href="#" class="primary-btn">View All <span class="arrow_right"></span></a> --}}
                                 </div>
                             </div>
                         </div>
@@ -80,12 +70,12 @@
                         <div class="row">
                             <div class="col-lg-8 col-md-8 col-sm-8">
                                 <div class="section-title">
-                                    <h4>Popular Shows</h4>
+                                    <h4>Coming Soon</h4>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4">
                                 <div class="btn__all">
-                                    <a href="#" class="primary-btn">View All <span class="arrow_right"></span></a>
+                                    {{-- <a href="#" class="primary-btn">View All <span class="arrow_right"></span></a> --}}
                                 </div>
                             </div>
                         </div>
