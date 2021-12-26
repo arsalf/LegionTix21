@@ -79,12 +79,24 @@ class TiketControllers extends Controller
      */
     public function show($id)
     {
-        $tomorrow =date("Y-m-d", strtotime('tomorrow + 1day')); 
+        if(isset($_GET['day'])){
+            $tomorrow =date("Y-m-d", strtotime($_GET['day'].' + 1day')); 
+            $yesterday = date("Y-m-d", strtotime($_GET['day'])); 
+        }else{
+            $tomorrow =date("Y-m-d", strtotime('tomorrow + 1day')); 
+            $yesterday = date("Y-m-d", strtotime('tomorrow')); 
+        }
+        
+        $days = DB::table("showtimeonlydate")
+        ->where('film_id', '=', $id)
+        ->get();
         $data = DB::table('showtimestudio')        
         ->where('film_id', '=', $id)
+        ->where("waktu", '>', $yesterday)
         ->where("waktu", '<', $tomorrow)
         ->get();
         return view('app.home.film.ticket',[            
+            'days' => $days,
             'cinemas'=>$data,
             'id'=>$id
         ]);

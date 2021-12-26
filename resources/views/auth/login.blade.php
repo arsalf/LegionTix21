@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<section class="pt-5 login spad">
+<section class="">
     <div class="container">
-        <div class="row" style="margin-bottom: 100px">
+        <div class="row pt-3" style="margin-bottom: 100px">
             <div class="text-center col-lg-12">
                 <div class="normal__breadcrumb__text">
                     <h2>Login</h2>
