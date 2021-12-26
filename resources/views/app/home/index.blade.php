@@ -61,7 +61,7 @@
                                         <div class="product__item__pic set-bg" data-setbg="{{ $film->image }}">
                                             <div class="ep">{{ $film->rating }}</div>
                                             <div class="comment"><i class="fa fa-comments"></i> 11</div>
-                                            <div class="view"><i class="fa fa-time"></i>{{ $film->duration }}</div>
+                                            <div class="view"><i class="fa fa-time"></i>{{ date('H:i:s', strtotime($film->duration)) }}</div>
                                         </div>
                                         <div class="product__item__text">
                                             <ul>

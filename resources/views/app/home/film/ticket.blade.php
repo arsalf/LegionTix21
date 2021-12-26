@@ -4,138 +4,189 @@
     Detail Film
 @endsection
 
-@section('content')
-    <!-- Login Section Begin -->
-    <section class="p-5" style="height: 563px">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <form method="POST" action="{{ route('kursis.store') }}">
-                        @csrf
-                            <input type="hidden" name="idFilm" value="{{$id}}">
-                            <div class="form-group row">
-                                <label for="bioskop" class="text-white col-sm-2 col-form-label">Bioskop</label>
-                                <div class="text-dark col-sm-10">
-                                    <select id="bioskop" name="bioskop" class="selectFilm">
-                                        @foreach ($dataBioskop as $item)
-                                            <option value="{{ $item->bioskop_name }}">{{$item->bioskop_name}} - {{$item->bioskop_type}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="text-white d-flex flex-column justify-content-center col-sm-2 col-form-label">Studio</label>
-                                <div class="text-white col-sm-10" id="studioDiv">
-                                    @foreach ($dataStudio as $item)
-                                        <div class="form-check form-check-inline">
-                                            <input class="radio-toolbar-input" type="radio" id="radio{{ $item->studio_id }}" name="studio" value="{{ $item->studio_id }}">
-                                            <label class="radio-toolbar-label btn-ticket" for="radio{{ $item->studio_id }}">{{ $item->studio_type }} - {{ $item->studio_name }}</label>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="text-white d-flex flex-column justify-content-center col-sm-2 col-form-label">Jam Tayang</label>
-                                <div class="text-white col-sm-10" id="jamTayangDiv">                                    
-                                    @foreach ($dataShowtime as $item)
-                                        <div class="form-check form-check-inline">
-                                            <input class="radio-toolbar-input" type="radio" id="radio{{ $item->waktu }}" name="jamTayang" value="{{ $item->waktu }}">
-                                            <label class="radio-toolbar-label btn-ticket" for="radio{{ $item->waktu }}">{{ $item->waktu }}</label>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                            <div class="row">
-                                <button type="submit" class="mt-5 btn btn-success">Buy Ticket</a>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Login Section End -->
+@section('custom_css')
+<style>
+    #selecthari{
+        display: block!important;
+    }
+    .nice-select{
+        display: none;
+    }
+    h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    color: #ffffff;
+    font-weight: 400;
+    font-family: "Mulish", sans-serif;
+}
+</style>
 @endsection
 
-@section('js')
-    <script>
-        alert("bisa");
-        
-    // $(document).ready(function($) {
-    //         function takeDataStudio(tag, url) {
-    //             var formData = [];
-    //             var type = "GET";
-    //             var ajaxurl = url;
-    //             $.ajax({
-    //                 type: type,
-    //                 url: ajaxurl,
-    //                 data: formData,
-    //                 dataType: 'json',
-    //                 success: function(data) {
-    //                     console.log(data);
-    //                     for (let index = 0; index < data.length; index++) {
-    //                         $('#studioDiv').append(`
-    //                             <div class="form-check form-check-inline ">
-    //                                 <input class="radio-toolbar-input" type="radio" id="studio`+ data[index].studio_id +`" name="studio" value="`+ data[index].studio_id + `">
-    //                                 <label class="radio-toolbar-label btn-ticket" for="studio`+ data[index].studio_id +`">`+ data[index].studio_type +` - `+ data[index].studio_name + `</label>
-    //                             </div>
-    //                         `);
-    //                     }
-    //                 },
-    //                 error: function(data) {
-    //                     console.log(data);
-    //                     alert(data);
-    //                 }
-    //             });
-    //         }
-
-    //         function takeDataJamTayang(tag, url) {
-    //             var formData = [];
-    //             var type = "GET";
-    //             var ajaxurl = url;
-    //             $.ajax({
-    //                 type: type,
-    //                 url: ajaxurl,
-    //                 data: formData,
-    //                 dataType: 'json',
-    //                 success: function(data) {
-    //                     console.log(data);
-    //                     alert(data);
-    //                     for (let index = 0; index < data.length; index++) {
-    //                         $('#jamTayangDiv').append(`
-    //                             <div class="form-check form-check-inline">
-    //                                 <input class="radio-toolbar-input" type="radio" id="jam`+ data[index].waktu +`" name="jamTayang" value="`+ data[index].waktu +`">
-    //                                 <label class="radio-toolbar-label btn-ticket" for="jam`+ data[index].waktu +`">`+ data[index].waktu +`</label>
-    //                             </div>
-    //                         `);
-    //                     }
-    //                 },
-    //                 error: function(data) {
-    //                     console.log(data);
-    //                     alert(data);
-    //                 }
-    //             });
-    //         }
-
-    //         function initStudio(tag, values) {
-    //             $(tag)
-    //                 .remove()
-    //                 .end()
-    //         }
-            
-    //         //inisialisasi
-    //         takeDataStudio('#bioskop', '/api/studio/' + this.value);
-            
-    //         $('#bioskop:checked').on('change', function() {
-    //             initStudio('#jamTayangDiv', '');
-    //             //take Data
-    //             takeDataStudio('#bioskop', '/api/studio/' + this.value);
-    //         });
-
-    //         $('input[type=radio][name=studio]').change(function() {
-    //             alert("bisa euy");
-    //             //take Data
-    //             // takeDataJamTayang('#studio', '/api/studio/' + this.value);
-    //         });
-    //     });
-    </script>
-@endsection 
+@section('content')
+    <!-- Login Section Begin -->
+    <section class="p-5">
+        <div class="container">
+            <div class="text-white">                    
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">TANGGAL : </label>
+                            <select class="form-control" id="selecthari">
+                              <option>SENIN</option>
+                              <option>SELASA</option>
+                              <option>RABU</option>
+                              <option>KAMIS</option>
+                              <option>JUMAT</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>  
+                <div class="row text-white">
+                    <div class="col">
+                        <?php
+                            $bioskop_temp = '';
+                            $studio_temp = '';
+                            $bioskop = '';
+                            $studio = '';
+                            $showtime='';
+                            $str = '';
+                        ?>
+                        @foreach($cinemas as $cinema)
+                            <?php                            
+                                if($bioskop!=$cinema->bioskop_name){
+                                    $bioskop = $cinema->bioskop_name;
+                                    $str = $str.$bioskop_temp.'<div class="box">
+                                                    <div class="bioskop-name">
+                                                        <h3>'.$bioskop.'</h3>
+                                                    </div>';                                                  
+                                    $bioskop_temp = '</div>';
+                                }          
+                                if($studio!=$cinema->studio_type){     
+                                    $studio = $cinema->studio_type;
+                                    $str = $str.$studio_temp.'<div class="row">
+                                                    <div class="col-sm-4">
+                                                        <h4>'.$studio.'</h4>
+                                                    </div>
+                                                    <div class="col-sm-8">';
+                                    $studio_temp = '</div></div>';
+                                }
+                                $showtime ='<button class="btn btn-primary m-2">'.(date('H:i', strtotime($cinema->waktu))).'</button>';
+                                $str = $str.$showtime;
+                            ?>  
+                        @endforeach
+                                </div>
+                            </div>                            
+                        </div>  
+                        <?php
+                            $str = $str.'
+                                        </div>
+                                    </div>                            
+                                </div>  
+                            ';
+                            echo $str;
+                        ?>
+                        {{-- <div class="box">
+                            <div class="bioskop-name">
+                                <h3>JATOS XXI</h3>
+                            </div>
+                            <div class="row">                                                        
+                                <div class="col-sm-4">
+                                    <h4>regular</h4>
+                                </div>
+                                <div class="col-sm-8">
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                </div>
+                            </div>                                                
+                            <div class="row">                                                        
+                                <div class="col-sm-4">
+                                    <h4>FAMILY</h4>
+                                </div>
+                                <div class="col-sm-8">
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                </div>
+                            </div>                                                
+                        </div>
+                        <div class="box">
+                            <h3>KINGS CGV</h3>
+                            <div class="row">                                                        
+                                <div class="col-sm-4">
+                                    <h4>3D</h4>
+                                </div>
+                                <div class="col-sm-8">
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                </div>
+                            </div>                                                
+                        </div>
+                        <div class="box">
+                            <h3>PVJ XXI</h3>
+                            <div class="row">                                                        
+                                <div class="col-sm-4">
+                                    <h4>3D</h4>
+                                </div>
+                                <div class="col-sm-8">
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                    <button class="btn btn-primary m-2">12:30</button>
+                                </div>
+                            </div>                                                
+                        </div> --}}
+                    </div>
+                </div>               
+            </div>
+        </div>
+    </section>
+        <!-- Login Section End -->
+@endsection

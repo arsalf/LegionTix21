@@ -12,13 +12,13 @@ class Studio extends Model
     public $timestamps = false;
 
     protected $fillable = [
+        'isactive',
         'NAME',
         'type',
         'bioskop_id',
     ];
 
     protected $hidden = [
-        'id',
-        'isactive',
+        'id',        
     ];
 }

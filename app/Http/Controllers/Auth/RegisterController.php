@@ -83,7 +83,7 @@ class RegisterController extends Controller
         $account->username = $data['username'];
         $account->email = $data['email'];
         $account->password = Hash::make($data['password']);
-        $account->role_name = 'ADMIN';
+        $account->role_name = 'CUSTOMER';
         $account->save();
         return $account;
     }

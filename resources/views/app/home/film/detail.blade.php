@@ -35,29 +35,20 @@
                                 <h3>{{$data->title}}</h3>
                                 <span>{{$data->language}}</span>
                             </div>
-                            <p>Every human inhabiting the world of Alcia is branded by a “Count” or a number written on
-                                their body. For Hina’s mother, her total drops to 0 and she’s pulled into the Abyss,
-                                never to be seen again. But her mother’s last words send Hina on a quest to find a
-                            legendary hero from the Waste War - the fabled Ace!</p>
+                            <p>{{$data->plot}}</p>
                             <div class="anime__details__widget">
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12">
                                         <ul>
                                             <li><span>Director:</span> {{$data->director}}</li>
                                             <li><span>Genre:</span> {{$data->genre}}</li>
-                                            <li><span>Date Release:</span> {{$data->release_date}}</li>
+                                            <li><span>Date Release:</span> {{ date('d-m-Y', strtotime($data->release_date))}}</li>
                                             <li><span>Language:</span> {{$data->language}}</li>
                                             <li><span>Rating:</span> {{$data->rating}}</li>
                                             <li>
-                                                <span><b>Cast</b></span>
+                                                <span><b>Cast :</b></span>
+                                                {{$data->actors}}
                                             </li>
-                                            <span class="text-white">
-                                                <a href="#">coba</a>,
-                                                <a href="#">coba</a>,
-                                                <a href="#">coba</a>,
-                                                <a href="#">coba</a>,
-                                                <a href="#">coba</a>
-                                            </span>
                                         </ul>
                                     </div>
                                 </div>
