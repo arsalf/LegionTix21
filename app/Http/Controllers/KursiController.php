@@ -22,7 +22,9 @@ class KursiController extends Controller
     {
         //
         $page = 5;
-        $data = DB::table('ViewKursiStudio')->paginate($page);
+        $data = DB::table('ViewKursiStudio')
+        ->where('account_id', '=', auth()->user()->id)
+        ->paginate($page);
         return view('app.admin.table.index', [
             'data'=>$data,             
             'table_name' => 'KURSI',

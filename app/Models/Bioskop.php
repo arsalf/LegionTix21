@@ -12,6 +12,7 @@ class Bioskop extends Model
 
     protected $fillable = [        
         'ACCOUNT_ID',
+        'ISACTIVE',
         'NO_REK',
         'NAME',
         'TYPE',
@@ -23,7 +24,6 @@ class Bioskop extends Model
         'ID',
         'SALDO',        
         'CREATED_AT',
-        'UPDATED_AT',
-        'ISACTIVE'
+        'UPDATED_AT'        
     ];
 }

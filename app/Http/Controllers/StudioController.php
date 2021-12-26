@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Studio;
-use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use PDO;
+
 
 class StudioController extends Controller
 {
@@ -20,10 +19,12 @@ class StudioController extends Controller
         //
         $page = 15;
         $dataTable = new Studio();
-        $data = DB::table('ViewStudio')->paginate($page);    
+        $data = DB::table('ViewStudio')
+        ->where('account_id', '=', auth()->user()->id)
+        ->paginate($page);
 
         return view('app.admin.table.index', [
-            'data'=>$data,             
+            'data'=>$data,
             'table_name' => $dataTable->getTable(),
         ]);
 
@@ -121,6 +122,7 @@ class StudioController extends Controller
             $data = Studio::find($id);
             $data->name = $request->name;
             $data->type = $request->type;    
+            $data->isactive = $request->isactive;
             $data->bioskop_id = $request->bioskop_id;
             $data->save();
         }else{

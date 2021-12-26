@@ -26,6 +26,8 @@ class BioskopController extends Controller
                     ->where('leader_id', '=', auth()->user()->id)
                     ->orWhere('atasan_id', '=' ,auth()->user()->id)                    
                     ->paginate($page);
+        }else{
+            return redirect('/forbidden');
         }
 
         $dataTable = new Bioskop();
@@ -65,8 +67,7 @@ class BioskopController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        
+        //        
         $this->validate($request, [
             'account_id' => 'required|numeric',
             'no_rek' => 'required|unique:bioskop',
@@ -131,6 +132,7 @@ class BioskopController extends Controller
         //
         $bioskop = Bioskop::find($id);
         $bioskop->account_id = $request->manager_id;
+        $bioskop->isActive = $request->isactive;
         $bioskop->name = $request->name;
         $bioskop->type = $request->type;
         $bioskop->no_rek = $request->no_rek;
@@ -157,8 +159,12 @@ class BioskopController extends Controller
     {
         //
         $data = Bioskop::find($id);
-        $data->isActive = 0;
-        $data->save();
+        try{
+            $data->delete();
+        }catch(Exception $e){
+            return redirect()->back()->withError($e->getMessage());
+        }
+        
 
         return redirect()->back()->with('status', 'success delete bioskop');        
     }
