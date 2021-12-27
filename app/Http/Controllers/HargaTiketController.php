@@ -17,12 +17,27 @@ class HargaTiketController extends Controller
     public function index()
     {
         //
-        $data = DB::table('ViewHargaTiket')->paginate(15);
+        $page = 15;
+        if(auth()->user()->role_name=="MANAGER"){
+            $data = DB::table('ViewHargaTiket')
+            ->where('account_id', '=', auth()->user()->id)
+            ->paginate($page);
+        }else{
+            $data = DB::table('ViewHargaTiket')
+            ->join('account', 'account.id', '=', 'ViewHargaTiket.account_id')
+            ->where('ViewHargaTiket.account_id', '=', auth()->user()->id)        
+            ->orWhere('account.account_id', '=',  auth()->user()->id)
+            ->select(['ViewHargaTiket.*'])
+            ->paginate($page);
+        }
+            
+        
         $dataTable = new HargaTiket();
         
         return view('app.admin.table.index', [
             'data'=>$data,
             'table_name' => $dataTable->getTable(),
+            'page'=>$page
         ]);
     }
 

@@ -22,9 +22,19 @@ class KursiController extends Controller
     {
         //
         $page = 5;
-        $data = DB::table('ViewKursiStudio')
-        ->where('account_id', '=', auth()->user()->id)
-        ->paginate($page);
+        if(auth()->user()->role_name=="MANAGER"){
+            $data = DB::table('ViewKursiStudio')
+            ->where('account_id', '=', auth()->user()->id)
+            ->paginate($page);        
+        }else{
+            $data = DB::table('ViewKursiStudio')
+            ->join('account', 'account.id', '=', 'ViewKursiStudio.account_id')
+            ->where('ViewKursiStudio.account_id', '=', auth()->user()->id)        
+            ->orWhere('account.account_id', '=',  auth()->user()->id)
+            ->select(['ViewKursiStudio.*'])
+            ->paginate($page);
+        }
+        
         return view('app.admin.table.index', [
             'id' => 1,
             'data'=>$data,             

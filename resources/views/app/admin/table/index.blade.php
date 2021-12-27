@@ -31,7 +31,7 @@ form{
         <a class="btn btn-primary text-light" style="text-decoration: none" href="{{route(strtolower($table_name).'.create')}}">Add</a>
     </div>
     <div class="table-responsive mt-2 border border-dark">
-        <table class="table">
+        <table class="table table-sm ">
             <thead>
                 <tr>
                     <th>No.</th>
@@ -71,15 +71,15 @@ form{
                         <td>
                             <div class="d-flex justify-content-center">                                
                                 @if(!is_null($item->id))
-                                <a class="btn btn-warning text-light" style="text-decoration: none" href="{{route(strtolower($table_name).'.edit', $item->id)}}">edit</a>                                
+                                <a class="btn btn-sm btn-warning text-light" style="text-decoration: none" href="{{route(strtolower($table_name).'.edit', $item->id)}}">edit</a>                                
                                 <form action="{{route(strtolower($table_name).'.destroy', $item->id)}}" method="POST">
                                 @else
-                                <a class="btn btn-warning text-light" style="text-decoration: none" href="{{route(strtolower($table_name).'.edit', $item->name)}}">edit</a>
+                                <a class="btn btn-sm btn-warning text-light" style="text-decoration: none" href="{{route(strtolower($table_name).'.edit', $item->name)}}">edit</a>
                                 <form action="{{route(strtolower($table_name).'.destroy', $item->name)}}" method="POST">
                                 @endif
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="text-white btn btn-danger">
+                                    <button type="submit" class="text-white btn btn-sm btn-danger">
                                         delete
                                     </button>
                                 </form>

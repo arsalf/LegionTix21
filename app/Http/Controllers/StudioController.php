@@ -19,9 +19,19 @@ class StudioController extends Controller
         //
         $page = 15;
         $dataTable = new Studio();
-        $data = DB::table('ViewStudio')
-        ->where('account_id', '=', auth()->user()->id)
-        ->paginate($page);
+        if(auth()->user()->role_name=="MANAGER"){
+            $data = DB::table('ViewStudio')
+            ->where('account_id', '=', auth()->user()->id)        
+            ->paginate($page);
+        }else{
+            $data = DB::table('ViewStudio')
+            ->join('account', 'account.id', '=', 'ViewStudio.account_id')
+            ->where('ViewStudio.account_id', '=', auth()->user()->id)        
+            ->orWhere('account.account_id', '=',  auth()->user()->id)
+            ->select(['ViewStudio.*'])
+            ->paginate($page);
+        }
+        
 
         return view('app.admin.table.index', [
             'data'=>$data,
