@@ -7,6 +7,7 @@ use App\Http\Controllers\KursiController;
 use App\Http\Controllers\ProvinceController;
 use App\Http\Controllers\StudioController;
 use App\Http\Controllers\ShowTimeController;
+use App\Http\Controllers\TiketControllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -33,3 +34,4 @@ Route::get('kecamatan/{id}', [KecamatanController::class, 'getKecamatan']);
 Route::get('kelurahan/{id}', [KelurahanController::class, 'getKelurahan']);
 Route::get('studio/{id}', [StudioController::class, 'getStudio']);
 Route::get('showtime/{id}', [ShowTimeController::class, 'getJamTayang']);
+Route::post('booking', [TiketControllers::class, 'serveTiket']);

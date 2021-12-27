@@ -6,9 +6,9 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-3">
-                <div class="footer__logo">
+                {{-- <div class="footer__logo">
                     <a href="./index.html"><img src="{{ asset('home/img/logo.png') }}" alt=""></a>
-                </div>
+                </div> --}}
             </div>
             <div class="col-lg-6">
                 <div class="footer__nav">

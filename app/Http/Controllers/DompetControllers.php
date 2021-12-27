@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Dompet;
 use App\Models\TopUp;
+use Exception;
 
 class DompetControllers extends Controller
 {
@@ -45,7 +46,9 @@ class DompetControllers extends Controller
         }catch(Exception $e){
             return redirect()->back()->withError($e->getMessage())->withInput();
         }
-        $data = TopUp::all()->last();
+        $data = TopUp::orderBy('kode_pembayaran', 'desc')
+        ->where('dompet_id', '=', $request->dompet_id)
+        ->first();
 
         return redirect()->back()->with('status', $data->kode_pembayaran);
     }
