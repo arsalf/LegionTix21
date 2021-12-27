@@ -18,12 +18,25 @@ class ShowTimeController extends Controller
     public function index()
     {
         //
-        $data= DB::table('ViewShowtime')->paginate(15);
+        $page = 15;
+        if(auth()->user()->role_name=="MANAGER"){
+            $data= DB::table('ViewShowtime')
+            ->where('account_id', '=', auth()->user()->id)
+            ->paginate($page);
+        }else{
+            $data = DB::table('ViewShowtime')
+            ->join('account', 'account.id', '=', 'ViewShowtime.account_id')
+            ->where('ViewShowtime.account_id', '=', auth()->user()->id)        
+            ->orWhere('account.account_id', '=',  auth()->user()->id)
+            ->select(['ViewShowtime.*'])
+            ->paginate($page);
+        }
         $dataTable = new Showtime();
 
         return view('app.admin.table.index', [
             'data'=>$data,
             'table_name' => $dataTable->getTable(),
+            'page' => $page,
         ]);
     }
 

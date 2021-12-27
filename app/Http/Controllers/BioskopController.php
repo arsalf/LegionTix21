@@ -27,7 +27,9 @@ class BioskopController extends Controller
                     ->orWhere('atasan_id', '=' ,auth()->user()->id)                    
                     ->paginate($page);
         }else{
-            return redirect('/forbidden');
+            $data = DB::table('ViewBioskop')             
+                    ->where('leader_id', '=', auth()->user()->id)                    
+                    ->paginate($page);
         }
 
         $dataTable = new Bioskop();

@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="{{ asset('home/css/myStyle.css') }}" type="text/css">
 
     <title>Hello, world!</title>
+    @yield('custom_css')
   </head>
   <body>
     {{-- <nav class="bg-white shadow-sm navbar navbar-expand-md navbar-light">

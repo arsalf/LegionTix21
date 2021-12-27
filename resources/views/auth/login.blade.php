@@ -1,5 +1,13 @@
 @extends('layouts.app')
 
+@section('custom_css')
+<style>
+    .is-invalid{
+        background-color : rgb(255, 0, 0)!important;
+    }
+</style>
+@endsection
+
 @section('content')
 <section class="">
     <div class="container">
@@ -18,24 +26,22 @@
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
                         <div class="input__item">
-                            <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" placeholder="Username" autofocus>
-                            <span class="icon_profile"></span>
-
                             {{-- @error('username')
                                 <span class="invalid-feedback text-danger" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror --}}
+                            <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" placeholder="Username" autofocus>
+                            <span class="icon_profile"></span>
                         </div>
                         <div class="input__item">
-                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Password">
-                            <span class="icon_lock"></span>
-
                             {{-- @error('password')
                                 <span class="invalid-feedback text-danger" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror --}}
+                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Password">
+                            <span class="icon_lock"></span>
                         </div>
                         <div class="form-group row">
                             <div class="col-md-12">
