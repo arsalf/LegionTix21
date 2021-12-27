@@ -62,32 +62,33 @@
                             $studio = '';
                             $showtime='';
                             $str = '';
-                        ?>
-                        @foreach($cinemas as $cinema)
-                            <?php                            
-                                if($bioskop!=$cinema->bioskop_name){
-                                    $bioskop = $cinema->bioskop_name;
-                                    $studio = '';
-                                    $studio_temp = '';
-                                    $str = $str.$bioskop_temp.'<div class="box my-4">
-                                                    <div class="bioskop-name">
-                                                        <h3>'.$bioskop.'</h3>
-                                                    </div>';                                                  
-                                    $bioskop_temp = '</div></div></div>';
-                                }          
-                                if($studio!=$cinema->studio_type){     
-                                    $studio = $cinema->studio_type;
-                                    $str = $str.$studio_temp.'<div class="row">
-                                                    <div class="col-sm-4">
-                                                        <h4>'.$studio.'</h4>
-                                                    </div>
-                                                    <div class="col-sm-8">';
-                                    $studio_temp = '</div></div>';
-                                }
-                                $showtime ='<button class="btn btn-primary m-2">'.(date('H:i', strtotime($cinema->waktu))).'</button>';
-                                $str = $str.$showtime;
-                            ?>  
-                        @endforeach
+                        ?>                        
+                            @foreach($cinemas as $cinema)
+                                <?php                            
+                                    if($bioskop!=$cinema->bioskop_name){
+                                        $bioskop = $cinema->bioskop_name;
+                                        $studio = '';
+                                        $studio_temp = '';
+                                        $str = $str.$bioskop_temp.'<div class="box my-4">
+                                                        <div class="bioskop-name">
+                                                            <h3>'.$bioskop.'</h3>
+                                                        </div>';                                                  
+                                        $bioskop_temp = '</div></div></div>';
+                                    }          
+                                    if($studio!=$cinema->studio_type){     
+                                        $studio = $cinema->studio_type;
+                                        $str = $str.$studio_temp.'<div class="row">
+                                                        <div class="col-sm-4">
+                                                            <h4>'.$studio.'</h4>
+                                                        </div>
+                                                        <div class="col-sm-8">';
+                                        $studio_temp = '</div></div>';
+                                    }
+                                    $showtime ='
+                                    <a href="'.route('kursis.edit', $cinema->id).'" class="btn btn-primary m-2">'.(date('H:i', strtotime($cinema->waktu))).'</a>';
+                                    $str = $str.$showtime;
+                                ?>  
+                            @endforeach
                         <?php
                             $str = $str.'
                                         </div>
@@ -95,7 +96,7 @@
                                 </div>  
                             ';
                             echo $str;
-                        ?>
+                        ?>                        
                         {{-- <div class="box">
                             <div class="bioskop-name">
                                 <h3>JATOS XXI</h3>

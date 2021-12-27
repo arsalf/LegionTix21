@@ -5,8 +5,8 @@
 @endsection
 
 @section('content')
-
-@if (\Session::has('status'))
+<div class="container mt-5 mb-5" style="min-height: 500px">
+    @if (Session::has('status'))
     <div class="container mt-5" style="position: relative;">
         <div class="alert alert-success alert-dismissible fade show" role="alert" 
              style="
@@ -22,7 +22,21 @@
     </div>
 @endif
 
-<div class="container mt-5 mb-5" style="min-height: 500px">
+@if (Session::has('error'))
+    <div class="container mt-5" style="position: relative;">
+        <div class="alert alert-success alert-dismissible fade show" role="alert" 
+             style="
+                    position: absolute;
+                    right: 0;
+                    left: 0;"
+        >
+            <strong>Error : </strong>  {!! \Session::get('status') !!}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+@endif
     {{date('Y-m-d H:i:s')}}
     <section class="mb-2 text-white">
         @foreach ($dompet as $item)
@@ -47,6 +61,9 @@
                 <button data-toggle="modal" data-target="#exampleModalCenter" style="cursor: pointer" class="btn btn-primary btn-block">
                     <span>Top Up</span>
                 </button>
+                <a href="{{route('app.bayarTopUp')}}" style="cursor: pointer" class="btn btn-primary btn-block">
+                    <span>Simulasi</span>
+                </a>
             </div>
         </div>
         @endforeach
@@ -56,9 +73,10 @@
     <table class="table">
         <thead class="thead-light bg-light">
             <tr>
-                <th scope="col">No</th>
-                <th scope="col">Kode Pembayaran</th>
-                <th scope="col">Nominal</th>
+                <th>No</th>
+                <th>Kode Pembayaran</th>
+                <th>Nominal</th>
+                <th>Status</th>
             </tr>
         </thead>
         <tbody class="bg-light">
@@ -69,6 +87,7 @@
                     <th scope="row"><?= $i ?></th>
                     <td>{{ $item->kode_pembayaran }}</td>
                     <td>{{ $item->nominal}}</td>
+                    <td>{{$item->status}}</td>
                 </tr>
             @endforeach
         </tbody>

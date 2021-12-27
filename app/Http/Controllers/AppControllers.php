@@ -67,11 +67,11 @@ class AppControllers extends Controller
         $param1 = $request->inputKode;
         $stmt->bindParam(':p1', $param1, PDO::PARAM_STR);
         $param2 = $request->inputNominal;
-        $stmt->bindParam(':p2', $param2, PDO::PARAM_STR);
+        $stmt->bindParam(':p2', $param2, PDO::PARAM_INT);
         try{
             $stmt->execute();
         }catch(Exception $e){
-            return redirect()->back()->withErrors($e->getMessage());
+            return redirect()->back()->withError($e->getMessage());
         }            
 
         if ($param2 == 0) {
@@ -89,8 +89,11 @@ class AppControllers extends Controller
      */
     public function show($id)
     {
-        $dompet = Dompet::all()->where('account_id', '=', $id);
-        $topup = TopUp::all()->where('dompet_id', '=', $id);
+        $dompet = Dompet::where('account_id', '=', $id)
+        ->get();
+        $topup =TopUp::orderBy('kode_pembayaran', 'desc')
+        ->where('dompet_id', '=', $id)
+        ->get();
         return view('app.home.profile',[
             'topup'=>$topup,
             'dompet'=>$dompet,
