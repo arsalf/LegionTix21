@@ -26,6 +26,7 @@ class KursiController extends Controller
         ->where('account_id', '=', auth()->user()->id)
         ->paginate($page);
         return view('app.admin.table.index', [
+            'id' => 1,
             'data'=>$data,             
             'table_name' => 'KURSI',
             'page' => $page,

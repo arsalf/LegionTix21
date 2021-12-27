@@ -164,6 +164,7 @@
                                 <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
                                     <form action="{{route('tiket.store')}}" method="POST">
+                                        @csrf
                                         <button type="submit" class="btn btn-primary">Iyah</button>
                                     </form>
                                 </div>
