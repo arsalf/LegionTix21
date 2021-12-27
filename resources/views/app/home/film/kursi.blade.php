@@ -49,16 +49,16 @@
                     </button>                    
                 </div>
             @endif    
-            <div class="row bg-white mb-3">
+            <div class="mb-3 bg-white row">
                 <div class="col-md">
-                    <legend class="text-center m-0">                    
+                    <legend class="m-0 text-center">                    
                     {{$showtime->title}} -o- {{$showtime->waktu}} -o- {{$showtime->bioskop_name}} -o- {{$showtime->studio_type}}
                     </legend>                    
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-md-8 mb-3">
+                <div class="mb-3 col-md-8">
                     <div class="d-flex justify-content-center">
                         <div class="">
                             {{-- <img class="mb-5" id="bisa" src="{{ asset('home/img/layar.jpg')}}" alt="" style="height: 500px; width: 100%;"> --}}
@@ -80,7 +80,9 @@
                                                         }
                                                         $str = $str.'<div name="kursi" class="'.strtolower($item->type_name)."-seat ";
          
-                                                        if($item->status){
+                                                        if ($item->status == 'SUCCESS') {
+                                                            $str = $str.'occupied bg-danger';
+                                                        }else if($item->status){
                                                             $str = $str.'occupied';   
                                                         }else{
                                                             $str = $str.'selected';  
@@ -96,11 +98,11 @@
                         </div>                                                    
                     </div>                        
                 </div>
-                <div class="col-md-4 mb-3 bg-white">
+                <div class="mb-3 bg-white col-md-4">
                     <div class="checkout">
                         <h2>Tiket Anda</h2>                                                                        
                         <legend>mohon selesaikan dalam 2 menit!</legend>
-                        <div class="table-responsive table-sm detail-ticket mb-3">                            
+                        <div class="mb-3 table-responsive table-sm detail-ticket">                            
                             <input type="hidden" name="showtime_id" id="showtime_id" value="{{$id}}">
                             <table class="table">
                                 <thead>
@@ -145,7 +147,7 @@
                                 </tfoot>
                             </table>
                         </div>
-                        <div class="checkout d-flex justify-content-center mb-3">
+                        <div class="mb-3 checkout d-flex justify-content-center">
                             <button class="btn btn-primary" data-toggle="modal" data-target="#konfirmasi">Bayar</button>
                         </div>
                         <!-- Modal -->

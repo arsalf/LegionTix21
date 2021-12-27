@@ -89,6 +89,7 @@ class AppControllers extends Controller
      */
     public function show($id)
     {
+        $tiket = DB::table('Tiket')->get();
         $dompet = Dompet::where('account_id', '=', $id)
         ->get();
         $topup =TopUp::orderBy('kode_pembayaran', 'desc')
@@ -96,6 +97,7 @@ class AppControllers extends Controller
         ->get();
         return view('app.home.profile',[
             'topup'=>$topup,
+            'tiket'=>$tiket,
             'dompet'=>$dompet,
         ]);
     }
