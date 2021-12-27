@@ -98,20 +98,6 @@ class FilmController extends Controller
         }else{
             //by search
             try{
-                // "ID",
-                // "IMDB_ID",
-                // "TITLE",
-                // "IMAGE",
-                // "PLOT",
-                // "DURATION",
-                // "GENRE",
-                // "RATING",
-                // "DIRECTOR",
-                // "ACTORS",
-                // "TRAILER",
-                // "RELEASE_DATE",
-                // "LANGUAGE",
-                // "COUNTRY",
                 $data = Http::get('https://imdb-api.com/en/API/Title/k_1q09gcv7/'.$request->id_imdb);           
                 $film = new Film;
                 $film->imdb_id = $request->id_imdb;
@@ -119,10 +105,13 @@ class FilmController extends Controller
                 $film->image = $data['image'];
 
                 $durasi = $data['runtimeMins'];
-                $result = DB::selectOne("select itodate($durasi) as value from dual");   
-                $durasi = date('Y/m/d H:i', strtotime($result->value));
-                $film->duration = $durasi;
-
+                try{
+                    $result = DB::selectOne("select itodate($durasi) as value from dual");   
+                    $durasi = date('Y/m/d H:i', strtotime($result->value));
+                    $film->duration = $durasi;
+                }catch(Exception $e){
+                    $film->duration = null;
+                }
                 $arr = explode(", ", $data['genres']);
                 $genre = $arr[0];
                 $film->genre = $genre;

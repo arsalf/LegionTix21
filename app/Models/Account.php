@@ -14,8 +14,7 @@ class Account extends Authenticatable
     protected $fillable = [
         'USERNAME',
         'EMAIL',
-        'PASSWORD',
-        'ROLE_NAME',
+        'PASSWORD',        
     ];
 
     /**
@@ -25,6 +24,7 @@ class Account extends Authenticatable
      */
     protected $hidden = [
         'ID',
+        'ROLE_NAME',
         'ACCOUNT_ID',
         'isActive',        
         'password',        
