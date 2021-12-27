@@ -70,28 +70,54 @@
 
     </section>
     <hr>
-    <table class="table">
-        <thead class="thead-light bg-light">
-            <tr>
-                <th>No</th>
-                <th>Kode Pembayaran</th>
-                <th>Nominal</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody class="bg-light">
-            <?php $i=0; ?>
-            @foreach ($topup as $item)
-                <?php $i++; ?>
-                <tr>
-                    <th scope="row"><?= $i ?></th>
-                    <td>{{ $item->kode_pembayaran }}</td>
-                    <td>{{ $item->nominal}}</td>
-                    <td>{{$item->status}}</td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table">
+                <thead class="thead-light bg-light">
+                    <tr>
+                        <th>#ID</th>
+                        <th>Film</th>
+                        <th>Studio</th>
+                        <th>Kursi</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-light">
+                    @foreach ($tiket as $item)
+                        <tr>
+                            <th scope="row">{{ $item->id }}</th>
+                            <td>{{ $item->title }}</td>
+                            <td>{{ $item->name }}</td>
+                            <td>{{ $item->kursi }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-6">
+            <table class="table">
+                <thead class="thead-light bg-light">
+                    <tr>
+                        <th>No</th>
+                        <th>Kode Pembayaran</th>
+                        <th>Nominal</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-light">
+                    <?php $i=0; ?>
+                    @foreach ($topup as $item)
+                        <?php $i++; ?>
+                        <tr>
+                            <th scope="row"><?= $i ?></th>
+                            <td>{{ $item->kode_pembayaran }}</td>
+                            <td>{{ $item->nominal }}</td>
+                            <td>{{ $item->status }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 
 <!-- Modal -->

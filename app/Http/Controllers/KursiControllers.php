@@ -87,6 +87,7 @@ class KursiControllers extends Controller
             ->get();
             $dataTiket = DB::table('ViewTiket')
             ->where('account_id', '=', auth()->user()->id)
+            ->where('status', '=', 'BOOKING')
             ->get();
         }catch(Exception $e){
             return redirect('home.index');
