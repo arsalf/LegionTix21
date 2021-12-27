@@ -75,17 +75,19 @@
             <table class="table">
                 <thead class="thead-light bg-light">
                     <tr>
-                        <th>No Tiket</th>
-                        <th>Baris</th>
-                        <th>Kolom</th>
+                        <th>#ID</th>
+                        <th>Film</th>
+                        <th>Studio</th>
+                        <th>Kursi</th>
                     </tr>
                 </thead>
                 <tbody class="bg-light">
                     @foreach ($tiket as $item)
                         <tr>
                             <th scope="row">{{ $item->id }}</th>
-                            <td>{{ $item->kursi_baris }}</td>
-                            <td>{{ $item->kursi_kolom }}</td>
+                            <td>{{ $item->title }}</td>
+                            <td>{{ $item->name }}</td>
+                            <td>{{ $item->kursi }}</td>
                         </tr>
                     @endforeach
                 </tbody>
