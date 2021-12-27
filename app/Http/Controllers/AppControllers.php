@@ -89,7 +89,7 @@ class AppControllers extends Controller
      */
     public function show($id)
     {
-        $tiket = DB::table('Tiket')->get();
+        $tiket = DB::table('viewOrderTiket')->get();
         $dompet = Dompet::where('account_id', '=', $id)
         ->get();
         $topup =TopUp::orderBy('kode_pembayaran', 'desc')

@@ -161,13 +161,13 @@
                                 </button>
                                 </div>
                                 <div class="modal-body">
-                                    Apakah anda yakin akan membeli <strong>semua</strong> tersebut ?
+                                    Apakah anda yakin akan membeli <strong>semua tiket</strong> tersebut ?
                                 </div>
                                 <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
                                     <form action="{{route('tiket.store')}}" method="POST">
                                         @csrf
-                                        <button type="submit" class="btn btn-primary">Iyah</button>
+                                        <button type="submit" class="btn btn-primary">Iya</button>
                                     </form>
                                 </div>
                             </div>
